@@ -1,0 +1,81 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Os extends Model
+{
+  protected $connection = 'pgsql';
+  protected $table = 'tb_os_diarias';
+
+  protected $fillable = [
+    'pescodigo',
+    'id',
+    'pnome',
+    'saram',
+    'cpf',
+    'banco',
+    'agencia',
+    'conta',
+    'email',
+    'datanascimento',
+    'enquadramento',
+    'identidade',
+    'om',
+    'telefone',
+    'servico',
+    'documentos',
+    'ne',
+    'em_proveito',
+    'custeio',
+    'local_servico',
+    'local_pernoite',
+    'data_afastamento_inicio',
+    'hora_afastamento_inicio',
+    'data_afastamento_retorno',
+    'hora_afastamento_retorno',
+    'adicional_deslocamento',
+    'total_acrescimos',
+    'valor_total',
+    'valor_total_sem_custo',
+    'rd_auxtransporte',
+    'rd_auxalimentacao',
+    'fim_semana',
+    'conveniencia_servico',
+    'justificativa',
+    'alteracao_servico',
+    'justificativa_alteracao',
+    'val_br_am_rj',
+    'qt_br_am_rj',
+    'resultado1',
+    'val_bh_fl_pa_rc_sl_sp',
+    'qt_bh_fl_pa_rc_sl_sp',
+    'resultado2',
+    'val_capitais',
+    'qt_capitais',
+    'resultado3',
+    'val_cidades',
+    'qt_cidades',
+    'resultado4',
+    'qt_acrescimo',
+    'val_ac',
+    'desc_a',
+    'qt_dias_a',
+    'resultado_dias_a',
+    'desc_b',
+    'qt_dias_b',
+    'resultado_dias_b',
+    'resultado_total',
+    'conforme_previsto',
+    'conforme_forca_maior',
+    'qt_meia_diaria',
+    'localidade_meia_diaria',
+    'qt_diaria_completa',
+    'localidade_diaria_completa',
+    'num_total_acrescimos',
+    'restituicao',
+    'valor_restituicao'
+  ];
+
+}
