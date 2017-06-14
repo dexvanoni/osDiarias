@@ -15,7 +15,7 @@
     'class' => 'form',
     'method' => 'PUT']) !!}
 
-    @include('ficha.formulario.formulario');
+    @include('ficha.formulario.formulario')
 
     {!! Form::close() !!}
 

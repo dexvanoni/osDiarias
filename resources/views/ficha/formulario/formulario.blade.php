@@ -242,7 +242,7 @@
     <div title="JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)" class="col-md-12">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">27</span>
-        <textarea id="justificativa" name="justificativa" class='form-control' placeholder='JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)'></textarea>
+        {!! Form::textarea('justificativa', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA: (Art 1º, da Portaria 1348/GC4/2015)')) !!}
       </div>
     </div>
   </div>
@@ -262,15 +262,15 @@
       </div>
       <div style="font-size: 10px" class="col-md-2">
         <center>
-          <input type="radio" name="alteracao_servico" id="alteracao_servico_s" value="Sim">SIM&nbsp&nbsp&nbsp
-          <input type="radio" name="alteracao_servico" id="alteracao_servico_n" value="Não">NÃO
+          {!! Form::radio('alteracao_servico', 'SIM', null, ['id'=>'alteracao_servico_s']) !!}SIM&nbsp&nbsp&nbsp
+          {!! Form::radio('alteracao_servico', 'NÃO', null, ['id'=>'alteracao_servico_n']) !!}NÃO
         </center>
       </div>
     </div>
     <!-- DIV abaixo só aparece se o radio (de cima) SIM for selecionado (jquery escrita no template) -->
-    <div class="col-md-12" id="camposExtras">
-      <textarea id="justificativa_alteracao" name="justificativa_alteracao" class='form-control' placeholder='JUSTIFICATIVA:'></textarea>
-      <h5>Campo Grande, <input size="2" maxlength="2" type="text" name="dia">&nbsp de &nbsp<input type="text" name="mes">&nbsp de 2017. Responsável pelo serviço: <input type="text" name="responsavel"></h5>
+      <div class="col-md-12" id="camposExtras">
+      {!! Form::textarea('justificativa_alteracao', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA:')) !!}
+      <h5>Campo Grande, {!! Form::text('dia', null, array('size'=>'3')) !!} &nbsp de &nbsp {!! Form::text('mes', null,array('size' => '15')) !!}&nbsp de 2017. Responsável pelo serviço: {!! Form::text('responsavel', null,array('size' => '20')) !!} </h5>
     </div>
   </div>
   <hr>
@@ -296,37 +296,37 @@
     <!-- PRIMEIRA LINHA DA TABELA-->
     <div class="row">
       <div class="col-md-2">
-        <center><input size="6" type="text" name="val_br_am_rj" id="a"></center>
+        <center>{!! Form::text('val_br_am_rj', null, array('size'=>'6', 'id'=>'a')) !!}</center>
       </div>
       <div class="col-md-6">
         <center><h6>Brasília, Manaus, Rio de Janeiro</h6></center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="qt_br_am_rj" id="a1"></center>
+        <center>{!! Form::text('qt_br_am_rj', null, array('size'=>'6', 'id'=>'a1')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="resultado1" id="resultado1" readonly></center>
+        <center>{!! Form::text('resultado1', null, array('size'=>'6', 'id'=>'resultado1', 'readonly'=>'readonly')) !!}</center>
       </div>
     </div>
     <!-- SEGUNDA LINHA DA TABELA-->
     <div class="row">
       <div class="col-md-2">
-        <center><input size="6" type="text" name="val_bh_fl_pa_rc_sl_sp" id="b"></center>
+        <center>{!! Form::text('val_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b')) !!}</center>
       </div>
       <div class="col-md-6">
         <center><h6>Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador e São Paulo</h6></center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="qt_bh_fl_pa_rc_sl_sp" id="b1"></center>
+        <center>{!! Form::text('qt_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b1')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="resultado2" id="resultado2" readonly></center>
+        <center>{!! Form::text('resultado2', null, array('size'=>'6', 'id'=>'resultado2', 'readonly'=>'readonly')) !!}</center>
       </div>
     </div>
     <!-- TERCEIRA LINHA DA TABELA-->
     <div class="row">
       <div class="col-md-2">
-        <center><input size="6" type="text" name="val_capitais" id="c"></center>
+        <center>{!! Form::text('val_capitais', null, array('size'=>'6', 'id'=>'c')) !!}</center>
       </div>
       <div class="col-md-6">
         <center><h6>Demais capitais de Estado</h6></center>
@@ -335,22 +335,22 @@
         <center><input size="6" type="text" name="qt_capitais" id="c1"></center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="resultado3" id="resultado3" readonly></center>
+        <center>{!! Form::text('resultado3', null, array('size'=>'6', 'id'=>'resultado3', 'readonly'=>'readonly')) !!}</center>
       </div>
     </div>
     <!-- QUARTA LINHA DA TABELA-->
     <div class="row">
       <div class="col-md-2">
-        <center><input size="6" type="text" name="val_cidades" id="d"></center>
+        <center>{!! Form::text('val_cidades', null, array('size'=>'6', 'id'=>'d')) !!}</center>
       </div>
       <div class="col-md-6">
         <center><h6>Demais Cidades</h6></center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="qt_cidades" id="d1"></center>
+        <center>{!! Form::text('qt_cidades', null, array('size'=>'6', 'id'=>'d1')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="resultado4" id="resultado4" readonly></center>
+        <center>{!! Form::text('resultado4', null, array('size'=>'6', 'id'=>'resultado4', 'readonly'=>'readonly')) !!}</center>
       </div>
     </div>
     <!-- LINHA DE ACRÉSCIMOS-->
@@ -360,10 +360,10 @@
         <center><h6><b>Acréscimos de Deslocamento</b></h6></center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="qt_acrescimo" id="qt_acrescimo"></center>
+        <center>{!! Form::text('qt_acrescimo', null, array('size'=>'6', 'id'=>'qt_acrescimo')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="val_ac" id="val_ac" readonly></center>
+        <center>{!! Form::text('val_ac', null, array('size'=>'6', 'id'=>'val_ac')) !!}</center>
       </div>
     </div>
     <!-- LINHA DE DESCONTOS-->
@@ -385,31 +385,31 @@
     <!-- PRIMEIRA LINHA DESCONTO-->
     <div class="row">
       <div class="col-md-2">
-        <center><input size="6" type="text" name="desc_a" id="desc_a"></center>
+        <center>{!! Form::text('desc_a', null, array('size'=>'6', 'id'=>'desc_a')) !!}</center>
       </div>
       <div class="col-md-6">
         <center><h6>Auxílio Alimentação - Valor líquido mensal: R$ 0</h6></center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="qt_dias_a" id="qt_dias_a"></center>
+        <center>{!! Form::text('qt_dias_a', null, array('size'=>'6', 'id'=>'qt_dias_a')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="resultado_dias_a" id="resultado_dias_a" readonly></center>
+        <center>{!! Form::text('resultado_dias_a', null, array('size'=>'6', 'id'=>'resultado_dias_a', 'readonly'=>'readonly')) !!}</center>
       </div>
     </div>
     <!-- SEGUNDA LINHA DESCONTO-->
     <div class="row">
       <div class="col-md-2">
-        <center><input size="6" type="text" name="desc_b" id="desc_b"></center>
+        <center>{!! Form::text('desc_b', null, array('size'=>'6', 'id'=>'desc_b')) !!}</center>
       </div>
       <div class="col-md-6">
         <center><h6>Auxílio Transporte - Valor líquido mensal: R$ 0</h6></center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="qt_dias_b" id="qt_dias_b"></center>
+        <center>{!! Form::text('qt_dias_b', null, array('size'=>'6', 'id'=>'qt_dias_b')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="resultado_dias_b" id="resultado_dias_b" readonly></center>
+        <center>{!! Form::text('resultado_dias_b', null, array('size'=>'6', 'id'=>'resultado_dias_b', 'readonly'=>'readonly')) !!}</center>
       </div>
     </div>
     <hr>
@@ -425,7 +425,7 @@
         <center><b>TOTAL</b></center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="resultado_total" id="resultado_total" readonly></center>
+        <center>{!! Form::text('resultado_total', null, array('size'=>'6', 'id'=>'resultado_total', 'readonly'=>'readonly')) !!}</center>
       </div>
     </div>
 
@@ -441,35 +441,34 @@
         <p>a) Homologo a concessão de diárias</p>
       </div>
       <div class="row">
-        <p>b) 1. <input type="checkbox" name="conforme_previsto" value="Conforme previsto na presente Ordem de Serviço">Conforme previsto na presente Ordem de Serviço</p>
+        <p>b) 1. {!! Form::checkbox('conforme_previsto', null, array('class' => 'form-control input-sm', 'value'=>'Conforme previsto na presente Ordem de Serviço')) !!} Conforme previsto na presente Ordem de Serviço</p>
       </div>
       <div class="row">
-        <p>2. <input type="checkbox" name="conforme_forca_maior" value="Conforme a seguir, por motivo de força maior">Conforme a seguir, por motivo de força maior.</p>
+        <p>2. {!! Form::checkbox('conforme_forca_maior', null, array('class' => 'form-control input-sm', 'value'=>'Conforme a seguir, por motivo de força maior')) !!} Conforme a seguir, por motivo de força maior.</p>
       </div>
       <div class="row">
-        <p>1/2 diária - Qtd: <input size="3" type="text" name="qt_meia_diaria" id="qt_meia_diaria"> referente a localidade de <input type="text" name="localidade_meia_diaria"></p>
+        <p>1/2 diária - Qtd: {!! Form::text('qt_meia_diaria', null, array('size'=>'3')) !!} referente a localidade de {!! Form::text('localidade_meia_diaria', null, array('size'=>'25')) !!}</p>
       </div>
       <div class="row">
-        <p>Diária Completa - <input size="3" type="text" name="qt_diaria_completa" id="qt_diaria_completa"> referente a pernoite(s) em <input type="text" name="localidade_diaria_completa"></p>
+        <p>Diária Completa - {!! Form::text('qt_diaria_completa', null, array('size'=>'3')) !!} referente a pernoite(s) em {!! Form::text('localidade_diaria_completa', null, array('size'=>'45')) !!}</p>
       </div>
       <div class="row">
-        <p>Número total de acréscimos: <input size="3" type="text" name="num_total_acrescimos" value=""></p>
+        <p>Número total de acréscimos: {!! Form::text('num_total_acrescimos', null, array('size'=>'3')) !!}</p>
       </div>
       <div class="row">
         3. Restituição a efetuar:&nbsp&nbsp&nbsp&nbsp
         <div class="radio-inline">
-          <input type="radio" name="restituicao" value="Sim">SIM&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-          <input type="radio" name="restituicao" value="Não">NÃO&nbsp&nbsp&nbsp&nbsp
+          {!! Form::radio('restituicao', 'SIM') !!}SIM&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+          {!! Form::radio('restituicao', 'NÃO') !!}NÃO&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
         </div>
-        Valor: R$ <input type="text" name="valor_restituicao">
+        Valor: R$ {!! Form::text('valor_restituicao', null, array('size'=>'15')) !!}
       </div>
       <div class="row">
         <br><br>
         <p>Publique-se:____________________________________________________________</p>
         <br>
-        <button type="submit" class="btn btn-primary">Salvar edição</button>
-        <button type="reset" class="btn btn-primary">Limpar</button>
+        {{ Form::submit('Salvar', array('class'=>'btn btn-primary')) }}
+        {{ Form::reset('Limpar', array('class'=>'btn btn-danger')) }}
         <br><br>
       </div>
-
     </div>
