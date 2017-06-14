@@ -1,19 +1,23 @@
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2">
       <img src="/bst/brasao.png" class="img-responsive" alt="" height="70em" width="70em" />
     </div>
-    <div class="col-md-4">
+    <div class="col-md-7">
       <center>
         <h4>COMANDO DA AERONÁUTICA</h4>
         <p>GRUPAMENTO DE APOIO DE CAMPO GRANDE</p>
-        <p>ORDEM DE SERVIÇO DE SOLICITAÇÃO DE DIÁRIAS N.º {!! Form::hidden('id', null, array('class' => 'form-control', 'size' => '3', 'width' => '3')) !!} {{ $os->id }}</p>
-        <p><sup>1</sup>SC:{!! Form::text('sc', null, array('class' => 'form-control', 'size' => '3', 'width' => '3')) !!}</p>
+          <div class="">
+            ORDEM DE SERVIÇO DE SOLICITAÇÃO DE DIÁRIAS N.º {!! Form::text('id', null, array('readonly'=>'readonly', 'size' => '5')) !!}
+          </div>
+        <div class="">
+          <sup>1</sup>SC:{!! Form::text('sc', null, array('size' => '4', 'width' => '3')) !!}
+        </div>
       </center>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-3">
       <center>
         <h5>Data: {{ date('d/m/Y') }}</h5>
-        <p>Nº PCDP:{!! Form::text('pcdp', null, array('class' => 'form-control'))!!}</p>
+        Nº PCDP:{!! Form::text('pcdp', null, array('size' => '4')) !!}
       </center>
     </div>
   </div>
@@ -29,20 +33,19 @@
     <div title="Digite seu POSTO/GRAD e NOME COMPLETO" class="col-md-7">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">2*</span>
-        <input class"form-control" type="text" id="pnome" name="pnome" class="form-control input-sm" placeholder="POSTO/GRAD/NOME:" readonly>
-        {!! Form::text('pnome', null, array('class' => 'form-control', 'placeholder' => 'PGRAD'))!!}
+        {!! Form::text('pnome', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
       </div>
     </div>
     <div title="Digite seu SARAM" class="col-md-2">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">3*</span>
-        <input type="text" id="saram" name="saram" class="form-control input-sm" placeholder="SARAM:" readonly>
+        {!! Form::text('saram', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
       </div>
     </div>
     <div title="Digite seu CPF" class="col-md-3">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">4*</span>
-        <input type="text" id="cpf" name="cpf" class="form-control input-sm" placeholder="CPF:" readonly>
+      {!! Form::text('cpf', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
       </div>
     </div>
   </div>
@@ -52,31 +55,31 @@
     <div title="Digite o número do seu banco" class="col-md-2">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">5</span>
-        <input type="text" id="banco" name="banco" class="form-control input-sm" placeholder="BANCO:">
+        {!! Form::text('banco', null, array('class' => 'form-control input-sm', 'placeholder'=>'BANCO:')) !!}
       </div>
     </div>
     <div title="Digite o número de sua agência" class="col-md-2">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">6</span>
-        <input type="text" id="agencia" name="agencia" class="form-control input-sm" placeholder="AGÊNCIA:">
+        {!! Form::text('agencia', null, array('class' => 'form-control input-sm', 'placeholder'=>'AGÊNCIA:')) !!}
       </div>
     </div>
     <div title="Digite o número de sua conta" class="col-md-2">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">7</span>
-        <input type="text" id="conta" name="conta" class="form-control input-sm" placeholder="CONTA:">
+        {!! Form::text('conta', null, array('class' => 'form-control input-sm', 'placeholder'=>'CONTA:')) !!}
       </div>
     </div>
     <div title="Digite seu email" class="col-md-3">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">8*</span>
-        <input type="text" id="email" name="email" class="form-control input-sm" placeholder="EMAIL:" readonly>
+        {!! Form::text('email', null, array('class' => 'form-control input-sm', 'placeholder'=>'EMAIL:', 'readyonly'=>'readonly')) !!}
       </div>
     </div>
     <div title="Digite sua data de nascimento" class="col-md-3">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">9*</span>
-        <input type="text" id="datanascimento" name="datanascimento" class="form-control input-sm" placeholder="DATA NASCIMENTO:" readonly>
+        {!! Form::text('datanascimento', null, array('class' => 'form-control input-sm', 'placeholder'=>'DATA DE NASCIMENTO:')) !!}
       </div>
     </div>
   </div>
@@ -86,28 +89,25 @@
     <div title="Campo automático!" class="col-md-5">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">10</span>
-        <input style="font-size: 11px" type="text" id="enquadramento" name="enquadramento" class="form-control input-sm" value="Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015." readonly>
+        {!! Form::text('enquadramento', null, array('style'=>'font-size:10px', 'value'=>'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.', 'class' => 'form-control input-sm', 'readonly'=>'readonly', 'placeholder'=>'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.')) !!}
       </div>
     </div>
     <div title="Digite sua Identidade" class="col-md-2">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">11*</span>
-        <input type="text" id="identidade" name="identidade" class="form-control input-sm" placeholder="IDENTIDADE:" readonly>
+        {!! Form::text('identidade', null, array('class' => 'form-control input-sm', 'placeholder'=>'IDENTIDADE:', 'readonly'=>'readonly')) !!}
       </div>
     </div>
     <div title="Escolha sua OM" class="col-md-2">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">12</span>
-        <select type="text" id="om" name="om" class="form-control input-sm">
-          <option value="GAP-CG">GAP-CG</option>
-          <option value="ALA5">NuALA 5</option>
-        </select>
+      {!! Form::select('om', ['placeholder'=>'OM:', 'GAP-CG'=>'GAP-CG', 'NuALA5'=> 'NuALA5'], null, ['class' => 'form-control input-sm']) !!}
       </div>
     </div>
     <div title="Digite seu telefone para contato" class="col-md-3">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">13*</span>
-        <input type="text" id="telefone" name="telefone" class="form-control input-sm" placeholder="TELEFONE:" readonly>
+        {!! Form::text('telefone', null, array('class' => 'form-control input-sm', 'placeholder'=>'TELEFONE:', 'readonly'=>'readonly')) !!}
       </div>
     </div>
   </div>
@@ -118,7 +118,7 @@
     <div title="Informe o serviço que será realizado" class="col-md-12">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">14</span>
-        <input type="text" id="servico" name="servico" class="form-control input-sm" placeholder="SERVIÇO A REALIZAR:">
+        {!! Form::text('servico', null, array('class' => 'form-control input-sm', 'placeholder'=>'SERVIÇO A REALIZAR:')) !!}
       </div>
     </div>
   </div>
@@ -129,23 +129,19 @@
     <div title="Informe os documentos que originam a missão" class="col-md-6">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">15</span>
-        <input type="text" id="documentos" name="documentos" class="form-control input-sm" placeholder="DOCUMENTOS QUE ORIGINARAM A MISSÃO:">
+        {!! Form::text('documentos', null, array('class' => 'form-control input-sm', 'placeholder'=>'DOCUMENTOS QUE ORIGINARAM A MISSÃO:')) !!}
       </div>
     </div>
     <div title="Informe o NE" class="col-md-2">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">16</span>
-        <input type="text" id="ne" name="ne" class="form-control input-sm" placeholder="NE:">
+        {!! Form::text('ne', null, array('class' => 'form-control input-sm', 'placeholder'=>'NE:')) !!}
       </div>
     </div>
     <div title="Informe o preito da missão" class="col-md-4">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">17</span>
-        <select class="form-control input-sm" name="em_proveito" id="em_proveito">
-          <option value="" hidden disabled selected>MISSÃO EM PROVEITO:</option>
-          <option value="União">UNIÃO</option>
-          <option value="Própria">PRÓPRIA</option>
-        </select>
+        {!! Form::select('em_proveito', ['placeholder'=>'MISSÃO EM PROVEITO:', 'UNIÃO'=>'UNIÃO', 'PRÓPRIA'=> 'PRÓPRIA'], null, ['class' => 'form-control input-sm']) !!}
       </div>
     </div>
   </div>
@@ -156,12 +152,7 @@
     <div title="Informe a modalidade de custeio" class="col-md-12">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">18</span>
-        <select class="form-control input-sm" name="custeio" id="custeio">
-          <option value="" hidden disabled selected>CUSTEIO:</option>
-          <option value="Sem Custo">SEM CUSTO</option>
-          <option value="Diária">DIÁRIA</option>
-          <option value="Comissionamento">COMISSIONAMENTO</option>
-        </select>
+        {!! Form::select('custeio', ['placeholder'=>'CUSTEIO:', 'SEM CUSTO'=>'SEM CUSTO', 'DIÁRIA'=> 'DIÁRIA', 'COMISSIONAMENTO'=>'COMISSIONAMENTO'], null, ['class' => 'form-control input-sm']) !!}
       </div>
     </div>
   </div>
@@ -172,13 +163,13 @@
     <div title="Informe a cidade de realização do serviço" class="col-md-5">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">19</span>
-        <input type="text" id="local_servico" name="local_servico" class="form-control input-sm" placeholder="LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade):">
+        {!! Form::text('local_servico', null, array('class' => 'form-control input-sm', 'placeholder'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade):')) !!}
       </div>
     </div>
     <div title="Informe os locais de pernoite" class="col-md-7">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">20</span>
-        <input type="text" id="local_pernoite" name="local_pernoite" class="form-control input-sm" placeholder="LOCAL(IS) DE PERNOITE:">
+        {!! Form::text('local_pernoite', null, array('class' => 'form-control input-sm', 'placeholder'=>'LOCAL(IS) DE PERNOITE:')) !!}
       </div>
     </div>
     <p></p>
@@ -189,30 +180,22 @@
     <div title="Informe a data e hora de início e retorno do afastamento da sede" class="col-md-4">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">21 - AFASTAMENTO DE SEDE:</span>
-        <input type="date" id="data_afastamento_inicio" name="data_afastamento_inicio" class="form-control input-sm" placeholder="Data Início:">
-        <input type="time" id="hora_afastamento_inicio" name="hora_afastamento_inicio" class="form-control input-sm" placeholder="Hora:">
-        <input type="date" id="data_afastamento_retorno" name="data_afastamento_retorno" class="form-control input-sm" placeholder="Data Retorno:">
-        <input type="time" id="hora_afastamento_retorno" name="hora_afastamento_retorno" class="form-control input-sm" placeholder="Hora:">
+        {!! Form::text('data_afastamento_inicio', null, array('class' => 'form-control input-sm', 'placeholder'=>'Data Início:')) !!}
+        {!! Form::text('hora_afastamento_inicio', null, array('class' => 'form-control input-sm', 'placeholder'=>'Hora:')) !!}
+        {!! Form::text('data_afastamento_retorno', null, array('class' => 'form-control input-sm', 'placeholder'=>'Data Retorno:')) !!}
+        {!! Form::text('hora_afastamento_retorno', null, array('class' => 'form-control input-sm', 'placeholder'=>'Hora:')) !!}
       </div>
     </div>
     <div class="col-md-4">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">22</span>
-        <select title="Informe se houve ou não adicional de deslocamento" class="form-control input-sm" name="adicional_deslocamento" id="adicional_deslocamento">
-          <option title="(§1º, do Art.20, do Dec. 4.307/2002, alterado pelo Dec.6.907/2009)" value="" hidden disabled selected>ADICIONAL DE DESLOCAMENTO:</option>
-          <option value="Sim">ADICIONAL DE DESLOCAMENTO: SIM</option>
-          <option value="Não">ADICIONAL DE DESLOCAMENTO: NÃO</option>
-        </select>
-        <select title="Informe se Diária completa ou 1/2 diária" class="form-control input-sm" name="total_acrescimos" id="total_acrescimos">
-          <option value="" hidden disabled selected>TOTAL DE ACRÉSCIMOS:</option>
-          <option value="Diária Completa">DIÁRIA COMPLETA</option>
-          <option value="1/2 Diária">1/2 DIÁRIA</option>
-        </select>
+        {!! Form::select('adicional_deslocamento', ['placeholder'=>'Informe se houve ou não adicional de deslocamento:', 'SIM'=>'SIM', 'NÃO'=> 'NÃO'], null, ['class' => 'form-control input-sm'], null, ['title'=>'(§1º, do Art.20, do Dec. 4.307/2002, alterado pelo Dec.6.907/2009)']) !!}
+        {!! Form::select('total_acrescimo', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
       </div>
       <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
         <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">23 - VALOR TOTAL (Diária + Adc. Desl.)</span>
-        <input title="Informe o valor total de diárias + adicionais de deslocamento" type="text" id="valor_total" name="valor_total" class="form-control input-sm" placeholder="R$">
-        &nbsp&nbsp<input type="checkbox" id="ck_valor_total" title="Não havendo custos, favor marcar esta caixa!" value="Sem Custo">&nbsp&nbsp&nbsp&nbspSEM CUSTO
+          {!! Form::text('valor_total', null, array('title'=>'Informe o valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm', 'placeholder'=>'R$')) !!}
+        &nbsp&nbsp{!! Form::checkbox('ck_valor_total', null, array('title'=>'Não havendo custos, favor marcar esta caixa!', 'class' => 'form-control input-sm', 'value'=>'SEM CUSTO', false)) !!}&nbsp&nbsp&nbsp&nbspSEM CUSTO
       </div>
     </div>
     <!-- oitava linha da tabela-->
@@ -220,15 +203,15 @@
       <div class="input-group">
         <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - AUXÍLIO TRANSPORTE:&nbsp</span>
         <div style="border: 1px solid #D3D3D3; border-radius:3px" class="radio">
-          &nbsp&nbsp<label><input type="radio" name="rd_auxtransporte" id="rd_auxtransporte_sim" value="Sim">SIM</label><br>
-          &nbsp&nbsp<label><input type="radio" name="rd_auxtransporte" id="rd_auxtransporte_nao" value="Não">NÃO</label>
-        </div>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxtransporte', 'SIM') !!}SIM<br>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxtransporte', 'NÃO') !!}NÃO<br>
+          </div>
       </div>
       <div class="input-group">
         <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">25 - AUXÍLIO ALIMENTAÇÃO:</span>
         <div style="border: 1px solid #D3D3D3; border-radius:3px" class="radio">
-          &nbsp&nbsp<label><input type="radio" name="rd_auxalimentacao" id="rd_auxalimentacao_sim" value="Sim">SIM</label><br>
-          &nbsp&nbsp<label><input type="radio" name="rd_auxalimentacao" id="rd_auxalimentacao_nao" value="Não">NÃO</label>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxalimentacao', 'SIM') !!}SIM<br>
+          &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxalimentacao', 'NÃO') !!}NÃO<br>
         </div>
       </div>
     </div>
@@ -239,7 +222,7 @@
     <div title="JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)" class="col-md-12">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">26</span>
-        <textarea id="fim_semana" name="fim_semana" class='form-control' placeholder='JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)'></textarea>
+          {!! Form::textarea('fim_semana', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA MISSÃO EM FINAL DE SEMANA / FERIADO: (§ 2º, Art. 5º, do Dec. 5.992/2006)')) !!}
       </div>
     </div>
   </div>
@@ -249,7 +232,7 @@
     <div title="JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)" class="col-md-12">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">27</span>
-        <textarea id="conveniencia_servico" name="conveniencia_servico" class='form-control' placeholder='JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)'></textarea>
+        {!! Form::textarea('conveniencia_servico', null, array('rows'=>'3', 'class' => 'form-control', 'placeholder'=>'JUSTIFICATIVA DA CONVENIÊNCIA DO SERVIÇO: (Inciso 2.1.3, da ICA 177-42)')) !!}
       </div>
     </div>
   </div>
