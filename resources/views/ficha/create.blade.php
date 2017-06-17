@@ -11,7 +11,10 @@
 @section('forma')
 
   {!! Form::open(array('route' => 'ficha.store', 'method' => 'POST')) !!}
-  @include('ficha.formulario.formulario');
+  @php
+    $tela = 'create';
+  @endphp
+  @include('ficha.formulario.formulario')
   {!! Form::close() !!}
 
 @endsection

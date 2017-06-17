@@ -17,4 +17,9 @@
    //route to process the log in form
    Route::post('/', 'LogInController@doLogin');
 
+   Route::get('/account/sign-out', array(
+     'as' => 'account-sign-out',
+     'uses' => 'LogInController@getSignOut'
+   ));
+
    Route::resource('ficha', 'DashboardController', ['except' => 'show']);

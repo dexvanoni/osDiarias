@@ -39,8 +39,9 @@ class DashboardController extends Controller
 
   public function index()
   {
-
-    $os = Os::orderBy('id', 'DESC')->paginate(5);
+    $sar = Session::get('pescodigo');
+    $os = Os::where('pescodigo', '=', $sar)->paginate(5);
+    //$os = Os::orderBy('id', 'DESC')->paginate(5);
     return view('ficha.index',compact('os'));
 
   }
@@ -49,7 +50,16 @@ class DashboardController extends Controller
   {
     $pessoa = $this->pessoa->all();
 
-    return view('ficha.create', compact('pessoa'));
+    $pgrad = Session::get('grad').' '.Session::get('pesncompleto');
+    $login = Session::get('peslogin');
+    $saram = Session::get('pescodigo');
+    $cpf = Session::get('pescpf');
+    $datadenascimento = Session::get('pesdn');
+    $pemail = Session::get('pesemail');
+    $identidade = Session::get('pesidentidade');
+    $ramal = Session::get('pesfonetrabramal');
+
+    return view('ficha.create', compact('pessoa', 'pgrad', 'login', 'saram', 'cpf', 'datadenascimento', 'pemail', 'identidade', 'ramal'));
   }
 
   public function edit($id){
@@ -66,23 +76,23 @@ class DashboardController extends Controller
 
     if (!($os = Os::find($id))){
       throw new ModelNotFoundException("OS não encontrada!");
-      }
+    }
 
     $data = $request->all();
+    $os->fill($data)->save();
     Session::flash('mensagem_edit', "Ordem de Serviço editada com Sucesso!");
-    $os->save();
+    return redirect()->route('ficha.index');
   }
 
   public function destroy($id){
 
     if (!($os = Os::find($id))){
       throw new ModelNotFoundException("OS não encontrada!");
-      }
+    }
 
     $os->delete();
     Session::flash('mensagem_del', "Ordem de Serviço deletada com Sucesso!");
     return redirect()->route('ficha.index');
 
   }
-
 }

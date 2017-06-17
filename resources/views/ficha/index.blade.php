@@ -33,6 +33,9 @@
     </div><!-- /.container-fluid -->
   </nav>
   <div class="container">
+    <div class="pull-right">
+      <a href="{{ route('account-sign-out') }}" class="btn btn-danger"> Logut</a>
+    </div>
     <a href="{{ route('ficha.create') }}" class="btn btn-info"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Criar Nova</a>
     <hr>
     @if (Session::has('mensagem_create'))
@@ -66,8 +69,8 @@
             <tr>
               <th scope="row">{{ $oss->id }}</th>
               <td>{{ $oss->saram }}</td>
-              <td>{{ $oss->pnome}}</td>
-              <td>{{ $oss->servico }}</td>
+              <td style="width: 20%" >{{ $oss->pnome}}</td>
+              <td style="width: 50%">{{ $oss->servico }}</td>
               <td>
                 <ul class="list-inline list-small">
                   <li>

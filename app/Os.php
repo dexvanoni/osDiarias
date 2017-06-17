@@ -10,6 +10,8 @@ class Os extends Model
   protected $table = 'tb_os_diarias';
 
   protected $fillable = [
+    'sc',
+    'pcdp',
     'pescodigo',
     'id',
     'pnome',
@@ -37,6 +39,7 @@ class Os extends Model
     'hora_afastamento_retorno',
     'adicional_deslocamento',
     'total_acrescimos',
+    'ck_valor_total',
     'valor_total',
     'valor_total_sem_custo',
     'rd_auxtransporte',
@@ -46,6 +49,9 @@ class Os extends Model
     'justificativa',
     'alteracao_servico',
     'justificativa_alteracao',
+    'dia',
+    'mes',
+    'responsavel',
     'val_br_am_rj',
     'qt_br_am_rj',
     'resultado1',

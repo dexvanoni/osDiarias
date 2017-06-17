@@ -7,7 +7,12 @@
         <div class="panel panel-default">
           <div class="panel-heading">Login</div>
           <div class="panel-body">
+<div class="row">
 
+    <center><img src="/bst/brasao.png" class="img-responsive" alt="" height="90em" width="90em" /></center>
+
+</div>
+<hr>
             {{ Form::open(array('action'=>'LogInController@doLogin', 'class' => 'form-horizontal', 'method' => 'post')) }}
 
               <div class="form-group">
@@ -31,7 +36,7 @@
 
               <div class="form-group">
                 <div class="col-md-8 col-md-offset-4">
-                {{ Form::submit('Log In') }}
+                {{ Form::submit('Entrar') }}
 
                   </button>
 

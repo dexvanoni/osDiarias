@@ -7,7 +7,7 @@
         <h4>COMANDO DA AERONÁUTICA</h4>
         <p>GRUPAMENTO DE APOIO DE CAMPO GRANDE</p>
           <div class="">
-            ORDEM DE SERVIÇO DE SOLICITAÇÃO DE DIÁRIAS N.º {!! Form::text('id', null, array('readonly'=>'readonly', 'size' => '5')) !!}
+            ORDEM DE SERVIÇO DE SOLICITAÇÃO DE DIÁRIAS
           </div>
         <div class="">
           <sup>1</sup>SC:{!! Form::text('sc', null, array('size' => '4', 'width' => '3')) !!}
@@ -33,19 +33,32 @@
     <div title="Digite seu POSTO/GRAD e NOME COMPLETO" class="col-md-7">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">2*</span>
-        {!! Form::text('pnome', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
+        @if ($tela == 'create')
+          {!! Form::input('text', 'pnome', $value = $pgrad, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        @elseif ($tela == 'edit')
+          {!! Form::text('pnome',  null, array('class' => 'form-control input-sm', 'readonly'=>'readonly'))!!}
+        @endif
       </div>
     </div>
     <div title="Digite seu SARAM" class="col-md-2">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">3*</span>
-        {!! Form::text('saram', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
+        @if ($tela == 'create')
+          {!! Form::input('text', 'saram', $value = $saram, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+          {!! Form::input('hidden', 'pescodigo', $value = $saram) !!}
+        @elseif ($tela == 'edit')
+          {!! Form::text('saram', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
+        @endif
       </div>
     </div>
     <div title="Digite seu CPF" class="col-md-3">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">4*</span>
-      {!! Form::text('cpf', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
+        @if ($tela == 'create')
+          {!! Form::input('text', 'cpf', $value = $cpf, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        @elseif ($tela == 'edit')
+          {!! Form::text('cpf', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
+        @endif
       </div>
     </div>
   </div>
@@ -73,13 +86,21 @@
     <div title="Digite seu email" class="col-md-3">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">8*</span>
-        {!! Form::text('email', null, array('class' => 'form-control input-sm', 'placeholder'=>'EMAIL:', 'readyonly'=>'readonly')) !!}
+        @if ($tela == 'create')
+          {!! Form::input('text', 'email', $value = $pemail, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        @elseif ($tela == 'edit')
+            {!! Form::text('email', null, array('class' => 'form-control input-sm', 'placeholder'=>'EMAIL:', 'readonly'=>'readonly')) !!}
+        @endif
       </div>
     </div>
     <div title="Digite sua data de nascimento" class="col-md-3">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">9*</span>
-        {!! Form::text('datanascimento', null, array('class' => 'form-control input-sm', 'placeholder'=>'DATA DE NASCIMENTO:')) !!}
+        @if ($tela == 'create')
+          {!! Form::input('text', 'datanascimento', $value = date('d/m/Y', strtotime($datadenascimento)), $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        @elseif ($tela == 'edit')
+            {!! Form::text('datanascimento', null, array('class' => 'form-control input-sm', 'placeholder'=>'DATA DE NASCIMENTO:', 'readonly'=>'readonly')) !!}
+        @endif
       </div>
     </div>
   </div>
@@ -89,13 +110,18 @@
     <div title="Campo automático!" class="col-md-5">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">10</span>
-        {!! Form::text('enquadramento', null, array('style'=>'font-size:10px', 'value'=>'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.', 'class' => 'form-control input-sm', 'readonly'=>'readonly', 'placeholder'=>'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.')) !!}
+        {!! Form::input('text', 'enquadramento', $value = 'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.', $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly', 'placeholder'=>'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.']) !!}
       </div>
     </div>
     <div title="Digite sua Identidade" class="col-md-2">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">11*</span>
-        {!! Form::text('identidade', null, array('class' => 'form-control input-sm', 'placeholder'=>'IDENTIDADE:', 'readonly'=>'readonly')) !!}
+        @if ($tela == 'create')
+          {!! Form::input('text', 'identidade', $value = $identidade, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        @elseif ($tela == 'edit')
+          {!! Form::text('identidade', null, array('class' => 'form-control input-sm', 'placeholder'=>'IDENTIDADE:', 'readonly'=>'readonly')) !!}
+        @endif
+
       </div>
     </div>
     <div title="Escolha sua OM" class="col-md-2">
@@ -107,7 +133,12 @@
     <div title="Digite seu telefone para contato" class="col-md-3">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">13*</span>
-        {!! Form::text('telefone', null, array('class' => 'form-control input-sm', 'placeholder'=>'TELEFONE:', 'readonly'=>'readonly')) !!}
+        @if ($tela == 'create')
+          {!! Form::input('text', 'telefone', $value = $ramal, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        @elseif ($tela == 'edit')
+          {!! Form::text('telefone', null, array('class' => 'form-control input-sm', 'placeholder'=>'TELEFONE:', 'readonly'=>'readonly')) !!}
+        @endif
+
       </div>
     </div>
   </div>
@@ -190,12 +221,12 @@
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">22</span>
         {!! Form::select('adicional_deslocamento', ['placeholder'=>'Informe se houve ou não adicional de deslocamento:', 'SIM'=>'SIM', 'NÃO'=> 'NÃO'], null, ['class' => 'form-control input-sm'], null, ['title'=>'(§1º, do Art.20, do Dec. 4.307/2002, alterado pelo Dec.6.907/2009)']) !!}
-        {!! Form::select('total_acrescimo', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
+        {!! Form::select('total_acrescimos', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
       </div>
       <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
         <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">23 - VALOR TOTAL (Diária + Adc. Desl.)</span>
           {!! Form::text('valor_total', null, array('title'=>'Informe o valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm', 'placeholder'=>'R$')) !!}
-        &nbsp&nbsp{!! Form::checkbox('ck_valor_total', null, array('title'=>'Não havendo custos, favor marcar esta caixa!', 'class' => 'form-control input-sm', 'value'=>'SEM CUSTO', false)) !!}&nbsp&nbsp&nbsp&nbspSEM CUSTO
+        &nbsp&nbsp{!! Form::checkbox('ck_valor_total', null, array('value'=>'Sem custo', 'title'=>'Não havendo custos, favor marcar esta caixa!', 'class' => 'form-control input-sm')) !!}&nbsp&nbsp&nbsp&nbspSEM CUSTO
       </div>
     </div>
     <!-- oitava linha da tabela-->
@@ -332,7 +363,7 @@
         <center><h6>Demais capitais de Estado</h6></center>
       </div>
       <div class="col-md-2">
-        <center><input size="6" type="text" name="qt_capitais" id="c1"></center>
+        <center>{!! Form::text('qt_capitais', null, array('size'=>'6', 'id'=>'c1')) !!}</center>
       </div>
       <div class="col-md-2">
         <center>{!! Form::text('resultado3', null, array('size'=>'6', 'id'=>'resultado3', 'readonly'=>'readonly')) !!}</center>

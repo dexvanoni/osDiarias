@@ -71,10 +71,19 @@ class LogInController extends Controller
       Session::put('pesfonetrabramal', $usuario->pesfonetrabramal);
       $ramal = Session::get('pesfonetrabramal');
 
+      $pesnguerra='';
+      Session::put('pesnguerra', $usuario->pesnguerra);
+      $guerra = Session::get('pesnguerra');
+
       return view('dashboard.index', compact('usuario', 'posto'));
     }
     else {
       return view('login');
     }
+  }
+  public function getSignOut() {
+    Session::flush();
+
+    return view('home');
   }
 }

@@ -14,7 +14,9 @@
     ['route' => ['ficha.update', 'os' => $os->id],
     'class' => 'form',
     'method' => 'PUT']) !!}
-
+    @php
+      $tela = 'edit';
+    @endphp
     @include('ficha.formulario.formulario')
 
     {!! Form::close() !!}

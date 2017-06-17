@@ -42,9 +42,6 @@
     <hr>
 
   </div>
-  <div class="jumbotron">
-    <label>Desenvolvido por ATIC-CG 2017</label>
-  </div>
   <script type="text/javascript">
   $( document ).ready(function() {
     $('#camposExtras').hide();
