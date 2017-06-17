@@ -28,3 +28,8 @@
       'as' => 'dashboard',
        'uses' => 'DashboardController@dash'
    ));
+
+   Route::get('/outro', array(
+      'as' => 'outro',
+       'uses' => 'DashboardController@outro'
+   ));

@@ -57,13 +57,13 @@
     <div class="bs-example" data-example-id="hoverable-table">
       <table class="table table-hover">
         <thead>
-          <tr>
+          <center><tr>
             <th>OS Nº</th>
             <th>SARAM</th>
             <th>Autor</th>
             <th>Serviço</th>
             <th>Ações</th>
-          </tr>
+          </tr></center>
         </thead>
         <tbody>
           @foreach ($os as $oss)
@@ -74,15 +74,19 @@
               <td style="width: 50%">{{ $oss->servico }}</td>
               <td>
                 <ul class="list-inline list-small">
-                  <li>
-                    <a href="{{ route('ficha.edit', ['oss' => $oss->id]) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Editar</a>
+                  <li title="Editar">
+                    <a href="{{ route('ficha.edit', ['oss' => $oss->id]) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                   </li>
                   <li>|</li>
-                  <li>
+                  <li title="Imprimir">
+                    <a href="{{ route('ficha.edit', ['oss' => $oss->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
+                  </li>
+                  <li>|</li>
+                  <li title="Excluir">
                     <form action="{{ route('ficha.destroy', ['oss' => $oss->id]) }}" method="post">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
-                      <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                      <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
                     </form>
                   </li>
                 </ul>
