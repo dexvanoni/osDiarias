@@ -29,7 +29,7 @@
        'uses' => 'DashboardController@dash'
    ));
 
-   Route::get('/outro', array(
+   Route::post('/outro', array(
       'as' => 'outro',
-       'uses' => 'DashboardController@outro'
+       'uses' => 'LogInController@outro'
    ));

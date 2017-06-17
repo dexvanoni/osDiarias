@@ -20,67 +20,129 @@ class LogInController extends Controller
 {
   public function doLogin(Requests\LoginRequest $request)
   {
-    $usuario = User::where('pescodigo', '=', $request->get('pescodigo'))->first();
-    $senha = User::where('sasis_senha', '=', $request->get('password'))->first();
-    $posto = DB::table('tb_posto_graduacao')
-    ->select('pgabrev')
-    ->where('pgid', '=', $usuario->pespostograd)
-    ->get();
-    $posto = $posto[0]->pgabrev;
-    if( $usuario && $senha) {
+      $usuario = User::where('pescodigo', '=', $request->get('pescodigo'))->first();
+      $senha = User::where('sasis_senha', '=', $request->get('password'))->first();
+      $posto = DB::table('tb_posto_graduacao')
+      ->select('pgabrev')
+      ->where('pgid', '=', $usuario->pespostograd)
+      ->get();
+      $posto = $posto[0]->pgabrev;
 
-      //Abrindo as seções
+      if( $usuario && $senha) {
 
-      $grad='';
-      Session::put('grad', $posto);
-      $pgrad = Session::get('grad');
+        //Abrindo as seções
 
-      $peslogin='';
-      Session::put('peslogin', $usuario->peslogin);
-      $value = Session::get('peslogin');
+        $grad='';
+        Session::put('grad', $posto);
+        $pgrad = Session::get('grad');
 
-      $pesncompleto='';
-      Session::put('pesncompleto', $usuario->pesncompleto);
-      $nomecompleto = Session::get('pesncompleto');
+        $peslogin='';
+        Session::put('peslogin', $usuario->peslogin);
+        $value = Session::get('peslogin');
 
-      $pescodigo='';
-      Session::put('pescodigo', $usuario->pescodigo);
-      $saram = Session::get('pescodigo');
+        $pesncompleto='';
+        Session::put('pesncompleto', $usuario->pesncompleto);
+        $nomecompleto = Session::get('pesncompleto');
 
-      $pescpf='';
-      Session::put('pescpf', $usuario->pescpf);
-      $cpf = Session::get('pescpf');
+        $pescodigo='';
+        Session::put('pescodigo', $usuario->pescodigo);
+        $saram = Session::get('pescodigo');
 
-      $pesbanco='';
-      Session::put('pesbanco', $usuario->pesbanco);
-      $banco = Session::get('pesbanco');
+        $pescpf='';
+        Session::put('pescpf', $usuario->pescpf);
+        $cpf = Session::get('pescpf');
 
-      $pesdn='';
-      Session::put('pesdn', $usuario->pesdn);
-      $datadenascimento = Session::get('pesdn');
+        $pesbanco='';
+        Session::put('pesbanco', $usuario->pesbanco);
+        $banco = Session::get('pesbanco');
 
-      $pesemail='';
-      Session::put('pesemail', $usuario->pesemail);
-      $pemail = Session::get('pesemail');
+        $pesdn='';
+        Session::put('pesdn', $usuario->pesdn);
+        $datadenascimento = Session::get('pesdn');
 
-      $pesidentidade='';
-      Session::put('pesidentidade', $usuario->pesidentidade);
-      $identidade = Session::get('pesidentidade');
+        $pesemail='';
+        Session::put('pesemail', $usuario->pesemail);
+        $pemail = Session::get('pesemail');
 
-      $pesfonetrabramal='';
-      Session::put('pesfonetrabramal', $usuario->pesfonetrabramal);
-      $ramal = Session::get('pesfonetrabramal');
+        $pesidentidade='';
+        Session::put('pesidentidade', $usuario->pesidentidade);
+        $identidade = Session::get('pesidentidade');
 
-      $pesnguerra='';
-      Session::put('pesnguerra', $usuario->pesnguerra);
-      $guerra = Session::get('pesnguerra');
+        $pesfonetrabramal='';
+        Session::put('pesfonetrabramal', $usuario->pesfonetrabramal);
+        $ramal = Session::get('pesfonetrabramal');
 
-      return view('dashboard.index', compact('usuario', 'posto'));
-    }
-    else {
-      return view('login');
-    }
+        $pesnguerra='';
+        Session::put('pesnguerra', $usuario->pesnguerra);
+        $guerra = Session::get('pesnguerra');
+
+        return view('dashboard.index', compact('usuario', 'posto'));
+      } else {
+        return view('login');
+      }
   }
+  //-------------------------------------------------------------------------------------
+
+  public function outro(Request $request)
+  {
+      Session::flush();
+
+      $usuario = User::where('pescodigo', '=', $request->get('outro_militar'))->first();
+      $posto = DB::table('tb_posto_graduacao')
+      ->select('pgabrev')
+      ->where('pgid', '=', $usuario->pespostograd)
+      ->get();
+      $posto = $posto[0]->pgabrev;
+
+        $grad='';
+        Session::put('grad', $posto);
+        $pgrad = Session::get('grad');
+
+        $peslogin='';
+        Session::put('peslogin', $usuario->peslogin);
+        $value = Session::get('peslogin');
+
+        $pesncompleto='';
+        Session::put('pesncompleto', $usuario->pesncompleto);
+        $nomecompleto = Session::get('pesncompleto');
+
+        $pescodigo='';
+        Session::put('pescodigo', $usuario->pescodigo);
+        $saram = Session::get('pescodigo');
+
+        $pescpf='';
+        Session::put('pescpf', $usuario->pescpf);
+        $cpf = Session::get('pescpf');
+
+        $pesbanco='';
+        Session::put('pesbanco', $usuario->pesbanco);
+        $banco = Session::get('pesbanco');
+
+        $pesdn='';
+        Session::put('pesdn', $usuario->pesdn);
+        $datadenascimento = Session::get('pesdn');
+
+        $pesemail='';
+        Session::put('pesemail', $usuario->pesemail);
+        $pemail = Session::get('pesemail');
+
+        $pesidentidade='';
+        Session::put('pesidentidade', $usuario->pesidentidade);
+        $identidade = Session::get('pesidentidade');
+
+        $pesfonetrabramal='';
+        Session::put('pesfonetrabramal', $usuario->pesfonetrabramal);
+        $ramal = Session::get('pesfonetrabramal');
+
+        $pesnguerra='';
+        Session::put('pesnguerra', $usuario->pesnguerra);
+        $guerra = Session::get('pesnguerra');
+
+        return view('dashboard.index', compact('usuario', 'posto'));
+  }
+
+  //-------------------------------------------------------------------------------------
+
   public function getSignOut() {
     Session::flush();
 
