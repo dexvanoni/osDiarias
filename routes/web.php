@@ -23,3 +23,8 @@
    ));
 
    Route::resource('ficha', 'DashboardController', ['except' => 'show']);
+
+   Route::get('/dashboard', array(
+      'as' => 'dashboard',
+       'uses' => 'DashboardController@dash'
+   ));

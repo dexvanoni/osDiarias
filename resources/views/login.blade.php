@@ -44,6 +44,11 @@
                 </div>
               </div>
           {{ Form::close() }}
+          <div class="row">
+
+             &nbsp&nbsp&nbspDesenvolvido por ATIC-CG
+
+          </div>
           </div>
         </div>
       </div>

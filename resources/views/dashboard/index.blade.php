@@ -14,7 +14,7 @@
       <h2>Meu dashboard</h2>
       <p>Todas as opções do sistema de Ordens de Serviço para solicitação de diárias você encontrará aqui!</p>
       <p><a data-toggle="collapse" data-target="#options" class="btn btn-default" role="button">Minhas Opções</a></p>
-      <p>Usuário: {{ $posto }} {{ $usuario->pesnguerra }}</p>
+      <p>Usuário: {{ Session::get('grad') }} {{ Session::get('pesnguerra') }}</p>
     </div>
   </div>
   <div class="collapse" id="options">

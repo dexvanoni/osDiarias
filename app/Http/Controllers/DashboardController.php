@@ -24,6 +24,10 @@ class DashboardController extends Controller
     $this->os = $os;
     $this->pessoa = $pessoa;
   }
+  public function dash(){
+    return view('dashboard.index');
+  }
+
   public function store(Request $request){
 
 

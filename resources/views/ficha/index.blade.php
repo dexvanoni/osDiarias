@@ -34,9 +34,10 @@
   </nav>
   <div class="container">
     <div class="pull-right">
-      <a href="{{ route('account-sign-out') }}" class="btn btn-danger"> Logut</a>
+      <a href="{{ route('account-sign-out') }}" class="btn btn-danger"> Logut </a>
     </div>
     <a href="{{ route('ficha.create') }}" class="btn btn-info"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Criar Nova</a>
+    <a href="{{ route('dashboard') }}" class="btn btn-primary"> Voltar</a>
     <hr>
     @if (Session::has('mensagem_create'))
       <div class="alert alert-success">
@@ -74,24 +75,24 @@
               <td>
                 <ul class="list-inline list-small">
                   <li>
-                  <a href="{{ route('ficha.edit', ['oss' => $oss->id]) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Editar</a>
+                    <a href="{{ route('ficha.edit', ['oss' => $oss->id]) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>Editar</a>
                   </li>
                   <li>|</li>
-                <li>
-                  <form action="{{ route('ficha.destroy', ['oss' => $oss->id]) }}" method="post">
-                    {{ csrf_field() }}
-                    {{ method_field('DELETE') }}
-                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                  </form>
-                </li>
-              </ul>
-            </td>
+                  <li>
+                    <form action="{{ route('ficha.destroy', ['oss' => $oss->id]) }}" method="post">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+                      <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                    </form>
+                  </li>
+                </ul>
+              </td>
             </tr>
           @endforeach
         </tbody>
       </table>
     </div>
- <center>{{ $os->links() }}</center>
+    <center>{{ $os->links() }}</center>
   </div>
   <script src="/bst/js/bootstrap.min.js"></script>
 </body>
