@@ -54,6 +54,11 @@
         {{ Session::get('mensagem_edit') }}
       </div>
     @endif
+    @if (Session::has('mensagem_print'))
+      <div class="alert alert-warning">
+        {{ Session::get('mensagem_print') }}
+      </div>
+    @endif
     <div class="bs-example" data-example-id="hoverable-table">
       <table class="table table-hover">
         <thead>
@@ -79,7 +84,7 @@
                   </li>
                   <li>|</li>
                   <li title="Imprimir">
-                    <a href="{{ route('ficha.edit', ['oss' => $oss->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
+                    <a href="{{ route('ficha.impressao', ['oss' => $oss->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
                   </li>
                   <li>|</li>
                   <li title="Excluir">

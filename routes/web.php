@@ -33,3 +33,8 @@
       'as' => 'outro',
        'uses' => 'LogInController@outro'
    ));
+
+   Route::get('ficha/{ficha}/print', array(
+      'as' => 'ficha.impressao',
+       'uses' => 'DashboardController@print'
+   ));

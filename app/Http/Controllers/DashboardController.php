@@ -75,6 +75,18 @@ class DashboardController extends Controller
     return view('ficha.edit', compact('os'));
   }
 
+  public function print($id){
+
+    if(!($os = Os::find($id))) {
+
+      throw new ModelNotFoundException("Ordem de serviço não encontrada!");
+
+    }
+    Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
+    return view('ficha.impressao', compact('os'));
+  }
+
+
   public function update(Request $request, $id){
 
     if (!($os = Os::find($id))){

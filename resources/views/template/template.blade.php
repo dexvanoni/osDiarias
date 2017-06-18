@@ -43,8 +43,13 @@
 
   </div>
   <script type="text/javascript">
+  var a = "<?php echo $tela; ?>";
   $( document ).ready(function() {
+    if ( a == 'edit') {
+    $('#camposExtras').show();
+    } else {
     $('#camposExtras').hide();
+  };
     $("#alteracao_servico_s").click(function(){
       $('#camposExtras').show();
     });
