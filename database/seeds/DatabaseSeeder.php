@@ -19,12 +19,12 @@ class OsTableSeeder extends Seeder{
     public function run(){
 
       Os::create([
-        'pescodigo'=>'234234',
+        'pescodigo'=>'4115570',
         'pnome'=>'DENIS VIEIRA VANONI',
-        'saram'=>'234234',
+        'saram'=>'4115570',
         'cpf'=>'08800033312',
         'banco'=>'334',
-        'servico'=>'Teste de envio para o banco de eeeee',
+        'servico'=>'Teste de envio para o banco de llll ',
         'om'=>'GAP-CG'
       ]);
     }

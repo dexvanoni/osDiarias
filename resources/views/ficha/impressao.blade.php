@@ -16,7 +16,8 @@
   @endphp
   <hr>
   <div class="container">
-    <div class="imprimir">
+    <div id="imprimir">
+      <link href="/bst/css/bootstrap.min.css" rel="stylesheet">
       <div class="row">
         <div class="col-md-2">
           <img src="/bst/brasao.png" class="img-responsive" alt="" height="70em" width="70em" />
@@ -87,19 +88,7 @@
       Assinaturas na tela de impressão!
     @endif
   </div>
-  <button class="btn btn-primary" type="button" name="button" onclick="printDiv();">Imprimir</button>
+
 </div>
 </body>
-
-
-<script>
-function printDiv(imprimir)
-{
-  var conteudo = document.getElementById('imprimir').innerHTML;
-  var win = window.open();
-  win.document.write(conteudo);
-  win.print();
-  win.close();//Fecha após a impressão.
-}
-</script>
 </html>

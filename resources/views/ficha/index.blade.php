@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/bst/css/bootstrap.min.css" rel="stylesheet">
   <link href="/bst/css/jquery.dataTables.min.css" rel="stylesheet">
-  <script src="/bst/js/jquery.min.js"></script>
+  <script src="/bst/js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
   <nav class="navbar navbar-default">
@@ -67,7 +67,7 @@
       <table class="table table-hover" id="pesquisa">
         <thead>
           <center><tr>
-            <th>OS Nº</th>
+            <th>OS</th>
             <th>SARAM</th>
             <th>Autor</th>
             <th>Serviço</th>
@@ -78,9 +78,9 @@
           @foreach ($os as $oss)
             <tr>
               <th scope="row">{{ $oss->id }}</th>
-              <td style="width: 10%" >{{ $oss->saram }}</td>
+              <td style="width: 20%" >{{ $oss->saram }}</td>
               <td style="width: 20%" >{{ $oss->pnome}}</td>
-              <td style="width: 50%">{{ $oss->servico }}</td>
+              <td style="width: 40%">{{ $oss->servico }}</td>
               <td style="width: 20%" >
                 <ul class="list-inline list-small">
                   <li title="Editar">
@@ -111,7 +111,14 @@
   <script src="/bst/js/jquery.dataTables.min.js"></script>
   <script>
   $(document).ready(function(){
-    $('#pesquisa').DataTable();
+    $('#pesquisa').DataTable( {
+      "scrollY":        "300px",
+        "scrollCollapse": true,
+        "language": {
+          "url": "/js/Portuguese-Brasil.json"
+        }
+
+    } );
 });
   </script>
 
