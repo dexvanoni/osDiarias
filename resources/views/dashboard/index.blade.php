@@ -13,7 +13,7 @@
     <div class="col-md-offset-2">
       <h2>Meu dashboard</h2>
       <p>Usuário: {{ Session::get('grad') }} {{ Session::get('pesnguerra') }}</p>
-      <p><a data-toggle="collapse" data-target="#options" class="btn btn-primary" role="button">Minhas Opções</a></p>
+      <p><a data-toggle="collapse" data-target="#options" class="btn btn-primary" role="button">Opções</a></p>
     </div>
   </div>
   <div class="collapse" id="options">

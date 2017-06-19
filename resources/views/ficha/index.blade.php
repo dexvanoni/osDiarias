@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/bst/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/bst/css/jquery.dataTables.min.css" rel="stylesheet">
   <script src="/bst/js/jquery.min.js"></script>
 </head>
 <body>
@@ -59,8 +60,11 @@
         {{ Session::get('mensagem_print') }}
       </div>
     @endif
+    <div class="rows">
+
+    </div>
     <div class="bs-example" data-example-id="hoverable-table">
-      <table class="table table-hover">
+      <table class="table table-hover" id="pesquisa">
         <thead>
           <center><tr>
             <th>OS Nº</th>
@@ -74,10 +78,10 @@
           @foreach ($os as $oss)
             <tr>
               <th scope="row">{{ $oss->id }}</th>
-              <td>{{ $oss->saram }}</td>
+              <td style="width: 10%" >{{ $oss->saram }}</td>
               <td style="width: 20%" >{{ $oss->pnome}}</td>
               <td style="width: 50%">{{ $oss->servico }}</td>
-              <td>
+              <td style="width: 20%" >
                 <ul class="list-inline list-small">
                   <li title="Editar">
                     <a href="{{ route('ficha.edit', ['oss' => $oss->id]) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
@@ -104,5 +108,12 @@
     <center>{{ $os->links() }}</center>
   </div>
   <script src="/bst/js/bootstrap.min.js"></script>
+  <script src="/bst/js/jquery.dataTables.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $('#pesquisa').DataTable();
+});
+  </script>
+
 </body>
 </html>

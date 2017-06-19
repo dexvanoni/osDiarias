@@ -40,10 +40,12 @@ class DashboardController extends Controller
 
   }
 
+
   public function index()
   {
+
     $sar = Session::get('pescodigo');
-    $os = Os::where('pescodigo', '=', $sar)->paginate(5);
+    $os = Os::where('pescodigo', '=', $sar)->paginate(1000);
     //$os = Os::orderBy('id', 'DESC')->paginate(5);
     return view('ficha.index',compact('os'));
 
