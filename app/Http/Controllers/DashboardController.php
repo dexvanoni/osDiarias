@@ -13,7 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Pessoa;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\PDF;
+use PDF;
+use Dompdf\Dompdf;
 
 class DashboardController extends Controller
 {
@@ -86,9 +87,12 @@ class DashboardController extends Controller
 
     }
     Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
-    $pdf = PDF::loadView('ficha.impressao', ['os' => $os]);
-    return $pdf->download('os.pdf');
     return view('ficha.impressao', compact('os'));
+
+    //$pdf = PDF::loadView('ficha.impressao', ['os' => $os]);
+    //return $pdf->download('os.pdf');
+    //return redirect()->route('ficha.index');
+
   }
 
 
