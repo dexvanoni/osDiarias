@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Html;
 use App\Pessoa;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
@@ -46,8 +47,9 @@ class DashboardController extends Controller
   public function index()
   {
 
-    $sar = Session::get('pescodigo');
-    $os = Os::where('pescodigo', '=', $sar)->paginate(1000);
+    $sar = Session::get('dono');
+
+    $os = Os::where('dono', '=', $sar)->paginate(1000);
     //$os = Os::orderBy('id', 'DESC')->paginate(5);
     return view('ficha.index',compact('os'));
 

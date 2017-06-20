@@ -9,10 +9,18 @@
   <script src="/bst/js/jquery.min.js"></script>
 </head>
 <body>
+  @php
+    $d1 = Session::get('pescodigo');
+    $dono = Session::get('dono');
+  @endphp
   <div class="jumbotron">
     <div class="col-md-offset-2">
       <h2>Meu dashboard</h2>
+      @if ($dono != $d1)
+      <p>Você está logado com o SARAM: {{ $dono }} e realizará as ações para o {{ Session::get('grad') }} {{ Session::get('pesnguerra') }} com o SARAM: {{ $d1 }}</p>
+      @else
       <p>Usuário: {{ Session::get('grad') }} {{ Session::get('pesnguerra') }}</p>
+      @endif
       <p><a data-toggle="collapse" data-target="#options" class="btn btn-primary" role="button">Opções</a></p>
     </div>
   </div>

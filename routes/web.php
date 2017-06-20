@@ -38,3 +38,8 @@
       'as' => 'ficha.impressao',
        'uses' => 'DashboardController@print'
    ));
+
+   Route::get('voltarPerfil', array(
+     'as' => 'voltarPerfil',
+     'uses' => 'LogInController@volta_perfil'
+   ));

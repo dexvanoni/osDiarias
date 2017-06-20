@@ -81,7 +81,8 @@ class Os extends Model
     'localidade_diaria_completa',
     'num_total_acrescimos',
     'restituicao',
-    'valor_restituicao'
+    'valor_restituicao',
+    'dono'
   ];
 
 }

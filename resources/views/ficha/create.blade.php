@@ -14,7 +14,7 @@
   @php
     $tela = 'create';
   @endphp
-  
+
   @include('ficha.formulario.formulario')
   {!! Form::close() !!}
 

@@ -7,7 +7,11 @@
         <h4>COMANDO DA AERONÁUTICA</h4>
         <p>GRUPAMENTO DE APOIO DE CAMPO GRANDE</p>
         <div class="">
-          ORDEM DE SERVIÇO DE SOLICITAÇÃO DE DIÁRIAS
+          ORDEM DE SERVIÇO DE SOLICITAÇÃO DE DIÁRIAS {{ Session::get('dono') }}
+          @php
+            $don = Session::get('dono');
+          @endphp
+          {!! Form::input('hidden', 'dono', $value = $don) !!}
         </div>
         <div class="">
           <sup>1</sup>SC:{!! Form::text('sc', null, array('size' => '4', 'width' => '3')) !!}
@@ -148,7 +152,7 @@
     <div title="Informe o serviço que será realizado" class="col-md-12">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">14</span>
-        {!! Form::text('servico', null, array('class' => 'form-control input-sm', 'placeholder'=>'SERVIÇO A REALIZAR:')) !!}
+        {!! Form::text('servico', null, array('maxlength'=>'255', 'class' => 'form-control input-sm', 'placeholder'=>'SERVIÇO A REALIZAR:')) !!}
       </div>
     </div>
   </div>
@@ -159,7 +163,7 @@
     <div title="Informe os documentos que originam a missão" class="col-md-6">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">15</span>
-        {!! Form::text('documentos', null, array('class' => 'form-control input-sm', 'placeholder'=>'DOCUMENTOS QUE ORIGINARAM A MISSÃO:')) !!}
+        {!! Form::text('documentos', null, array('maxlength'=>'80', 'class' => 'form-control input-sm', 'placeholder'=>'DOCUMENTOS QUE ORIGINARAM A MISSÃO:')) !!}
       </div>
     </div>
     <div title="Informe o NE" class="col-md-2">
@@ -171,7 +175,7 @@
     <div title="Informe o preito da missão" class="col-md-4">
       <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">17</span>
-        {!! Form::select('em_proveito', ['placeholder'=>'MISSÃO EM PROVEITO:', 'UNIÃO'=>'UNIÃO', 'PRÓPRIA'=> 'PRÓPRIA'], null, ['class' => 'form-control input-sm']) !!}
+        {!! Form::select('em_proveito', ['placeholder'=>'MISSÃO EM PROVEITO:', 'UNIÃO'=>'UNIÃO', 'PRÓPRIO'=> 'PRÓPRIO'], null, ['class' => 'form-control input-sm']) !!}
       </div>
     </div>
   </div>

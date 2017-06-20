@@ -10,6 +10,10 @@
   <script src="/bst/js/jquery-1.12.4.min.js"></script>
 </head>
 <body>
+  @php
+    $d1 = Session::get('pescodigo');
+    $dono = Session::get('dono');
+  @endphp
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -104,6 +108,9 @@
           @endforeach
         </tbody>
       </table>
+      @if ($dono != $d1)
+        <h5 style="color: red">Você pode criar uma nova OS para o {{ Session::get('grad') }} {{ Session::get('pesnguerra') }} ou <a href="{{ route('voltarPerfil') }}">voltar para seu perfil</a> </h5>
+      @endif
     </div>
     <center>{{ $os->links() }}</center>
   </div>
