@@ -12,34 +12,39 @@
 */
 
 //route to get the log in form
-   Route::get('/', array('uses' => 'HomeController@index'));
+Route::get('/', array('uses' => 'HomeController@index'));
 
-   //route to process the log in form
-   Route::post('/', 'LogInController@doLogin');
+//route to process the log in form
+Route::post('/', 'LogInController@doLogin');
 
-   Route::get('/account/sign-out', array(
-     'as' => 'account-sign-out',
-     'uses' => 'LogInController@getSignOut'
-   ));
+Route::get('/account/sign-out', array(
+  'as' => 'account-sign-out',
+  'uses' => 'LogInController@getSignOut'
+));
 
-   Route::resource('ficha', 'DashboardController', ['except' => 'show']);
+Route::resource('ficha', 'DashboardController', ['except' => 'show']);
 
-   Route::get('/dashboard', array(
-      'as' => 'dashboard',
-       'uses' => 'DashboardController@dash'
-   ));
+Route::get('/dashboard', array(
+  'as' => 'dashboard',
+  'uses' => 'DashboardController@dash'
+));
 
-   Route::post('/outro', array(
-      'as' => 'outro',
-       'uses' => 'LogInController@outro'
-   ));
+Route::post('/outro', array(
+  'as' => 'outro',
+  'uses' => 'LogInController@outro'
+));
 
-   Route::get('ficha/{ficha}/print', array(
-      'as' => 'ficha.impressao',
-       'uses' => 'DashboardController@print'
-   ));
+Route::get('ficha/{ficha}/print', array(
+  'as' => 'ficha.impressao',
+  'uses' => 'DashboardController@print'
+));
 
-   Route::get('voltarPerfil', array(
-     'as' => 'voltarPerfil',
-     'uses' => 'LogInController@volta_perfil'
-   ));
+Route::get('voltarPerfil', array(
+  'as' => 'voltarPerfil',
+  'uses' => 'LogInController@volta_perfil'
+));
+
+Route::get('verTodasOs', array(
+  'as' => 'verTodasOs',
+  'uses' => 'LogInController@volta_perfil'
+));

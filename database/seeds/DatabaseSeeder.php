@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Os;
+use App\Adm;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,7 +19,12 @@ class DatabaseSeeder extends Seeder
 class OsTableSeeder extends Seeder{
     public function run(){
 
-      Os::create([
+      Adm::create([
+        'pescodigo' => '4115570',
+        'pnome' => '3S DENIS VIEIRA VANONI'
+      ]);
+
+    /*  Os::create([
         'pescodigo'=>'4115570',
         'pnome'=>'3S DENIS VIEIRA VANONI',
         'saram'=>'4115570',
@@ -27,7 +33,7 @@ class OsTableSeeder extends Seeder{
         'servico'=>'Teste de envio para o banco b ',
         'om'=>'GAP-CG',
         'dono' => '4115570'
-      ]);
+      ]);*/
     }
 
 }

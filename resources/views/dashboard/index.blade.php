@@ -15,6 +15,13 @@
   @endphp
   <div class="jumbotron">
     <div class="col-md-offset-2">
+      <div class="container">
+        @if ($adm)
+          <div class="pull-right">
+            <center><h5>Você é administrador do sistema!</h5></center>
+            <center><a href="{{ route('verTodasOs') }}">Ver todas Ordens de Serviço</a></center>
+          </div>
+        @endif
       <h2>Meu dashboard</h2>
       @if ($dono != $d1)
       <p>Você está logado com o SARAM: {{ $dono }} e realizará as ações para o {{ Session::get('grad') }} {{ Session::get('pesnguerra') }} com o SARAM: {{ $d1 }}</p>
@@ -23,6 +30,7 @@
       @endif
       <p><a data-toggle="collapse" data-target="#options" class="btn btn-primary" role="button">Opções</a></p>
     </div>
+  </div>
   </div>
   <div class="collapse" id="options">
     <div class="row">

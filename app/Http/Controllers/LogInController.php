@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\User;
 use App\Pessoa;
+use App\Adm;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 
@@ -18,8 +19,15 @@ use Illuminate\Support\Facades\DB;
 
 class LogInController extends Controller
 {
-  public function doLogin(Requests\LoginRequest $request)
+  public function doLogin(Request $request)
   {
+    // verifica se é Adm
+
+    $adm = Adm::where('pescodigo', '=', $request->get('pescodigo'))->first();
+
+    //--------------------------------------
+
+
     $usuario = User::where('pescodigo', '=', $request->get('pescodigo'))->first();
     $senha = User::where('sasis_senha', '=', $request->get('password'))->first();
     $posto = DB::table('tb_posto_graduacao')
@@ -79,7 +87,7 @@ class LogInController extends Controller
       $dono='';
       Session::put('dono', $usuario->pescodigo);
 
-      return view('dashboard.index', compact('usuario', 'posto'));
+      return view('dashboard.index', compact('usuario', 'posto', 'adm'));
     } else {
       return view('login');
     }
@@ -181,54 +189,54 @@ class LogInController extends Controller
 
     //Abrindo as seções novamente
 
-      $grad='';
-      Session::put('grad', $posto);
-      $pgrad = Session::get('grad');
+    $grad='';
+    Session::put('grad', $posto);
+    $pgrad = Session::get('grad');
 
-      $peslogin='';
-      Session::put('peslogin', $usuario->peslogin);
-      $value = Session::get('peslogin');
+    $peslogin='';
+    Session::put('peslogin', $usuario->peslogin);
+    $value = Session::get('peslogin');
 
-      $pesncompleto='';
-      Session::put('pesncompleto', $usuario->pesncompleto);
-      $nomecompleto = Session::get('pesncompleto');
+    $pesncompleto='';
+    Session::put('pesncompleto', $usuario->pesncompleto);
+    $nomecompleto = Session::get('pesncompleto');
 
-      $pescodigo='';
-      Session::put('pescodigo', $usuario->pescodigo);
-      $saram = Session::get('pescodigo');
+    $pescodigo='';
+    Session::put('pescodigo', $usuario->pescodigo);
+    $saram = Session::get('pescodigo');
 
-      $pescpf='';
-      Session::put('pescpf', $usuario->pescpf);
-      $cpf = Session::get('pescpf');
+    $pescpf='';
+    Session::put('pescpf', $usuario->pescpf);
+    $cpf = Session::get('pescpf');
 
-      $pesbanco='';
-      Session::put('pesbanco', $usuario->pesbanco);
-      $banco = Session::get('pesbanco');
+    $pesbanco='';
+    Session::put('pesbanco', $usuario->pesbanco);
+    $banco = Session::get('pesbanco');
 
-      $pesdn='';
-      Session::put('pesdn', $usuario->pesdn);
-      $datadenascimento = Session::get('pesdn');
+    $pesdn='';
+    Session::put('pesdn', $usuario->pesdn);
+    $datadenascimento = Session::get('pesdn');
 
-      $pesemail='';
-      Session::put('pesemail', $usuario->pesemail);
-      $pemail = Session::get('pesemail');
+    $pesemail='';
+    Session::put('pesemail', $usuario->pesemail);
+    $pemail = Session::get('pesemail');
 
-      $pesidentidade='';
-      Session::put('pesidentidade', $usuario->pesidentidade);
-      $identidade = Session::get('pesidentidade');
+    $pesidentidade='';
+    Session::put('pesidentidade', $usuario->pesidentidade);
+    $identidade = Session::get('pesidentidade');
 
-      $pesfonetrabramal='';
-      Session::put('pesfonetrabramal', $usuario->pesfonetrabramal);
-      $ramal = Session::get('pesfonetrabramal');
+    $pesfonetrabramal='';
+    Session::put('pesfonetrabramal', $usuario->pesfonetrabramal);
+    $ramal = Session::get('pesfonetrabramal');
 
-      $pesnguerra='';
-      Session::put('pesnguerra', $usuario->pesnguerra);
-      $guerra = Session::get('pesnguerra');
+    $pesnguerra='';
+    Session::put('pesnguerra', $usuario->pesnguerra);
+    $guerra = Session::get('pesnguerra');
 
-      $dono='';
-      Session::put('dono', $usuario->pescodigo);
+    $dono='';
+    Session::put('dono', $usuario->pescodigo);
 
-      return view('dashboard.index', compact('usuario', 'posto'));
+    return view('dashboard.index', compact('usuario', 'posto'));
 
   }
   //-------------------------------------------------------------------------------------
