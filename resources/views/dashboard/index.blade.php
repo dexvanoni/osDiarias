@@ -12,19 +12,18 @@
   @php
     $d1 = Session::get('pescodigo');
     $dono = Session::get('dono');
+    $administrador = Session::get('administrador');
   @endphp
   <div class="jumbotron">
     <div class="col-md-offset-2">
       <div class="container">
-        @if ($adm)
-          <div class="pull-right">
-            <center><h5>Você é administrador do sistema!</h5></center>
-            <center><a href="{{ route('verTodasOs') }}">Ver todas Ordens de Serviço</a></center>
-          </div>
-        @endif
+
       <h2>Meu dashboard</h2>
+      @if ($administrador)
+        <h5>Você é administrador do sistema!</h5>
+      @endif
       @if ($dono != $d1)
-      <p>Você está logado com o SARAM: {{ $dono }} e realizará as ações para o {{ Session::get('grad') }} {{ Session::get('pesnguerra') }} com o SARAM: {{ $d1 }}</p>
+      <p>Você está logado com o SARAM: {{ $dono }} e realizará as ações para o {{ Session::get('grad') }} {{ Session::get('pesnguerra') }}<br> com o SARAM: {{ $d1 }}</p>
       @else
       <p>Usuário: {{ Session::get('grad') }} {{ Session::get('pesnguerra') }}</p>
       @endif
@@ -34,11 +33,14 @@
   </div>
   <div class="collapse" id="options">
     <div class="row">
-      <div class="col-md-2 col-xs-offset-2">
+      <div class="col-md-3 col-xs-offset-3">
         <br>
       <a href="{{ route('ficha.index') }}" class="btn btn-info"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> Minhas OS</a>
+        @if ($administrador)
+          <a href="{{ route('verTodasOs') }}"class="btn btn-success"><span class="glyphicon glyphicon-king" aria-hidden="true"></span> Administração</a>
+        @endif
     </div>
-    <div class="col-md-4 col-xs-offset-4">
+    <div class="col-md-3 col-xs-offset-3">
       Ordens de Serviço de outro militar
         {!! Form::open(array('route' => 'outro', 'method' => 'POST')) !!}
         {!! Form::text('outro_militar', null, array('size'=>'15', 'id'=>'outro_militar', 'placeholder' => 'SARAM')) !!}

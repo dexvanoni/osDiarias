@@ -1,3 +1,9 @@
+@php
+$val1 = Session::get('val1');
+$val2 = Session::get('val2');
+$val3 = Session::get('val3');
+$val4 = Session::get('val4');
+@endphp
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,143 +38,114 @@
     </div><!-- /.container-fluid -->
   </nav>
   <div class="container">
-
-    <div class="pull-right">
-      <a href="{{ route('ficha.index') }}" class="btn btn-primary"> Voltar</a>
-    </div>
-
+    @if ($tela == 'show')
+      <div class="pull-right">
+        <a href="{{ route('verTodasOs') }}" class="btn btn-primary"> Voltar</a>
+      </div>
+    @else
+      <div class="pull-right">
+        <a href="{{ route('ficha.index') }}" class="btn btn-primary"> Voltar</a>
+      </div>
+    @endif
     @yield('forma')
 
     <hr>
-
   </div>
   <script type="text/javascript">
   var a = "<?php echo $tela; ?>";
+  var dias;
+  var total_dias;
+
   $( document ).ready(function() {
+    $('#a').prop('disabled', true);
+    $('#b').prop('disabled', true);
+    $('#c').prop('disabled', true);
+    $('#d').prop('disabled', true);
+    $('#a1').prop('disabled', true);
+    $('#b1').prop('disabled', true);
+    $('#c1').prop('disabled', true);
+    $('#d1').prop('disabled', true);
+
+    // verifica a quantidade de dias de missão e diminui 1 (que é o dia do retorno) pelas datas inseridas
+    $('#dt_ret').focusout(function(){
+      var di = $("#dt_ida").val().split("/");
+      var dr = $("#dt_ret").val().split("/");
+      var d_i = new Date(di[2] + "/" + di[1] + "/" + di[0]);
+      var d_r = new Date(dr[2] + "/" + dr[1] + "/" + dr[0]);
+      var dias = (((Date.parse(d_r)) - (Date.parse(d_i))) / (24 * 60 * 60 * 1000));
+      // se for 2 dias de diferença ele diminui 1 dia
+      if (parseInt(dias) == 0){
+          parseFloat(total_dias) = 0.5;
+      } else {
+        if (parseInt(dias) == 1){
+          total_dias = parseInt(dias);
+        } else {
+          total_dias = parseInt(dias) -1;
+        }
+      }
+    })
+
+    // Calculando valores dos trechos
+    $('#dt_ret').focusout(function(){
+      alert(dias);
+      var local = $('#local_servico').val();
+      if(local == 'val_br_am_rj'){
+        $('#a').prop('disabled', false);
+
+        $('#a').val(<?php echo $val1; ?>);
+        $('#a1').val(total_dias);
+        var a = $('#a').val(<?php echo $val1; ?>);
+        var a1 = $('#a1').val(total_dias);
+
+        var resultado 	= parseFloat(a) * a1;
+        $('#resultado1').val(resultado);
+
+        $('#b').val(0);
+        $('#c').val(0);
+        $('#d').val(0);
+
+      }
+      if(local == 'val_bh_fl_pa_rc_sl_sp'){
+        $('#b').val(<?php echo $val2; ?>);
+        $('#b').prop('disabled', false);
+        $('#b1').val(total_dias);
+        $('#a').val(0);
+        $('#c').val(0);
+        $('#d').val(0);
+      }
+      if(local == 'val_capitais'){
+        $('#c').val(<?php echo $val3; ?>);
+        $('#c').prop('disabled', false);
+        $('#ac').val(total_dias);
+        $('#b').val(0);
+        $('#a').val(0);
+        $('#d').val(0);
+      }
+      if(local == 'val_cidades'){
+        $('#d').val(<?php echo $val4; ?>);
+        $('#d').prop('disabled', false);
+        $('#d1').val(total_dias);
+        $('#a').val(0);
+        $('#b').val(0);
+        $('#c').val(0);
+      }
+    })
+    // campos extras para justificativa
     if ( a == 'edit') {
-    $('#camposExtras').show();
+      $('#camposExtras').show();
     } else {
-    $('#camposExtras').hide();
-  };
+      $('#camposExtras').hide();
+    };
+
     $("#alteracao_servico_s").click(function(){
       $('#camposExtras').show();
     });
+
     $("#alteracao_servico_n").click(function(){
       $('#camposExtras').hide();
     });
   });
   </script>
-  <!-- CALCULA OS INPUTS DE VALOR E QUANTIDADE DA TABELA DE CÔMPUTO DE DIÁRIAS-->
-  <!-- PRIMEIRA LINHA -->
-  <script type="text/javascript">
-  $(document).ready( function() {
-    $('#a, #a1').blur(function(){
-      var valor 		= $('#a').val();
-      var qt = $('#a1').val();
-      if(valor == "") valor = 0;
-      if(qt == "") qt = 0;
-      var resultado 	= parseFloat(valor) * parseFloat(qt);
-      $('#resultado1').val(resultado);
-    })
-  });
-  </script>
-  <!-- SEGUNDA LINHA -->
-  <script type="text/javascript">
-  $(document).ready( function() {
-    $('#b, #b1').blur(function(){
-      var valor 		= $('#b').val();
-      var qt = $('#b1').val();
-      if(valor == "") valor = 0;
-      if(qt == "") qt = 0;
-      var resultado 	= parseFloat(valor) * parseFloat(qt);
-      $('#resultado2').val(resultado);
-    })
-  });
-  </script>
-  <!-- TERCEIRA LINHA -->
-  <script type="text/javascript">
-  $(document).ready( function() {
-    $('#c, #c1').blur(function(){
-      var valor 		= $('#c').val();
-      var qt = $('#c1').val();
-      if(valor == "") valor = 0;
-      if(qt == "") qt = 0;
-      var resultado 	= parseFloat(valor) * parseFloat(qt);
-      $('#resultado3').val(resultado);
-    })
-  });
-  </script>
-  <!-- QUARTA LINHA -->
-  <script type="text/javascript">
-  $(document).ready( function() {
-    $('#d, #d1').blur(function(){
-      var valor 		= $('#d').val();
-      var qt = $('#d1').val();
-      if(valor == "") valor = 0;
-      if(qt == "") qt = 0;
-      var resultado 	= parseFloat(valor) * parseFloat(qt);
-      $('#resultado4').val(resultado);
-    })
-  });
-  </script>
-  <!--TERMINA CÁLCULO DA TABELA-->
-
-  <!-- MULTIPLICAÇÃO DE DESCONTOS -->
-  <!-- PRIMEIRA LINHA-->
-  <script type="text/javascript">
-  $(document).ready( function() {
-    $('#desc_a, #qt_dias_a').blur(function(){
-      var valor 		= $('#desc_a').val();
-      var qt = $('#qt_dias_a').val();
-      if(valor == "") valor = 0;
-      if(qt == "") qt = 0;
-      var resultado 	= parseFloat(valor) * parseFloat(qt);
-      $('#resultado_dias_a').val(resultado);
-    })
-  });
-  </script>
-  <!-- SEGUNDA LINHA-->
-  <script type="text/javascript">
-  $(document).ready( function() {
-    $('#desc_b, #qt_dias_b').blur(function(){
-      var valor 		= $('#desc_b').val();
-      var qt = $('#qt_dias_b').val();
-      if(valor == "") valor = 0;
-      if(qt == "") qt = 0;
-      var resultado 	= parseFloat(valor) * parseFloat(qt);
-      $('#resultado_dias_b').val(resultado);
-    })
-  });
-  </script>
-
-  <!--SOMA E DESCONTO DE TOTAIS-->
-  <script type="text/javascript">
-  $(document).ready( function() {
-    $('#resultado1, #resultado2, #resultado3, #resultado4, #val_ac, #resultado_dias_a, #resultado_dias_b').blur(function(){
-      var v1 		= $('#resultado1').val();
-      var v2 		= $('#resultado2').val();
-      var v3 		= $('#resultado3').val();
-      var v4 		= $('#resultado4').val();
-      var v5 		= $('#val_ac').val();
-      var v6 		= $('#resultado_dias_a').val();
-      var v7 		= $('#resultado_dias_b').val();
-      if(v1 == "") v1 = 0;
-      if(v2 == "") v2 = 0;
-      if(v3 == "") v3 = 0;
-      if(v4 == "") v4 = 0;
-      if(v5 == "") v5 = 0;
-      if(v6 == "") v6 = 0;
-      if(v7 == "") v7 = 0;
-      var resultado1 	= parseFloat(v1) + parseFloat(v2) + parseFloat(v3) + parseFloat(v4) + parseFloat(v5);
-      $('#resultado_soma').val(resultado1);
-      var resultado2 	= parseFloat(v6) + parseFloat(v7);
-      $('#resultado_descontos').val(resultado2);
-      var resultado 	= parseFloat(resultado1) - parseFloat(resultado2);
-      $('#resultado_total').val(resultado);
-    })
-  });
-  </script>
-
   <script src="/bst/js/bootstrap.min.js"></script>
 </body>
 </html>

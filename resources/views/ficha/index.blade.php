@@ -73,7 +73,7 @@
           <center><tr>
             <th>OS</th>
             <th>SARAM</th>
-            <th>Autor</th>
+            <th>Referente a</th>
             <th>Serviço</th>
             <th>Ações</th>
           </tr></center>

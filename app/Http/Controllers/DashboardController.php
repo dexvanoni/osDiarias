@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Html;
 use App\Pessoa;
+use App\Valor;
+use App\Adm;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -22,10 +24,11 @@ class DashboardController extends Controller
   private $os;
   private $pessoa;
 
-  public function __construct(Os $os, Pessoa $pessoa)
+  public function __construct(Os $os, Pessoa $pessoa, Valor $valor)
   {
     $this->os = $os;
     $this->pessoa = $pessoa;
+    $this->valor = $valor;
   }
   public function dash(){
     return view('dashboard.index');
@@ -48,12 +51,23 @@ class DashboardController extends Controller
   {
 
     $sar = Session::get('dono');
-
+    
     $os = Os::where('dono', '=', $sar)->paginate(1000);
     //$os = Os::orderBy('id', 'DESC')->paginate(5);
     return view('ficha.index',compact('os'));
 
   }
+
+  public function admin()
+  {
+
+    $os = Os::orderBy('id', 'DESC')->paginate(1000);
+    //$os = Os::orderBy('id', 'DESC')->paginate(5);
+    return view('adm.adms',compact('os'));
+
+  }
+
+
 
   public function create()
   {
@@ -80,6 +94,17 @@ class DashboardController extends Controller
     }
     return view('ficha.edit', compact('os'));
   }
+
+  public function show($id)
+   {
+     if(!($os = Os::find($id))) {
+
+       throw new ModelNotFoundException("Ordem de serviço não encontrada!");
+
+     }
+     return view('ficha.show', compact('os'));
+
+   }
 
   public function print($id){
 

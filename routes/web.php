@@ -22,7 +22,7 @@ Route::get('/account/sign-out', array(
   'uses' => 'LogInController@getSignOut'
 ));
 
-Route::resource('ficha', 'DashboardController', ['except' => 'show']);
+Route::resource('ficha', 'DashboardController');
 
 Route::get('/dashboard', array(
   'as' => 'dashboard',
@@ -46,5 +46,5 @@ Route::get('voltarPerfil', array(
 
 Route::get('verTodasOs', array(
   'as' => 'verTodasOs',
-  'uses' => 'LogInController@volta_perfil'
+  'uses' => 'DashboardController@admin'
 ));
