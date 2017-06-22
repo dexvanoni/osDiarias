@@ -56,80 +56,8 @@ $val4 = Session::get('val4');
   var dias;
   var total_dias;
 
+
   $( document ).ready(function() {
-    $('#a').prop('disabled', true);
-    $('#b').prop('disabled', true);
-    $('#c').prop('disabled', true);
-    $('#d').prop('disabled', true);
-    $('#a1').prop('disabled', true);
-    $('#b1').prop('disabled', true);
-    $('#c1').prop('disabled', true);
-    $('#d1').prop('disabled', true);
-
-    // verifica a quantidade de dias de missão e diminui 1 (que é o dia do retorno) pelas datas inseridas
-    $('#dt_ret').focusout(function(){
-      var di = $("#dt_ida").val().split("/");
-      var dr = $("#dt_ret").val().split("/");
-      var d_i = new Date(di[2] + "/" + di[1] + "/" + di[0]);
-      var d_r = new Date(dr[2] + "/" + dr[1] + "/" + dr[0]);
-      var dias = (((Date.parse(d_r)) - (Date.parse(d_i))) / (24 * 60 * 60 * 1000));
-      // se for 2 dias de diferença ele diminui 1 dia
-      if (parseInt(dias) == 0){
-          parseFloat(total_dias) = 0.5;
-      } else {
-        if (parseInt(dias) == 1){
-          total_dias = parseInt(dias);
-        } else {
-          total_dias = parseInt(dias) -1;
-        }
-      }
-    })
-
-    // Calculando valores dos trechos
-    $('#dt_ret').focusout(function(){
-      alert(dias);
-      var local = $('#local_servico').val();
-      if(local == 'val_br_am_rj'){
-        $('#a').prop('disabled', false);
-
-        $('#a').val(<?php echo $val1; ?>);
-        $('#a1').val(total_dias);
-        var a = $('#a').val(<?php echo $val1; ?>);
-        var a1 = $('#a1').val(total_dias);
-
-        var resultado 	= parseFloat(a) * a1;
-        $('#resultado1').val(resultado);
-
-        $('#b').val(0);
-        $('#c').val(0);
-        $('#d').val(0);
-
-      }
-      if(local == 'val_bh_fl_pa_rc_sl_sp'){
-        $('#b').val(<?php echo $val2; ?>);
-        $('#b').prop('disabled', false);
-        $('#b1').val(total_dias);
-        $('#a').val(0);
-        $('#c').val(0);
-        $('#d').val(0);
-      }
-      if(local == 'val_capitais'){
-        $('#c').val(<?php echo $val3; ?>);
-        $('#c').prop('disabled', false);
-        $('#ac').val(total_dias);
-        $('#b').val(0);
-        $('#a').val(0);
-        $('#d').val(0);
-      }
-      if(local == 'val_cidades'){
-        $('#d').val(<?php echo $val4; ?>);
-        $('#d').prop('disabled', false);
-        $('#d1').val(total_dias);
-        $('#a').val(0);
-        $('#b').val(0);
-        $('#c').val(0);
-      }
-    })
     // campos extras para justificativa
     if ( a == 'edit') {
       $('#camposExtras').show();
@@ -144,6 +72,176 @@ $val4 = Session::get('val4');
     $("#alteracao_servico_n").click(function(){
       $('#camposExtras').hide();
     });
+
+    $('#a').prop('disabled', true);
+    $('#b').prop('disabled', true);
+    $('#c').prop('disabled', true);
+    $('#d').prop('disabled', true);
+    $('#a1').prop('disabled', true);
+    $('#b1').prop('disabled', true);
+    $('#c1').prop('disabled', true);
+    $('#d1').prop('disabled', true);
+    $('#resultado1').prop('disabled', true);
+    $('#resultado2').prop('disabled', true);
+    $('#resultado3').prop('disabled', true);
+    $('#resultado4').prop('disabled', true);
+    $('#resultado_total').prop('disabled', true);
+    $('#l1').hide();
+    $('#l2').hide();
+    $('#l3').hide();
+    $('#l4').hide();
+
+    // verifica a quantidade de dias de missão e diminui 1 (que é o dia do retorno) pelas datas inseridas
+    $('#dt_ret').focusout(function(){
+      var di = $("#dt_ida").val().split("/");
+      var dr = $("#dt_ret").val().split("/");
+      var d_i = new Date(di[2] + "/" + di[1] + "/" + di[0]);
+      var d_r = new Date(dr[2] + "/" + dr[1] + "/" + dr[0]);
+      var dias = (((Date.parse(d_r)) - (Date.parse(d_i))) / (24 * 60 * 60 * 1000));
+
+      // se for 2 dias de diferença ele diminui 1 dia
+      if (parseFloat(dias) == 1){
+        total_dias = 0.5;
+      } else if (parseFloat(dias) > 1 < 2){
+        total_dias = parseInt(dias);
+      } else if (parseFloat(dias) == 0){
+       total_dias = 1;
+      } else {
+       total_dias = parseInt(dias) -1;
+      }
+            alert(parseFloat(dias));
+    })
+    // Calculando valores dos trechos
+    $('#dt_ret').focusout(function(){
+      var local = $('#local_servico').val();
+      if(local == 'val_br_am_rj'){
+        $('#a').val(<?php echo $val1; ?>);
+        $('#a1').val(parseFloat(total_dias));
+        var a = $("#a").val();
+        var a1 = $("#a1").val();
+        if (a1 > 0.5){
+          var volta1 = a / 2;
+          var resultado1 	= a * a1 + volta1;
+        } else {
+          var resultado1 	= a * a1;
+        }
+        $('#resultado1').val(resultado1);
+
+        $('#b').val(0);
+        $('#c').val(0);
+        $('#d').val(0);
+        $('#b1').val(0);
+        $('#c1').val(0);
+        $('#d1').val(0);
+        $('#resultado2').val(0);
+        $('#resultado3').val(0);
+        $('#resultado4').val(0);
+
+      }
+      if(local == 'val_bh_fl_pa_rc_sl_sp'){
+        $('#b').val(<?php echo $val2; ?>);
+        $('#b1').val(parseFloat(total_dias));
+        var b = $("#b").val();
+        var b1 = $("#b1").val();
+        if (b1 > 0.5){
+          var volta2 = b / 2;
+          var resultado2 	= b * b1 + volta2;
+        } else {
+          var resultado2 	= b * b1;
+        }
+        $('#resultado2').val(resultado2);
+
+        $('#a').val(0);
+        $('#c').val(0);
+        $('#d').val(0);
+        $('#a1').val(0);
+        $('#c1').val(0);
+        $('#d1').val(0);
+        $('#resultado1').val(0);
+        $('#resultado3').val(0);
+        $('#resultado4').val(0);
+      }
+      if(local == 'val_capitais'){
+        $('#c').val(<?php echo $val3; ?>);
+        $('#c1').val(parseFloat(total_dias));
+        var c = $("#c").val();
+        var c1 = $("#c1").val();
+        if (c1 > 0.5){
+          var volta3 = c / 2;
+          var resultado3 	= c * c1 + volta3;
+        } else {
+          var resultado3 	= c * c1;
+        }
+        $('#resultado3').val(resultado3);
+
+        $('#a').val(0);
+        $('#b').val(0);
+        $('#d').val(0);
+        $('#a1').val(0);
+        $('#b1').val(0);
+        $('#d1').val(0);
+        $('#resultado1').val(0);
+        $('#resultado2').val(0);
+        $('#resultado4').val(0);
+      }
+      if(local == 'val_cidades'){
+        $('#d').val(<?php echo $val4; ?>);
+        $('#d1').val(parseFloat(total_dias));
+        var d = $("#d").val();
+        var d1 = $("#d1").val();
+        if (d1 > 0.5){
+          var volta4 = d / 2;
+          var resultado4 	= d * d1 + volta4;
+        } else {
+          var resultado4 	= d * d1;
+        }
+/*        var volta4 = d / 2
+        var resultado4 	= d * d1 + volta4;*/
+        $('#resultado4').val(resultado4);
+
+        $('#a').val(0);
+        $('#b').val(0);
+        $('#c').val(0);
+        $('#a1').val(0);
+        $('#b1').val(0);
+        $('#c1').val(0);
+        $('#resultado1').val(0);
+        $('#resultado2').val(0);
+        $('#resultado3').val(0);
+      }
+      var r1 = $('#resultado1').val();
+      var r2 = $('#resultado2').val();
+      var r3 = $('#resultado3').val();
+      var r4 = $('#resultado4').val();
+      var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4) + 95;
+      $('#resultado_total').val(tot);
+
+      if (a1 >= 0){
+        $('#l1').show();
+        $('#l2').hide();
+        $('#l3').hide();
+        $('#l4').hide();
+      }
+      if (b1 >= 0) {
+        $('#l2').show();
+        $('#l1').hide();
+        $('#l3').hide();
+        $('#l4').hide();
+      }
+      if (c1 >= 0) {
+        $('#l3').show();
+        $('#l2').hide();
+        $('#l1').hide();
+        $('#l4').hide();
+      }
+      if (d1 >= 0) {
+        $('#l4').show();
+        $('#l2').hide();
+        $('#l3').hide();
+        $('#l1').hide();
+      }
+    })
+
   });
   </script>
   <script src="/bst/js/bootstrap.min.js"></script>

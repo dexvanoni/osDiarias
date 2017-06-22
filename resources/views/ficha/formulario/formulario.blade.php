@@ -347,7 +347,7 @@ $val4 = Session::get('val4');
       <center><h6>Brasília, Manaus, Rio de Janeiro</h6></center>
     </div>
     <div class="col-md-2">
-      <center>{!! Form::text('qt_br_am_rj', null, array('size'=>'6', 'id'=>'a1')) !!}</center>
+      <center>{!! Form::text('qt_br_am_rj', null, array('size'=>'6', 'id'=>'a1')) !!} <label style="color: red; font-size: 10px" id="l1">+1/2</label> </center>
     </div>
     <div class="col-md-2">
       <center>{!! Form::text('resultado1', null, array('size'=>'6', 'id'=>'resultado1', 'readonly'=>'readonly')) !!}</center>
@@ -362,7 +362,7 @@ $val4 = Session::get('val4');
       <center><h6>Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador e São Paulo</h6></center>
     </div>
     <div class="col-md-2">
-      <center>{!! Form::text('qt_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b1')) !!}</center>
+      <center>{!! Form::text('qt_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b1')) !!}<label style="color: red; font-size: 10px" id="l2">+1/2</label></center>
     </div>
     <div class="col-md-2">
       <center>{!! Form::text('resultado2', null, array('size'=>'6', 'id'=>'resultado2', 'readonly'=>'readonly')) !!}</center>
@@ -377,7 +377,7 @@ $val4 = Session::get('val4');
       <center><h6>Demais capitais de Estado</h6></center>
     </div>
     <div class="col-md-2">
-      <center>{!! Form::text('qt_capitais', null, array('size'=>'6', 'id'=>'c1')) !!}</center>
+      <center>{!! Form::text('qt_capitais', null, array('size'=>'6', 'id'=>'c1')) !!}<label style="color: red; font-size: 10px" id="l3">+1/2</label></center>
     </div>
     <div class="col-md-2">
       <center>{!! Form::text('resultado3', null, array('size'=>'6', 'id'=>'resultado3', 'readonly'=>'readonly')) !!}</center>
@@ -392,7 +392,7 @@ $val4 = Session::get('val4');
       <center><h6>Demais Cidades</h6></center>
     </div>
     <div class="col-md-2">
-      <center>{!! Form::text('qt_cidades', null, array('size'=>'6', 'id'=>'d1')) !!}</center>
+      <center>{!! Form::text('qt_cidades', null, array('size'=>'6', 'id'=>'d1')) !!}<label style="color: red; font-size: 10px" id="l4">+ 1/2</label></center>
     </div>
     <div class="col-md-2">
       <center>{!! Form::text('resultado4', null, array('size'=>'6', 'id'=>'resultado4', 'readonly'=>'readonly')) !!}</center>
@@ -405,10 +405,10 @@ $val4 = Session::get('val4');
       <center><h6><b>Acréscimos de Deslocamento</b></h6></center>
     </div>
     <div class="col-md-2">
-      <center>{!! Form::text('qt_acrescimo', null, array('size'=>'6', 'id'=>'qt_acrescimo')) !!}</center>
+      <center>{!! Form::input('text', 'qt_acrescimo', $value = 1, $attributes = ['id'=>'qt_acrescimo', 'size'=>'6', 'readonly'=>'readonly']) !!} </center>
     </div>
     <div class="col-md-2">
-      <center>{!! Form::text('val_ac', null, array('size'=>'6', 'id'=>'val_ac')) !!}</center>
+      <center>{!! Form::input('text', 'val_ac', $value = 95, $attributes = ['id'=>'val_ac', 'size'=>'6', 'readonly'=>'readonly']) !!}</center>
     </div>
   </div>
   <!-- LINHA DE DESCONTOS-->
