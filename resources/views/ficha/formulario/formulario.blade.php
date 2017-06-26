@@ -211,10 +211,14 @@ $val4 = Session::get('val4');
       {!! Form::select('local_servico', ['placeholder'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade):', 'val_br_am_rj'=>'Brasília, Manaus ou Rio de Janeiro', 'val_bh_fl_pa_rc_sl_sp'=> 'Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador ou São Paulo', 'val_capitais'=>'Outra capital de Estado', 'val_cidades'=>'Outra Cidade'], null, ['class' => 'form-control input-sm', 'title'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade)', 'id'=>'local_servico']) !!}
     </div>
   </div>
-  <div title="Informe os locais de pernoite" class="col-md-7">
+  <div class="col-md-2">
+    {!! Form::input('checkbox', 'houve_pernoite', $value = "s", $attributes = ['id'=>'hp']) !!}&nbsp&nbsp&nbspHouve Pernoite?
+
+  </div>
+  <div title="Informe os locais de pernoite" class="col-md-5">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">20</span>
-      {!! Form::text('local_pernoite', null, array('class' => 'form-control input-sm', 'placeholder'=>'LOCAL(IS) DE PERNOITE:')) !!}
+      {!! Form::text('local_pernoite', null, array('class' =>'form-control input-sm', 'placeholder'=>'LOCAL(IS) DE PERNOITE:')) !!}
     </div>
   </div>
   <p></p>
@@ -235,7 +239,7 @@ $val4 = Session::get('val4');
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">22</span>
       {!! Form::select('adicional_deslocamento', ['placeholder'=>'Informe se houve ou não adicional de deslocamento:', 'SIM'=>'SIM', 'NÃO'=> 'NÃO'], null, ['class' => 'form-control input-sm'], null, ['title'=>'(§1º, do Art.20, do Dec. 4.307/2002, alterado pelo Dec.6.907/2009)']) !!}
-      {!! Form::select('total_acrescimos', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
+      {!! Form::select('total_acrescimos', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm', 'id'=>'total_acrescimos'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
     </div>
     <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
       <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">23 - VALOR TOTAL (Diária + Adc. Desl.)</span>
@@ -405,10 +409,10 @@ $val4 = Session::get('val4');
       <center><h6><b>Acréscimos de Deslocamento</b></h6></center>
     </div>
     <div class="col-md-2">
-      <center>{!! Form::input('text', 'qt_acrescimo', $value = 1, $attributes = ['id'=>'qt_acrescimo', 'size'=>'6', 'readonly'=>'readonly']) !!} </center>
+      <center>{!! Form::input('text', 'qt_acrescimo', null, $attributes = ['id'=>'qt_acrescimo', 'size'=>'6', 'readonly'=>'readonly']) !!} </center>
     </div>
     <div class="col-md-2">
-      <center>{!! Form::input('text', 'val_ac', $value = 95, $attributes = ['id'=>'val_ac', 'size'=>'6', 'readonly'=>'readonly']) !!}</center>
+      <center>{!! Form::input('text', 'val_ac', null, $attributes = ['id'=>'val_ac', 'size'=>'6', 'readonly'=>'readonly']) !!}</center>
     </div>
   </div>
   <!-- LINHA DE DESCONTOS-->

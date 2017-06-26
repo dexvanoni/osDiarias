@@ -55,9 +55,13 @@ $val4 = Session::get('val4');
   var a = "<?php echo $tela; ?>";
   var dias;
   var total_dias;
-
-
+  var meia;
+  var hp;
+  var total_acrescimos;
+  var tot_n;
   $( document ).ready(function() {
+
+
     // campos extras para justificativa
     if ( a == 'edit') {
       $('#camposExtras').show();
@@ -91,29 +95,59 @@ $val4 = Session::get('val4');
     $('#l3').hide();
     $('#l4').hide();
 
-    // verifica a quantidade de dias de missão e diminui 1 (que é o dia do retorno) pelas datas inseridas
-    $('#dt_ret').focusout(function(){
+    // calculo de datas
+    $('#hr_ret').focusout(function(){
+
+      var local = $('#local_servico').val();
+      total_acrescimos = $('#total_acrescimos').val();
+
       var di = $("#dt_ida").val().split("/");
       var dr = $("#dt_ret").val().split("/");
       var d_i = new Date(di[2] + "/" + di[1] + "/" + di[0]);
       var d_r = new Date(dr[2] + "/" + dr[1] + "/" + dr[0]);
       var dias = (((Date.parse(d_r)) - (Date.parse(d_i))) / (24 * 60 * 60 * 1000));
+      // calculo de horas
+      var hi = $("#hr_ida").val();
+      var hr = $("#hr_ret").val();
+
+      i = hi.split(':');
+      r = hr.split(':');
+
+      min = r[1]-i[1];
+      hour_carry = 0;
+      if(min < 0){
+        min += 60;
+        hour_carry += 1;
+      }
+      hour = r[0]-i[0]-hour_carry;
+      total_horas = hour + ":" + min;
+
+      // pega o checkbox se existe pernoite
+      var hp = document.getElementById("hp").checked;
 
       // se for 2 dias de diferença ele diminui 1 dia
-      if (parseFloat(dias) == 1){
+      if ( (Date.parse(d_i) == Date.parse(d_r)) && (parseInt(hour) <= 7) && (parseInt(min) <= 59)){
+        total_dias = 0;
+        meia = 0;
+      } else if ((Date.parse(d_i) == Date.parse(d_r)) && (parseInt(hour) >= 8 )){
         total_dias = 0.5;
-      } else if (parseFloat(dias) > 1 < 2){
-        total_dias = parseInt(dias);
-      } else if (parseFloat(dias) == 0){
-       total_dias = 1;
+        meia = 0;
+      } else if ((parseFloat(dias) == 1) && (hp == false )){
+        total_dias = 1;
+        meia = 0;
+      } else if ((parseFloat(dias) == 1) && (hp == true )){
+        total_dias = 1;
+        meia = 0.5;
+      } else if (parseFloat(dias) > 1) {
+        total_dias = parseInt(dias) + 1;
+        meia = 0.5;
       } else {
-       total_dias = parseInt(dias) -1;
+        //total_dias = '';
+        //meia = '';
       }
-            alert(parseFloat(dias));
-    })
-    // Calculando valores dos trechos
-    $('#dt_ret').focusout(function(){
-      var local = $('#local_servico').val();
+
+        // Calculando valores dos trechos
+    //$('#hr_ret').focusout(function(){
       if(local == 'val_br_am_rj'){
         $('#a').val(<?php echo $val1; ?>);
         $('#a1').val(parseFloat(total_dias));
@@ -137,8 +171,8 @@ $val4 = Session::get('val4');
         $('#resultado3').val(0);
         $('#resultado4').val(0);
 
-      }
-      if(local == 'val_bh_fl_pa_rc_sl_sp'){
+      } else if (local == 'val_bh_fl_pa_rc_sl_sp'){
+
         $('#b').val(<?php echo $val2; ?>);
         $('#b1').val(parseFloat(total_dias));
         var b = $("#b").val();
@@ -160,8 +194,8 @@ $val4 = Session::get('val4');
         $('#resultado1').val(0);
         $('#resultado3').val(0);
         $('#resultado4').val(0);
-      }
-      if(local == 'val_capitais'){
+
+      } else if (local == 'val_capitais') {
         $('#c').val(<?php echo $val3; ?>);
         $('#c1').val(parseFloat(total_dias));
         var c = $("#c").val();
@@ -183,8 +217,9 @@ $val4 = Session::get('val4');
         $('#resultado1').val(0);
         $('#resultado2').val(0);
         $('#resultado4').val(0);
-      }
-      if(local == 'val_cidades'){
+
+      } else if (local == 'val_cidades'){
+
         $('#d').val(<?php echo $val4; ?>);
         $('#d1').val(parseFloat(total_dias));
         var d = $("#d").val();
@@ -195,7 +230,7 @@ $val4 = Session::get('val4');
         } else {
           var resultado4 	= d * d1;
         }
-/*        var volta4 = d / 2
+        /*        var volta4 = d / 2
         var resultado4 	= d * d1 + volta4;*/
         $('#resultado4').val(resultado4);
 
@@ -209,40 +244,72 @@ $val4 = Session::get('val4');
         $('#resultado2').val(0);
         $('#resultado3').val(0);
       }
-      var r1 = $('#resultado1').val();
-      var r2 = $('#resultado2').val();
-      var r3 = $('#resultado3').val();
-      var r4 = $('#resultado4').val();
-      var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4) + 95;
-      $('#resultado_total').val(tot);
 
-      if (a1 >= 0){
+      if (a1 >= 1){
         $('#l1').show();
         $('#l2').hide();
         $('#l3').hide();
         $('#l4').hide();
       }
-      if (b1 >= 0) {
+      if (b1 >= 1) {
         $('#l2').show();
         $('#l1').hide();
         $('#l3').hide();
         $('#l4').hide();
       }
-      if (c1 >= 0) {
+      if (c1 >= 1) {
         $('#l3').show();
         $('#l2').hide();
         $('#l1').hide();
         $('#l4').hide();
       }
-      if (d1 >= 0) {
+      if (d1 >= 1) {
         $('#l4').show();
         $('#l2').hide();
         $('#l3').hide();
         $('#l1').hide();
       }
-    })
+      var r1 = $('#resultado1').val();
+      var r2 = $('#resultado2').val();
+      var r3 = $('#resultado3').val();
+      var r4 = $('#resultado4').val();
 
-  });
+      var desl = 95;
+
+      if (parseInt(total_dias) < 1){
+
+        $('#val_ac').val(0);
+        $('#qt_acrescimo').val(0);
+        var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4);
+              if (total_acrescimos == "1/2 DIÁRIA"){
+                var tot_n = tot / 2;
+                var tt = round(parseFloat($tot_n) / 0.05, 0) * 0.05
+                $('#resultado_total').val(tt);
+              } else {
+                var tot_n = tot;
+                var tt = round(parseFloat($tot_n) / 0.05, 0) * 0.05
+                $('#resultado_total').val(round(tt));
+              }
+      } else {
+
+        $('#val_ac').val(95);
+        $('#qt_acrescimo').val(1);
+        var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4) + desl;
+              if (total_acrescimos == "1/2 DIÁRIA"){
+                var tot_n = tot / 2;
+                var tt = round(parseFloat($tot_n) / 0.05, 0) * 0.05
+                $('#resultado_total').val(tt);
+
+              } else {
+                var tot_n = tot;
+                var tt = round(parseFloat($tot_n) / 0.05, 0) * 0.05
+                $('#resultado_total').val(round(tt));
+              }
+
+      }
+alert(tot_n + "e" + total_acrescimos + "d_i = " + d_i + " d_r = " + d_r + "HP = " + hp + " dias = " + parseInt(dias) + " total horas = " + total_horas + " hora = " + hour + " total_dias = " +   parseFloat(total_dias) + " minutos = " + min + " meia = " + meia );
+      })
+});
   </script>
   <script src="/bst/js/bootstrap.min.js"></script>
 </body>
