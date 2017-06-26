@@ -229,22 +229,22 @@ $val4 = Session::get('val4');
   <div title="Informe a data e hora de início e retorno do afastamento da sede" class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">21 - AFASTAMENTO DE SEDE:</span>
-      {!! Form::text('data_afastamento_inicio', null, array('class' => 'form-control input-sm', 'placeholder'=>'Data Início:', 'id'=>'dt_ida')) !!}
-      {!! Form::text('hora_afastamento_inicio', null, array('class' => 'form-control input-sm', 'placeholder'=>'Hora:', 'id'=>'hr_ida')) !!}
-      {!! Form::text('data_afastamento_retorno', null, array('class' => 'form-control input-sm', 'placeholder'=>'Data Retorno:', 'id'=>'dt_ret')) !!}
-      {!! Form::text('hora_afastamento_retorno', null, array('class' => 'form-control input-sm', 'placeholder'=>'Hora:', 'id'=>'hr_ret')) !!}
+      {!! Form::text('data_afastamento_inicio', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Data Início:', 'id'=>'dt_ida')) !!}
+      {!! Form::text('hora_afastamento_inicio', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Hora:', 'id'=>'hr_ida')) !!}
+      {!! Form::text('data_afastamento_retorno', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Data Retorno:', 'id'=>'dt_ret')) !!}
+      {!! Form::text('hora_afastamento_retorno', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Hora:', 'id'=>'hr_ret')) !!}
     </div>
   </div>
   <div class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">22</span>
-      {!! Form::select('adicional_deslocamento', ['placeholder'=>'Informe se houve ou não adicional de deslocamento:', 'SIM'=>'SIM', 'NÃO'=> 'NÃO'], null, ['class' => 'form-control input-sm'], null, ['title'=>'(§1º, do Art.20, do Dec. 4.307/2002, alterado pelo Dec.6.907/2009)']) !!}
-      {!! Form::select('total_acrescimos', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm', 'id'=>'total_acrescimos'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
+      {!! Form::select('adicional_deslocamento', ['placeholder'=>'Informe se houve ou não adicional de deslocamento:', 'SIM'=>'SIM', 'NÃO'=> 'NÃO'], null, ['id'=>'h_d', 'class' => 'form-control input-sm a'], null, ['title'=>'(§1º, do Art.20, do Dec. 4.307/2002, alterado pelo Dec.6.907/2009)']) !!}
+      {!! Form::select('total_acrescimos', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm a', 'id'=>'total_acrescimos'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
     </div>
     <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
-      <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">23 - VALOR TOTAL (Diária + Adc. Desl.)</span>
-      {!! Form::text('valor_total', null, array('title'=>'Informe o valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm', 'placeholder'=>'R$')) !!}
-      &nbsp&nbsp{!! Form::checkbox('ck_valor_total', null, array('value'=>'Sem custo', 'title'=>'Não havendo custos, favor marcar esta caixa!', 'class' => 'form-control input-sm')) !!}&nbsp&nbsp&nbsp&nbspSEM CUSTO
+      <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">23 - VALOR TOTAL (Diária + Adc. Desl.)<br><br><br>Sem custo = </span>
+      {!! Form::text('valor_total', null, array('title'=>'Valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_total', 'readonly'=>'readonly')) !!}
+      {!! Form::input('checkbox', 'ck_valor_total', $value = "Sem Custo", $attributes = ['id'=>'zc', 'class' => 'form-control input-sm a']) !!}
     </div>
   </div>
   <!-- oitava linha da tabela-->
@@ -252,15 +252,21 @@ $val4 = Session::get('val4');
     <div class="input-group">
       <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - AUXÍLIO TRANSPORTE:&nbsp</span>
       <div style="border: 1px solid #D3D3D3; border-radius:3px" class="radio">
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxtransporte', 'SIM') !!}SIM<br>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxtransporte', 'NÃO') !!}NÃO<br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxtransporte', 'SIM', null, ['id'=>'trans_s']) !!}SIM<br>
+              <div id="t_s">
+                {!! Form::text('t_s', null, array('title'=>'Valor de transporte', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_transp')) !!}
+              </div>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxtransporte', 'NÃO', null, ['id'=>'trans_n']) !!}NÃO<br>
       </div>
     </div>
     <div class="input-group">
       <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">25 - AUXÍLIO ALIMENTAÇÃO:</span>
       <div style="border: 1px solid #D3D3D3; border-radius:3px" class="radio">
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxalimentacao', 'SIM') !!}SIM<br>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxalimentacao', 'NÃO') !!}NÃO<br>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxalimentacao', 'SIM', null, ['id'=>'al_s']) !!}SIM<br>
+              <div id="a_s">
+                {!! Form::text('a_s', null, array('title'=>'Valor de Alimentação', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_alim')) !!}
+              </div>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxalimentacao', 'NÃO', null, ['id'=>'al_n']) !!}NÃO<br>
       </div>
     </div>
   </div>
@@ -461,6 +467,9 @@ $val4 = Session::get('val4');
       <center>{!! Form::text('resultado_dias_b', null, array('size'=>'6', 'id'=>'resultado_dias_b', 'readonly'=>'readonly')) !!}</center>
     </div>
   </div>
+  <hr>
+    <h4>Número de diárias completas computadas: {!! Form::text('qtn_dc', null, array('size'=>'6', 'id'=>'qtn_dc', 'readonly'=>'readonly')) !!}</h4>
+    <h4>Número de 1/2 diárias computadas: {!! Form::text('qtn_md', null, array('size'=>'6', 'id'=>'qtn_md', 'readonly'=>'readonly')) !!}</h4>
   <hr>
   <div class="row">
     <div class="col-md-4">

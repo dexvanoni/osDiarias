@@ -59,8 +59,15 @@ $val4 = Session::get('val4');
   var hp;
   var total_acrescimos;
   var tot_n;
-  $( document ).ready(function() {
+  var flag = 0;
+  var valor_alim;
+  var valor_transp;
 
+  $( document ).ready(function() {
+$('#a').val(<?php echo $val1; ?>);
+$('#b').val(<?php echo $val2; ?>);
+$('#c').val(<?php echo $val3; ?>);
+$('#d').val(<?php echo $val4; ?>);
 
     // campos extras para justificativa
     if ( a == 'edit') {
@@ -76,6 +83,32 @@ $val4 = Session::get('val4');
     $("#alteracao_servico_n").click(function(){
       $('#camposExtras').hide();
     });
+
+    if ( a == 'edit') {
+      $('#t_s').show();
+      $('#a_s').show();
+    } else {
+      $('#t_s').hide();
+      $('#a_s').hide();
+    };
+
+    $("#trans_s").click(function(){
+      $('#t_s').show();
+    });
+
+    $("#trans_n").click(function(){
+      $('#t_s').hide();
+    });
+
+    $("#al_s").click(function(){
+      $('#a_s').show();
+    });
+
+    $("#al_n").click(function(){
+      $('#a_s').hide();
+    });
+
+
 
     $('#a').prop('disabled', true);
     $('#b').prop('disabled', true);
@@ -96,10 +129,19 @@ $val4 = Session::get('val4');
     $('#l4').hide();
 
     // calculo de datas
-    $('#hr_ret').focusout(function(){
+    $('#hr_ret, #dt_ret, #dt_ida, #hr_ida, #total_acrescimos, #hp, #zc, #h_d, #trans_s, #trans_n, #al_s, #al_n, #valor_alim, #valor_transp').focusout(function(){
 
       var local = $('#local_servico').val();
       total_acrescimos = $('#total_acrescimos').val();
+      var valor_alim = $('#valor_alim').val();
+      var valor_transp = $('#valor_transp').val();
+
+      if (document.getElementById("trans_n").checked == true) {
+        valor_transp = 0;
+      }
+      if (document.getElementById("al_n").checked == true) {
+        valor_alim = 0;
+      }
 
       var di = $("#dt_ida").val().split("/");
       var dr = $("#dt_ret").val().split("/");
@@ -129,18 +171,23 @@ $val4 = Session::get('val4');
       if ( (Date.parse(d_i) == Date.parse(d_r)) && (parseInt(hour) <= 7) && (parseInt(min) <= 59)){
         total_dias = 0;
         meia = 0;
+        flag = 0;
       } else if ((Date.parse(d_i) == Date.parse(d_r)) && (parseInt(hour) >= 8 )){
         total_dias = 0.5;
         meia = 0;
+        flag = 0;
       } else if ((parseFloat(dias) == 1) && (hp == false )){
         total_dias = 1;
         meia = 0;
+        flag = 1;
       } else if ((parseFloat(dias) == 1) && (hp == true )){
         total_dias = 1;
         meia = 0.5;
+        flag = 0;
       } else if (parseFloat(dias) > 1) {
         total_dias = parseInt(dias) + 1;
         meia = 0.5;
+        flag = 0;
       } else {
         //total_dias = '';
         //meia = '';
@@ -153,13 +200,13 @@ $val4 = Session::get('val4');
         $('#a1').val(parseFloat(total_dias));
         var a = $("#a").val();
         var a1 = $("#a1").val();
-        if (a1 > 0.5){
+        if ((a1 > 0.5) && (flag == 0)) {
           var volta1 = a / 2;
           var resultado1 	= a * a1 + volta1;
         } else {
           var resultado1 	= a * a1;
         }
-        $('#resultado1').val(resultado1);
+        $('#resultado1').val(resultado1.toFixed(2));
 
         $('#b').val(0);
         $('#c').val(0);
@@ -177,13 +224,13 @@ $val4 = Session::get('val4');
         $('#b1').val(parseFloat(total_dias));
         var b = $("#b").val();
         var b1 = $("#b1").val();
-        if (b1 > 0.5){
+        if ((b1 > 0.5) && (flag == 0)){
           var volta2 = b / 2;
           var resultado2 	= b * b1 + volta2;
         } else {
           var resultado2 	= b * b1;
         }
-        $('#resultado2').val(resultado2);
+        $('#resultado2').val(resultado2.toFixed(2));
 
         $('#a').val(0);
         $('#c').val(0);
@@ -200,13 +247,13 @@ $val4 = Session::get('val4');
         $('#c1').val(parseFloat(total_dias));
         var c = $("#c").val();
         var c1 = $("#c1").val();
-        if (c1 > 0.5){
+        if ((c1 > 0.5) && (flag == 0)){
           var volta3 = c / 2;
           var resultado3 	= c * c1 + volta3;
         } else {
           var resultado3 	= c * c1;
         }
-        $('#resultado3').val(resultado3);
+        $('#resultado3').val(resultado3.toFixed(2));
 
         $('#a').val(0);
         $('#b').val(0);
@@ -224,7 +271,7 @@ $val4 = Session::get('val4');
         $('#d1').val(parseFloat(total_dias));
         var d = $("#d").val();
         var d1 = $("#d1").val();
-        if (d1 > 0.5){
+        if ((d1 > 0.5) && (flag == 0)){
           var volta4 = d / 2;
           var resultado4 	= d * d1 + volta4;
         } else {
@@ -232,7 +279,7 @@ $val4 = Session::get('val4');
         }
         /*        var volta4 = d / 2
         var resultado4 	= d * d1 + volta4;*/
-        $('#resultado4').val(resultado4);
+        $('#resultado4').val(resultado4.toFixed(2));
 
         $('#a').val(0);
         $('#b').val(0);
@@ -243,6 +290,13 @@ $val4 = Session::get('val4');
         $('#resultado1').val(0);
         $('#resultado2').val(0);
         $('#resultado3').val(0);
+      }
+
+      if (flag == 1){
+        $('#l1').hide();
+        $('#l2').hide();
+        $('#l3').hide();
+        $('#l4').hide();
       }
 
       if (a1 >= 1){
@@ -262,7 +316,7 @@ $val4 = Session::get('val4');
         $('#l2').hide();
         $('#l1').hide();
         $('#l4').hide();
-      }
+      }alteracao_servico_s
       if (d1 >= 1) {
         $('#l4').show();
         $('#l2').hide();
@@ -276,38 +330,82 @@ $val4 = Session::get('val4');
 
       var desl = 95;
 
-      if (parseInt(total_dias) < 1){
+      if ((parseInt(total_dias) < 1) || ($('#h_d').val() == 'NÃO')){
 
         $('#val_ac').val(0);
         $('#qt_acrescimo').val(0);
+
         var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4);
               if (total_acrescimos == "1/2 DIÁRIA"){
-                var tot_n = tot / 2;
-                var tt = round(parseFloat($tot_n) / 0.05, 0) * 0.05
-                $('#resultado_total').val(tt);
+                var totn = tot / 2;
+                //var tt = ($totn / 0.05, 0) * 0.05
+                $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp);
               } else {
-                var tot_n = tot;
-                var tt = round(parseFloat($tot_n) / 0.05, 0) * 0.05
-                $('#resultado_total').val(round(tt));
+                //var tt = ($tot / 0.05, 0) * 0.05
+                $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp);
               }
       } else {
 
         $('#val_ac').val(95);
         $('#qt_acrescimo').val(1);
+
         var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4) + desl;
               if (total_acrescimos == "1/2 DIÁRIA"){
-                var tot_n = tot / 2;
-                var tt = round(parseFloat($tot_n) / 0.05, 0) * 0.05
-                $('#resultado_total').val(tt);
+                var totn = tot / 2;
+
+                $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp);
 
               } else {
-                var tot_n = tot;
-                var tt = round(parseFloat($tot_n) / 0.05, 0) * 0.05
-                $('#resultado_total').val(round(tt));
+
+                $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp);
               }
 
       }
-alert(tot_n + "e" + total_acrescimos + "d_i = " + d_i + " d_r = " + d_r + "HP = " + hp + " dias = " + parseInt(dias) + " total horas = " + total_horas + " hora = " + hour + " total_dias = " +   parseFloat(total_dias) + " minutos = " + min + " meia = " + meia );
+      var val_tot = $('#resultado_total').val();
+      $('#valor_total').val("R$ " + val_tot);
+
+      var ck = document.getElementById("zc").checked;
+      if ( ck == true ) {
+        $('#a').val(0);
+        $('#b').val(0);
+        $('#c').val(0);
+        $('#d').val(0);
+        $('#a1').val(0);
+        $('#b1').val(0);
+        $('#c1').val(0);
+        $('#d1').val(0);
+        $('#resultado1').val(0);
+        $('#resultado2').val(0);
+        $('#resultado3').val(0);
+        $('#resultado4').val(0);
+        $('#valor_total').val(0);
+        $('#resultado_total').val(0);
+        $('#val_ac').val(0);
+        $('#qt_acrescimo').val(0);
+      }
+
+      //computo de número de diárias completas e 1/2 diárias
+      //var num_completa = $('#a1').val() + $('#a1').val() + $('#a1').val() + $('#a1').val();
+      var num_meia;
+
+      if (total_acrescimos == "1/2 DIÁRIA"){
+        num_meia = total_dias;
+          if (flag == 0) {
+            $('#qtn_md').val(num_meia + 1);
+          } else {
+            $('#qtn_md').val(num_meia);
+          }
+        $('#qtn_dc').val(0);
+      } else if (total_acrescimos == "DIÁRIA COMPLETA") {
+        num_meia = 1;
+            if(flag == 0){
+              $('#qtn_md').val(num_meia + 1);
+            } else {
+              $('#qtn_md').val(num_meia);
+            }
+        $('#qtn_dc').val(total_dias);
+      }
+//alert(tot + "e" + total_acrescimos + "d_i = " + d_i + " d_r = " + d_r + "HP = " + hp + " dias = " + parseInt(dias) + " total horas = " + total_horas + " hora = " + hour + " total_dias = " +   parseFloat(total_dias) + " minutos = " + min + " meia = " + meia );
       })
 });
   </script>
