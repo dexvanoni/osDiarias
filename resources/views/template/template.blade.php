@@ -71,42 +71,42 @@ $val4 = Session::get('val4');
     $('#c').val(<?php echo $val3; ?>);
     $('#d').val(<?php echo $val4; ?>);
 
-      if ($('#qt_acrescimo').val('')){
+    if ($('#qt_acrescimo').val('')){
       $('#qt_acrescimo').val(0.0)
-      }
-      if ($('#val_ac').val('')){
+    }
+    if ($('#val_ac').val('')){
       $('#val_ac').val(0.0)
-      }
-      if ($('#desc_a').val('')){
+    }
+    if ($('#desc_a').val('')){
       $('#desc_a').val(0.0)
-      }
-      if ($('#qt_dias_a').val('')){
+    }
+    if ($('#qt_dias_a').val('')){
       $('#qt_dias_a').val(0.0)
-      }
-      if ($('#resultado_dias_a').val('')){
+    }
+    if ($('#resultado_dias_a').val('')){
       $('#resultado_dias_a').val(0.0)
-      }
-      if ($('#desc_b').val('')){
+    }
+    if ($('#desc_b').val('')){
       $('#desc_b').val(0.0)
-      }
-      if ($('#qt_dias_b').val('')){
+    }
+    if ($('#qt_dias_b').val('')){
       $('#qt_dias_b').val(0.0)
-      }
-      if ($('#resultado_dias_b').val('')){
+    }
+    if ($('#resultado_dias_b').val('')){
       $('#resultado_dias_b').val(0.0)
-      }
-      if ($('#qt_meia_diaria').val('')){
+    }
+    if ($('#qt_meia_diaria').val('')){
       $('#qt_meia_diaria').val(0.0)
-      }
-      if ($('#qt_diaria_completa').val('')){
+    }
+    if ($('#qt_diaria_completa').val('')){
       $('#qt_diaria_completa').val(0.0)
-      }
-      if ($('#num_total_acrescimos').val('')){
+    }
+    if ($('#num_total_acrescimos').val('')){
       $('#num_total_acrescimos').val(0.0)
-      }
-      if ($('#valor_restituicao').val('')){
+    }
+    if ($('#valor_restituicao').val('')){
       $('#valor_restituicao').val(0.0)
-      }
+    }
 
     if (a == 'create'){
       //$('.homologa').hide();
@@ -186,7 +186,7 @@ $val4 = Session::get('val4');
     $('#l3').hide();
     $('#l4').hide();
 
-// se sair dos inputs faz a função:
+    // se sair dos inputs faz a função:
     // calculo de datas
     $('#hr_ret, #dt_ret, #dt_ida, #hr_ida, #total_acrescimos, #hp, #zc, #h_d, #trans_s, #trans_n, #al_s, #al_n, #valor_alim, #valor_transp, #qt_pernoite').focusout(function(){
 
@@ -253,8 +253,8 @@ $val4 = Session::get('val4');
         //meia = '';
       }
 
-        // Calculando valores dos trechos
-        //$('#hr_ret').focusout(function(){
+      // Calculando valores dos trechos
+      //$('#hr_ret').focusout(function(){
       if(local == 'val_br_am_rj'){
         $('#a').val(<?php echo $val1; ?>);
         $('#a1').val(parseFloat(total_dias));
@@ -396,14 +396,14 @@ $val4 = Session::get('val4');
         $('#qt_acrescimo').val(0);
 
         var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4);
-              if ((total_acrescimos == "1/2 DIÁRIA")){
-                var totn = tot / 2;
-                //var tt = ($totn / 0.05, 0) * 0.05
-                $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp);
-              } else {
-                //var tt = ($tot / 0.05, 0) * 0.05
-                $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp);
-              }
+        if ((total_acrescimos == "1/2 DIÁRIA")){
+          var totn = tot / 2;
+          //var tt = ($totn / 0.05, 0) * 0.05
+          $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp);
+        } else {
+          //var tt = ($tot / 0.05, 0) * 0.05
+          $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp);
+        }
       } else {
 
         $('#val_ac').val(95);
@@ -412,15 +412,15 @@ $val4 = Session::get('val4');
         var ac = $('#val_ac').val() * $('#qt_acrescimo').val();
 
         var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4) + desl;
-              if (total_acrescimos == "1/2 DIÁRIA"){
-                var totn = tot / 2;
+        if (total_acrescimos == "1/2 DIÁRIA"){
+          var totn = tot / 2;
 
-                $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp + ac);
+          $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp + ac);
 
-              } else {
+        } else {
 
-                $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp + ac);
-              }
+          $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp + ac);
+        }
 
       }
       var val_tot = $('#resultado_total').val();
@@ -457,19 +457,19 @@ $val4 = Session::get('val4');
 
       if ((total_acrescimos == "1/2 DIÁRIA") && !(Date.parse(d_i) == Date.parse(d_r))){
         num_meia = total_dias;
-          if (flag == 0) {
-            $('#qtn_md').val(num_meia + 1);
-          } else {
-            $('#qtn_md').val(num_meia);
-          }
+        if (flag == 0) {
+          $('#qtn_md').val(num_meia + 1);
+        } else {
+          $('#qtn_md').val(num_meia);
+        }
         $('#qtn_dc').val(0);
       } else if ((total_acrescimos == "DIÁRIA COMPLETA") && !(Date.parse(d_i) == Date.parse(d_r))) {
         num_meia = 1;
-            if(flag == 0){
-              $('#qtn_md').val(num_meia);
-            } else {
-              $('#qtn_md').val(num_meia + 1);
-            }
+        if(flag == 0){
+          $('#qtn_md').val(num_meia);
+        } else {
+          $('#qtn_md').val(num_meia + 1);
+        }
         $('#qtn_dc').val(total_dias);
       }
       var co = $('#qtn_dc').val();
@@ -482,16 +482,33 @@ $val4 = Session::get('val4');
 
       //alert(total_dias + "e" + flag)
       //alert(tot + "e" + total_acrescimos + "d_i = " + d_i + " d_r = " + d_r + "HP = " + hp + " dias = " + parseInt(dias) + " total horas = " + total_horas + " hora = " + hour + " total_dias = " +   parseFloat(total_dias) + " minutos = " + min + " meia = " + meia );
-      })
-});
-$('#sub').click(function(){
-  var completa = $('#qtn_dc').val();
-  var meia_diaria = $('#qtn_md').val();
-  if ((completa >= 15) || (meia_diaria >= 15)){
-  alert("Necessita de tabela comparativa entre ajuda de custo e diárias!");
-  }
-});
+    })
+  });
+  $('#sub').click(function(){
+    var completa = $('#qtn_dc').val();
+    var meia_diaria = $('#qtn_md').val();
+    if ((completa >= 15) || (meia_diaria >= 15)){
+      alert("Necessita de tabela comparativa entre ajuda de custo e diárias!");
+    }
+//--------------------------------------------------------
+// colocando mais campos para locais de serviço
+//
 
+function duplicarCampos(){
+	var clone = document.getElementById('origem').cloneNode(true);
+	var destino = document.getElementById('destino');
+	destino.appendChild (clone);
+	var camposClonados = clone.getElementsByTagName('input');
+	for(i=0; i<camposClonados.length;i++){
+		camposClonados[i].value = '';
+	}
+}
+function removerCampos(id){
+	var node1 = document.getElementById('destino');
+	node1.removeChild(node1.childNodes[0]);
+}
+
+  });
   </script>
   <script src="/bst/js/bootstrap.min.js"></script>
 </body>

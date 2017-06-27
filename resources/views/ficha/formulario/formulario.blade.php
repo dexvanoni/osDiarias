@@ -210,6 +210,15 @@ $val4 = Session::get('val4');
       <span class="input-group-addon" id="basic-addon1">19</span>
       {!! Form::select('local_servico', ['placeholder'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade):', 'val_br_am_rj'=>'Brasília, Manaus ou Rio de Janeiro', 'val_bh_fl_pa_rc_sl_sp'=> 'Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador ou São Paulo', 'val_capitais'=>'Outra capital de Estado', 'val_cidades'=>'Outra Cidade'], null, ['class' => 'form-control input-sm', 'title'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade)', 'id'=>'local_servico']) !!}
     </div>
+    <!-- campos para inserir mais localidades-->
+    <div id="origem" align="center">
+    		Fone <input type="text" id="fone" name="fone[]"  maxlength="14" size="14"/>
+        <button type="button" name="+" onclick="duplicarCampos();"></button>
+        <button type="button" name="-" onclick="removerCampos(this);"></button>
+    	</div>
+    	<div id="destino">
+    	</div>
+    <!------------------------------------------------>
   </div>
   <div class="col-md-2">
     {!! Form::input('checkbox', 'houve_pernoite', $value = "s", $attributes = ['id'=>'hp']) !!}&nbsp&nbsp&nbspHouve Pernoite?
