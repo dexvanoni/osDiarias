@@ -1,7 +1,7 @@
 @extends('template.template')
 
 @section('t')
-  Editar Ordem de Serviço
+  Editar Ordem de Serviço - Nº: {{ $os->id }}
 @endsection
 
 @section('title')
@@ -16,6 +16,7 @@
     'method' => 'PUT']) !!}
     @php
       $tela = 'edit';
+      $apresenta = $_GET['apresenta'];
     @endphp
     @include('ficha.formulario.formulario')
 

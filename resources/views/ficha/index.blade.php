@@ -88,7 +88,7 @@
               <td style="width: 20%" >
                 <ul class="list-inline list-small">
                   <li title="Editar">
-                    <a href="{{ route('ficha.edit', ['oss' => $oss->id]) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    <a href="{{ route('ficha.edit', ['oss' => $oss->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                   </li>
                   <li>|</li>
                   <li title="Imprimir">

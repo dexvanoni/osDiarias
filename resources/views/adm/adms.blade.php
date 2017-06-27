@@ -94,6 +94,10 @@
                   <li title="Imprimir">
                     <a href="{{ route('ficha.impressao', ['oss' => $oss->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
                   </li>
+                  <li>|</li>
+                  <li title="Apresentação">
+                    <a href="{{ route('ficha.edit', ['oss' => $oss->id, 'apresenta' => 'apresenta']) }}" class="btn btn-warning btn-sm"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
+                  </li>
                 </ul>
               </td>
             </tr>

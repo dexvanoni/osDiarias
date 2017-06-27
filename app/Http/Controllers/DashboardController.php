@@ -42,6 +42,7 @@ class DashboardController extends Controller
 
     Os::create($request->all());
     Session::flash('mensagem_create', 'Ordem de serviço adicionada com sucesso!');
+
     return redirect()->route('ficha.index');
 
   }
@@ -51,7 +52,7 @@ class DashboardController extends Controller
   {
 
     $sar = Session::get('dono');
-    
+
     $os = Os::where('dono', '=', $sar)->paginate(1000);
     //$os = Os::orderBy('id', 'DESC')->paginate(5);
     return view('ficha.index',compact('os'));
@@ -66,8 +67,6 @@ class DashboardController extends Controller
     return view('adm.adms',compact('os'));
 
   }
-
-
 
   public function create()
   {

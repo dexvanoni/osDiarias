@@ -13,7 +13,9 @@
   {!! Form::open(array('route' => 'ficha.store', 'method' => 'POST')) !!}
   @php
     $tela = 'create';
+    $apresenta = '';
   @endphp
+
 
   @include('ficha.formulario.formulario')
   {!! Form::close() !!}

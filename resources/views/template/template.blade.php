@@ -47,12 +47,14 @@ $val4 = Session::get('val4');
         <a href="{{ route('ficha.index') }}" class="btn btn-primary"> Voltar</a>
       </div>
     @endif
+
     @yield('forma')
 
     <hr>
   </div>
   <script type="text/javascript">
   var a = "<?php echo $tela; ?>";
+  var apresenta = "<?php echo $apresenta; ?>";
   var dias;
   var total_dias;
   var meia;
@@ -64,10 +66,67 @@ $val4 = Session::get('val4');
   var valor_transp;
 
   $( document ).ready(function() {
-$('#a').val(<?php echo $val1; ?>);
-$('#b').val(<?php echo $val2; ?>);
-$('#c').val(<?php echo $val3; ?>);
-$('#d').val(<?php echo $val4; ?>);
+    $('#a').val(<?php echo $val1; ?>);
+    $('#b').val(<?php echo $val2; ?>);
+    $('#c').val(<?php echo $val3; ?>);
+    $('#d').val(<?php echo $val4; ?>);
+
+      if ($('#qt_acrescimo').val('')){
+      $('#qt_acrescimo').val(0.0)
+      }
+      if ($('#val_ac').val('')){
+      $('#val_ac').val(0.0)
+      }
+      if ($('#desc_a').val('')){
+      $('#desc_a').val(0.0)
+      }
+      if ($('#qt_dias_a').val('')){
+      $('#qt_dias_a').val(0.0)
+      }
+      if ($('#resultado_dias_a').val('')){
+      $('#resultado_dias_a').val(0.0)
+      }
+      if ($('#desc_b').val('')){
+      $('#desc_b').val(0.0)
+      }
+      if ($('#qt_dias_b').val('')){
+      $('#qt_dias_b').val(0.0)
+      }
+      if ($('#resultado_dias_b').val('')){
+      $('#resultado_dias_b').val(0.0)
+      }
+      if ($('#qt_meia_diaria').val('')){
+      $('#qt_meia_diaria').val(0.0)
+      }
+      if ($('#qt_diaria_completa').val('')){
+      $('#qt_diaria_completa').val(0.0)
+      }
+      if ($('#num_total_acrescimos').val('')){
+      $('#num_total_acrescimos').val(0.0)
+      }
+      if ($('#valor_restituicao').val('')){
+      $('#valor_restituicao').val(0.0)
+      }
+
+    if (a == 'create'){
+      //$('.homologa').hide();
+      //$('.facd').hide();
+      $('.homologa').show();
+      $('.facd').show();
+    }
+
+    if ((a == 'edit') && (apresenta == 'apresenta')){
+      $('.homologa').show();
+      $('.facd').show();
+    } else if ((a == 'edit') && (apresenta == 'editando')) {
+      $('.homologa').hide();
+      $('.facd').show();
+    }
+
+    if (a == 'print'){
+      $('.homologa').show();
+      $('.facd').show();
+    }
 
     // campos extras para justificativa
     if ( a == 'edit') {
@@ -108,33 +167,34 @@ $('#d').val(<?php echo $val4; ?>);
       $('#a_s').hide();
     });
 
+    document.getElementById("a").readOnly = true;
+    document.getElementById("b").readOnly = true;
+    document.getElementById("c").readOnly = true;
+    document.getElementById("d").readOnly = true;
+    document.getElementById("a1").readOnly = true;
+    document.getElementById("b1").readOnly = true;
+    document.getElementById("c1").readOnly = true;
+    document.getElementById("d1").readOnly = true;
+    document.getElementById("resultado1").readOnly = true;
+    document.getElementById("resultado2").readOnly = true;
+    document.getElementById("resultado3").readOnly = true;
+    document.getElementById("resultado4").readOnly = true;
+    document.getElementById("resultado_total").readOnly = true;
 
-
-    $('#a').prop('disabled', true);
-    $('#b').prop('disabled', true);
-    $('#c').prop('disabled', true);
-    $('#d').prop('disabled', true);
-    $('#a1').prop('disabled', true);
-    $('#b1').prop('disabled', true);
-    $('#c1').prop('disabled', true);
-    $('#d1').prop('disabled', true);
-    $('#resultado1').prop('disabled', true);
-    $('#resultado2').prop('disabled', true);
-    $('#resultado3').prop('disabled', true);
-    $('#resultado4').prop('disabled', true);
-    $('#resultado_total').prop('disabled', true);
     $('#l1').hide();
     $('#l2').hide();
     $('#l3').hide();
     $('#l4').hide();
 
+// se sair dos inputs faz a função:
     // calculo de datas
-    $('#hr_ret, #dt_ret, #dt_ida, #hr_ida, #total_acrescimos, #hp, #zc, #h_d, #trans_s, #trans_n, #al_s, #al_n, #valor_alim, #valor_transp').focusout(function(){
+    $('#hr_ret, #dt_ret, #dt_ida, #hr_ida, #total_acrescimos, #hp, #zc, #h_d, #trans_s, #trans_n, #al_s, #al_n, #valor_alim, #valor_transp, #qt_pernoite').focusout(function(){
 
       var local = $('#local_servico').val();
       total_acrescimos = $('#total_acrescimos').val();
       var valor_alim = $('#valor_alim').val();
       var valor_transp = $('#valor_transp').val();
+      var qtpernoite = $('#qt_pernoite').val();
 
       if (document.getElementById("trans_n").checked == true) {
         valor_transp = 0;
@@ -185,7 +245,7 @@ $('#d').val(<?php echo $val4; ?>);
         meia = 0.5;
         flag = 0;
       } else if (parseFloat(dias) > 1) {
-        total_dias = parseInt(dias) + 1;
+        total_dias = parseInt(dias);
         meia = 0.5;
         flag = 0;
       } else {
@@ -194,7 +254,7 @@ $('#d').val(<?php echo $val4; ?>);
       }
 
         // Calculando valores dos trechos
-    //$('#hr_ret').focusout(function(){
+        //$('#hr_ret').focusout(function(){
       if(local == 'val_br_am_rj'){
         $('#a').val(<?php echo $val1; ?>);
         $('#a1').val(parseFloat(total_dias));
@@ -292,7 +352,7 @@ $('#d').val(<?php echo $val4; ?>);
         $('#resultado3').val(0);
       }
 
-      if (flag == 1){
+      if ((flag == 1) || ((Date.parse(d_i) == Date.parse(d_r)) && (parseInt(hour) >= 8))){
         $('#l1').hide();
         $('#l2').hide();
         $('#l3').hide();
@@ -316,7 +376,7 @@ $('#d').val(<?php echo $val4; ?>);
         $('#l2').hide();
         $('#l1').hide();
         $('#l4').hide();
-      }alteracao_servico_s
+      }
       if (d1 >= 1) {
         $('#l4').show();
         $('#l2').hide();
@@ -330,13 +390,13 @@ $('#d').val(<?php echo $val4; ?>);
 
       var desl = 95;
 
-      if ((parseInt(total_dias) < 1) || ($('#h_d').val() == 'NÃO')){
+      if ((parseInt(total_dias) < 1) || ($('#h_d').val() == 'NÃO') || ($('#qt_pernoite').val() == 0) || ($('#qt_pernoite').val() == '')){
 
         $('#val_ac').val(0);
         $('#qt_acrescimo').val(0);
 
         var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4);
-              if (total_acrescimos == "1/2 DIÁRIA"){
+              if ((total_acrescimos == "1/2 DIÁRIA")){
                 var totn = tot / 2;
                 //var tt = ($totn / 0.05, 0) * 0.05
                 $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp);
@@ -347,17 +407,19 @@ $('#d').val(<?php echo $val4; ?>);
       } else {
 
         $('#val_ac').val(95);
-        $('#qt_acrescimo').val(1);
+        $('#qt_acrescimo').val(qtpernoite);
+
+        var ac = $('#val_ac').val() * $('#qt_acrescimo').val();
 
         var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4) + desl;
               if (total_acrescimos == "1/2 DIÁRIA"){
                 var totn = tot / 2;
 
-                $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp);
+                $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp + ac);
 
               } else {
 
-                $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp);
+                $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp + ac);
               }
 
       }
@@ -388,7 +450,12 @@ $('#d').val(<?php echo $val4; ?>);
       //var num_completa = $('#a1').val() + $('#a1').val() + $('#a1').val() + $('#a1').val();
       var num_meia;
 
-      if (total_acrescimos == "1/2 DIÁRIA"){
+      if ((Date.parse(d_i) == Date.parse(d_r)) && (parseInt(hour) >= 8 )) {
+        $('#qtn_md').val(1);
+        $('#qtn_dc').val(0);
+      }
+
+      if ((total_acrescimos == "1/2 DIÁRIA") && !(Date.parse(d_i) == Date.parse(d_r))){
         num_meia = total_dias;
           if (flag == 0) {
             $('#qtn_md').val(num_meia + 1);
@@ -396,18 +463,35 @@ $('#d').val(<?php echo $val4; ?>);
             $('#qtn_md').val(num_meia);
           }
         $('#qtn_dc').val(0);
-      } else if (total_acrescimos == "DIÁRIA COMPLETA") {
+      } else if ((total_acrescimos == "DIÁRIA COMPLETA") && !(Date.parse(d_i) == Date.parse(d_r))) {
         num_meia = 1;
             if(flag == 0){
-              $('#qtn_md').val(num_meia + 1);
-            } else {
               $('#qtn_md').val(num_meia);
+            } else {
+              $('#qtn_md').val(num_meia + 1);
             }
         $('#qtn_dc').val(total_dias);
       }
-//alert(tot + "e" + total_acrescimos + "d_i = " + d_i + " d_r = " + d_r + "HP = " + hp + " dias = " + parseInt(dias) + " total horas = " + total_horas + " hora = " + hour + " total_dias = " +   parseFloat(total_dias) + " minutos = " + min + " meia = " + meia );
+      var co = $('#qtn_dc').val();
+      var md = $('#qtn_md').val();
+      var ta = $('#qt_acrescimo').val();
+
+      $('#qt_meia_diaria').val(md);
+      $('#qt_diaria_completa').val(co);
+      $('#num_total_acrescimos').val(ta);
+
+      //alert(total_dias + "e" + flag)
+      //alert(tot + "e" + total_acrescimos + "d_i = " + d_i + " d_r = " + d_r + "HP = " + hp + " dias = " + parseInt(dias) + " total horas = " + total_horas + " hora = " + hour + " total_dias = " +   parseFloat(total_dias) + " minutos = " + min + " meia = " + meia );
       })
 });
+$('#sub').click(function(){
+  var completa = $('#qtn_dc').val();
+  var meia_diaria = $('#qtn_md').val();
+  if ((completa >= 15) || (meia_diaria >= 15)){
+  alert("Necessita de tabela comparativa entre ajuda de custo e diárias!");
+  }
+});
+
   </script>
   <script src="/bst/js/bootstrap.min.js"></script>
 </body>

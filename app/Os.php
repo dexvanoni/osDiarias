@@ -82,7 +82,13 @@ class Os extends Model
     'num_total_acrescimos',
     'restituicao',
     'valor_restituicao',
-    'dono'
+    'dono',
+    'houve_pernoite',
+    'qtn_md',
+    'qtn_dc',
+    'a_s',
+    't_s',
+    
   ];
 
 }
