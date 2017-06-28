@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Diaria;
 
 class Diaria extends Model
 {
@@ -70,4 +71,8 @@ class Diaria extends Model
     'valor_restituicao',
     'dono',
   ];
+
+  public function trechos(){
+    return $this->hasMany(Diaria::class);
+  }
 }
