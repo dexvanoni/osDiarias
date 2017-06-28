@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Os;
+use App\Diaria;
 use App\User;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
@@ -21,12 +21,12 @@ use Dompdf\Dompdf;
 
 class DashboardController extends Controller
 {
-  private $os;
+  private $diaria;
   private $pessoa;
 
-  public function __construct(Os $os, Pessoa $pessoa, Valor $valor)
+  public function __construct(Diaria $diaria, Pessoa $pessoa, Valor $valor)
   {
-    $this->os = $os;
+    $this->diaria = $diaria;
     $this->pessoa = $pessoa;
     $this->valor = $valor;
   }
@@ -40,7 +40,7 @@ class DashboardController extends Controller
       'servico' => 'required'
     ]);
 
-    Os::create($request->all());
+    Diaria::create($request->all());
     Session::flash('mensagem_create', 'Ordem de serviço adicionada com sucesso!');
 
     return redirect()->route('ficha.index');
@@ -53,18 +53,18 @@ class DashboardController extends Controller
 
     $sar = Session::get('dono');
 
-    $os = Os::where('dono', '=', $sar)->paginate(1000);
-    //$os = Os::orderBy('id', 'DESC')->paginate(5);
-    return view('ficha.index',compact('os'));
+    $diaria = Diaria::where('dono', '=', $sar)->paginate(1000);
+    //$diaria = Diaria::orderBy('id', 'DESC')->paginate(5);
+    return view('ficha.index',compact('diaria'));
 
   }
 
   public function admin()
   {
 
-    $os = Os::orderBy('id', 'DESC')->paginate(1000);
-    //$os = Os::orderBy('id', 'DESC')->paginate(5);
-    return view('adm.adms',compact('os'));
+    $diaria = Diaria::orderBy('id', 'DESC')->paginate(1000);
+    //$diaria = Diaria::orderBy('id', 'DESC')->paginate(5);
+    return view('adm.adms',compact('diaria'));
 
   }
 
@@ -86,36 +86,36 @@ class DashboardController extends Controller
 
   public function edit($id){
 
-    if(!($os = Os::find($id))) {
+    if(!($diaria = Diaria::find($id))) {
 
       throw new ModelNotFoundException("Ordem de serviço não encontrada!");
 
     }
-    return view('ficha.edit', compact('os'));
+    return view('ficha.edit', compact('diaria'));
   }
 
   public function show($id)
    {
-     if(!($os = Os::find($id))) {
+     if(!($diaria = Diaria::find($id))) {
 
        throw new ModelNotFoundException("Ordem de serviço não encontrada!");
 
      }
-     return view('ficha.show', compact('os'));
+     return view('ficha.show', compact('diaria'));
 
    }
 
   public function print($id){
 
-    if(!($os = Os::find($id))) {
+    if(!($diaria = Diaria::find($id))) {
 
       throw new ModelNotFoundException("Ordem de serviço não encontrada!");
 
     }
     Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
-    return view('ficha.impressao', compact('os'));
+    return view('ficha.impressao', compact('diaria'));
 
-    //$pdf = PDF::loadView('ficha.impressao', ['os' => $os]);
+    //$pdf = PDF::loadView('ficha.impressao', ['diaria' => $diaria]);
     //return $pdf->download('os.pdf');
     //return redirect()->route('ficha.index');
 
@@ -124,23 +124,23 @@ class DashboardController extends Controller
 
   public function update(Request $request, $id){
 
-    if (!($os = Os::find($id))){
+    if (!($diaria = Diaria::find($id))){
       throw new ModelNotFoundException("OS não encontrada!");
     }
 
     $data = $request->all();
-    $os->fill($data)->save();
+    $diaria->fill($data)->save();
     Session::flash('mensagem_edit', "Ordem de Serviço editada com Sucesso!");
     return redirect()->route('ficha.index');
   }
 
   public function destroy($id){
 
-    if (!($os = Os::find($id))){
+    if (!($diaria = Diaria::find($id))){
       throw new ModelNotFoundException("OS não encontrada!");
     }
 
-    $os->delete();
+    $diaria->delete();
     Session::flash('mensagem_del', "Ordem de Serviço deletada com Sucesso!");
     return redirect()->route('ficha.index');
 

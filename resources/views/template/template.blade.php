@@ -13,6 +13,35 @@ $val4 = Session::get('val4');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/bst/css/bootstrap.min.css" rel="stylesheet">
   <script src="/bst/js/jquery.min.js"></script>
+<!----------------------------------------------------------------------------------------------->
+      <script type="text/javascript">
+      var qtdeCampos = 0;
+
+      function addCampos() {
+      var objPai = document.getElementById("campoPai");
+      var x = document.getElementById("camposAdd").innerHTML;
+      //Criando o elemento DIV;
+      var objFilho = document.createElement("div");
+      //Definindo atributos ao objFilho:
+      objFilho.setAttribute("id","trecho"+qtdeCampos);
+
+      //Inserindo o elemento no pai:
+      objPai.appendChild(objFilho);
+      //Escrevendo algo no filho recém-criado:
+      document.getElementById("trecho"+qtdeCampos).innerHTML = x+"<button type='button' class='btn btn-danger' aria-label='addCampo' onclick='removerCampo("+qtdeCampos+")' title='Excluir trecho' value='Remover Trecho'><span class='glyphicon glyphicon-minus'></span></button><hr>";
+      qtdeCampos++;
+      }
+
+      function removerCampo(id) {
+      var objPai = document.getElementById("campoPai");
+      var objFilho = document.getElementById("trecho"+id);
+
+      //Removendo o DIV com id específico do nó-pai:
+      var removido = objPai.removeChild(objFilho);
+      }
+      </script>
+<!------------------------------------------------------------------------------------------------------------>
+
 </head>
 <body>
   <!--Nav Bar-->
@@ -511,5 +540,6 @@ function removerCampos(id){
   });
   </script>
   <script src="/bst/js/bootstrap.min.js"></script>
+
 </body>
 </html>
