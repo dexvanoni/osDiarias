@@ -13,10 +13,11 @@ $val4 = Session::get('val4');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/bst/css/bootstrap.min.css" rel="stylesheet">
   <script src="/bst/js/jquery.min.js"></script>
-<!----------------------------------------------------------------------------------------------->
-      <script type="text/javascript">
-      var qtdeCampos = 0;
+  <!----------------------------------------------------------------------------------------------->
+  <!------------------DIV CONTENDO OS CAMPOS PARA ADICIONAR NOVOS TRECHOS ------------------------------->
 
+  <script type="text/javascript">
+    var qtdeCampos = 1;
       function addCampos() {
       var objPai = document.getElementById("campoPai");
       var x = document.getElementById("camposAdd").innerHTML;
@@ -28,19 +29,19 @@ $val4 = Session::get('val4');
       //Inserindo o elemento no pai:
       objPai.appendChild(objFilho);
       //Escrevendo algo no filho recém-criado:
-      document.getElementById("trecho"+qtdeCampos).innerHTML = x+"<button type='button' class='btn btn-danger' aria-label='addCampo' onclick='removerCampo("+qtdeCampos+")' title='Excluir trecho' value='Remover Trecho'><span class='glyphicon glyphicon-minus'></span></button><hr>";
+      document.getElementById("trecho"+qtdeCampos).innerHTML = "<div id='camposAdd'><div class='row'><div title='Informe a cidade de realização do serviço' class='col-md-4'><div class='input-group'><span class='input-group-addon' id='basic-addon1'>19</span><select class='form-control input-sm' title='LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade)' id='local_servico["+qtdeCampos+"]' name='local_servico["+qtdeCampos+"]'><option value='placeholder'>LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade):</option><option value='val_br_am_rj'>Brasília, Manaus ou Rio de Janeiro</option><option value='val_bh_fl_pa_rc_sl_sp'>Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador ou São Paulo</option><option value='val_capitais'>Outra capital de Estado</option><option value='val_cidades'>Outra Cidade</option></select></div></div><div class='col-md-2'><input id='hp["+qtdeCampos+"]' name='houve_pernoite["+qtdeCampos+"]' value='s' type='checkbox'>&nbsp;&nbsp;&nbsp;Houve Pernoite?</div><div class='col-sm-2'><input id='qt_pernoite["+qtdeCampos+"]' class='form-control input-sm' placeholder='QNT DE PERNOITES:' name='qt_pernoite["+qtdeCampos+"]' type='text'></div><div title='Informe os locais de pernoite' class='col-md-4'><div class='input-group'><span class='input-group-addon' id='basic-addon1'>20</span><input class='form-control input-sm' placeholder='LOCAL(IS) DE PERNOITE:' name='local_pernoite["+qtdeCampos+"]' type='text'></div></div><p></p></div><p></p><div class='row'><div title='Informe a data e hora de início e retorno do afastamento da sede' class='col-md-4'><div class='input-group'><span class='input-group-addon' id='basic-addon1'>21 - AFASTAMENTO DE SEDE:</span><input class='form-control input-sm a' placeholder='Data Início:' id='dt_ida["+qtdeCampos+"]' name='data_afastamento_inicio["+qtdeCampos+"]' type='text'><input class='form-control input-sm a' placeholder='Hora:' id='hr_ida["+qtdeCampos+"]' name='hora_afastamento_inicio["+qtdeCampos+"]' type='text'><input class='form-control input-sm a' placeholder='Data Retorno:' id='dt_ret["+qtdeCampos+"]' name='data_afastamento_retorno["+qtdeCampos+"]' type='text'><input class='form-control input-sm a' placeholder='Hora:' id='hr_ret["+qtdeCampos+"]' name='hora_afastamento_retorno["+qtdeCampos+"]' type='text'></div></div><div class='col-md-4'><div class='input-group'><span class='input-group-addon' id='basic-addon1'>22</span><select id='h_d["+qtdeCampos+"]' class='form-control input-sm a' name='adicional_deslocamento["+qtdeCampos+"]'><option value='placeholder'>Informe se houve ou não adicional de deslocamento:</option><option value='SIM'>SIM</option><option value='NÃO'>NÃO</option></select><select class='form-control input-sm a' id='total_acrescimos["+qtdeCampos+"]' name='total_acrescimos["+qtdeCampos+"]'><option value='placeholder'>TOTAL DE ACRÉSCIMOS:</option><option value='DIÁRIA COMPLETA'>DIÁRIA COMPLETA</option><option value='1/2 DIÁRIA'>1/2 DIÁRIA</option></select></div><div style='border:1px solid #d3d3d3;border-radius:3px' class='input-group'><span style='border:1px solid #d3d3d3;border-radius:3px;font-size:10px' class='input-group-addon' id='basic-addon1'>23 - VALOR TOTAL (Diária + Adc. Desl.)<br>Sem custo = </span><input title='Valor total de diárias + adicionais de deslocamento' class='form-control input-sm a' placeholder='R$' id='valor_total["+qtdeCampos+"]' readonly='readonly' name='valor_total["+qtdeCampos+"]' type='text'><input id='zc["+qtdeCampos+"]' class='form-control input-sm a' name='ck_valor_total["+qtdeCampos+"]' value='Sem Custo' type='checkbox'></div></div><div class='col-md-4'><div class='input-group'><span title='Informe se faz jus a auxílio transporte' style='border:1px solid #d3d3d3;border-radius:3px' class='input-group-addon' id='basic-addon1'>24 - AUXÍLIO TRANSPORTE:&nbsp;</span><div style='border:1px solid #d3d3d3;border-radius:3px' class='radio'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id='trans_s["+qtdeCampos+"]' name='rd_auxtransporte["+qtdeCampos+"]' value='SIM' type='radio'>SIM<br><div id='t_s' style='display:none'><input title='Valor de transporte' class='form-control input-sm a' placeholder='R$' id='valor_transp["+qtdeCampos+"]' name='t_s["+qtdeCampos+"]' type='text'></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id='trans_n["+qtdeCampos+"]' name='rd_auxtransporte["+qtdeCampos+"]' value='NÃO' type='radio'>NÃO</div></div><div class='input-group'><span title='Informe se faz jus a auxílio alimentação' style='border:1px solid #d3d3d3;border-radius:3px' class='input-group-addon' id='basic-addon1'>25 - AUXÍLIO ALIMENTAÇÃO:</span><div style='border:1px solid #d3d3d3;border-radius:3px' class='radio'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id='al_s["+qtdeCampos+"]' name='rd_auxalimentacao["+qtdeCampos+"]' value='SIM' type='radio'>SIM<br><div id='a_s' style='display:none'><input title='Valor de Alimentação' class='form-control input-sm a' placeholder='R$' id='valor_alim["+qtdeCampos+"]' name='a_s["+qtdeCampos+"]' type='text'></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input id='al_n["+qtdeCampos+"]' name='rd_auxalimentacao["+qtdeCampos+"]' value='NÃO' type='radio'>NÃO</div></div></div></div></div><button type='button' class='btn btn-danger' aria-label='addCampo' onclick='removerCampo("+qtdeCampos+")' title='Excluir trecho' value='Remover Trecho'><span class='glyphicon glyphicon-minus'></span> Remover trecho</button><hr>";
       qtdeCampos++;
-      }
+    }
 
-      function removerCampo(id) {
-      var objPai = document.getElementById("campoPai");
-      var objFilho = document.getElementById("trecho"+id);
+    function removerCampo(id) {
+    var objPai = document.getElementById("campoPai");
+    var objFilho = document.getElementById("trecho"+id);
 
-      //Removendo o DIV com id específico do nó-pai:
-      var removido = objPai.removeChild(objFilho);
-      }
-      </script>
-<!------------------------------------------------------------------------------------------------------------>
+    //Removendo o DIV com id específico do nó-pai:
+    var removido = objPai.removeChild(objFilho);
+    }
+</script>
+<!---------------------------------------------------------------------------------------------------------->
 
 </head>
 <body>
@@ -95,6 +96,7 @@ $val4 = Session::get('val4');
   var valor_transp;
 
   $( document ).ready(function() {
+
     $('#a').val(<?php echo $val1; ?>);
     $('#b').val(<?php echo $val2; ?>);
     $('#c').val(<?php echo $val3; ?>);
@@ -519,23 +521,23 @@ $val4 = Session::get('val4');
     if ((completa >= 15) || (meia_diaria >= 15)){
       alert("Necessita de tabela comparativa entre ajuda de custo e diárias!");
     }
-//--------------------------------------------------------
-// colocando mais campos para locais de serviço
-//
+    //--------------------------------------------------------
+    // colocando mais campos para locais de serviço
+    //
 
-function duplicarCampos(){
-	var clone = document.getElementById('origem').cloneNode(true);
-	var destino = document.getElementById('destino');
-	destino.appendChild (clone);
-	var camposClonados = clone.getElementsByTagName('input');
-	for(i=0; i<camposClonados.length;i++){
-		camposClonados[i].value = '';
-	}
-}
-function removerCampos(id){
-	var node1 = document.getElementById('destino');
-	node1.removeChild(node1.childNodes[0]);
-}
+    function duplicarCampos(){
+      var clone = document.getElementById('origem').cloneNode(true);
+      var destino = document.getElementById('destino');
+      destino.appendChild (clone);
+      var camposClonados = clone.getElementsByTagName('input');
+      for(i=0; i<camposClonados.length;i++){
+        camposClonados[i].value = '';
+      }
+    }
+    function removerCampos(id){
+      var node1 = document.getElementById('destino');
+      node1.removeChild(node1.childNodes[0]);
+    }
 
   });
   </script>

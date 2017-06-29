@@ -1,14 +1,9 @@
-
-<!-- SÉTIMA linha da tabela-->
 <div class="row">
   <div title="Informe a cidade de realização do serviço" class="col-md-4">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">19</span>
       {!! Form::select('local_servico', ['placeholder'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade):', 'val_br_am_rj'=>'Brasília, Manaus ou Rio de Janeiro', 'val_bh_fl_pa_rc_sl_sp'=> 'Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador ou São Paulo', 'val_capitais'=>'Outra capital de Estado', 'val_cidades'=>'Outra Cidade'], null, ['class' => 'form-control input-sm', 'title'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade)', 'id'=>'local_servico']) !!}
     </div>
-    <!-- campos para inserir mais localidades-->
-
-    <!------------------------------------------------>
   </div>
   <div class="col-md-2">
     {!! Form::input('checkbox', 'houve_pernoite', $value = "s", $attributes = ['id'=>'hp']) !!}&nbsp&nbsp&nbspHouve Pernoite?
@@ -25,7 +20,6 @@
   <p></p>
 </div>
 <p></p>
-<!-- datas e horas SÉTIMA linha da tabela-->
 <div class="row">
   <div title="Informe a data e hora de início e retorno do afastamento da sede" class="col-md-4">
     <div class="input-group">
@@ -48,7 +42,6 @@
       {!! Form::input('checkbox', 'ck_valor_total', $value = "Sem Custo", $attributes = ['id'=>'zc', 'class' => 'form-control input-sm a']) !!}
     </div>
   </div>
-  <!-- oitava linha da tabela-->
   <div class="col-md-4">
     <div class="input-group">
       <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - AUXÍLIO TRANSPORTE:&nbsp</span>
