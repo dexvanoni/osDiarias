@@ -4,11 +4,17 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Diaria;
+use App\Trecho;
 
 class Diaria extends Model
 {
   protected $connection = 'pgsql';
   protected $table = 'diarias';
+
+  public function trechos(){
+    return $this->hasMany(Trecho::class);
+  }
+
   protected $fillable = [
     'sc',
     'pcdp',
@@ -70,9 +76,9 @@ class Diaria extends Model
     'restituicao',
     'valor_restituicao',
     'dono',
+    'qtn_md',
+    'qtn_dc'
   ];
 
-  public function trechos(){
-    return $this->hasMany(Diaria::class);
-  }
+
 }

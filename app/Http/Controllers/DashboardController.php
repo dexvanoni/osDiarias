@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Html;
 use App\Pessoa;
+use App\Trecho;
 use App\Valor;
 use App\Adm;
 use App\Http\Requests;
@@ -36,113 +37,141 @@ class DashboardController extends Controller
 
   public function store(Request $request){
 
-    $this->validate($request, [
-      'servico' => 'required'
-    ]);
-
-    Diaria::create($request->all());
-    Session::flash('mensagem_create', 'Ordem de serviço adicionada com sucesso!');
-
-    return redirect()->route('ficha.index');
-
-  }
+    $diaria = Diaria::create($request->all());
 
 
-  public function index()
-  {
 
-    $sar = Session::get('dono');
+    $trInput = $request->get('tr');
 
-    $diaria = Diaria::where('dono', '=', $sar)->paginate(1000);
-    //$diaria = Diaria::orderBy('id', 'DESC')->paginate(5);
-    return view('ficha.index',compact('diaria'));
+    $tr = array();
+    $i=0;
 
-  }
 
-  public function admin()
-  {
-
-    $diaria = Diaria::orderBy('id', 'DESC')->paginate(1000);
-    //$diaria = Diaria::orderBy('id', 'DESC')->paginate(5);
-    return view('adm.adms',compact('diaria'));
-
-  }
-
-  public function create()
-  {
-    $pessoa = $this->pessoa->all();
-
-    $pgrad = Session::get('grad').' '.Session::get('pesncompleto');
-    $login = Session::get('peslogin');
-    $saram = Session::get('pescodigo');
-    $cpf = Session::get('pescpf');
-    $datadenascimento = Session::get('pesdn');
-    $pemail = Session::get('pesemail');
-    $identidade = Session::get('pesidentidade');
-    $ramal = Session::get('pesfonetrabramal');
-
-    return view('ficha.create', compact('pessoa', 'pgrad', 'login', 'saram', 'cpf', 'datadenascimento', 'pemail', 'identidade', 'ramal'));
-  }
-
-  public function edit($id){
-
-    if(!($diaria = Diaria::find($id))) {
-
-      throw new ModelNotFoundException("Ordem de serviço não encontrada!");
-
+    foreach(array_chunk($trInput, 10) as $tr)
+    {
+      foreach ($tr as $key => $value) {
+        echo $key;
+        echo ($value['local_servico']);
+      }
+      //$tr[] = new Trecho($tr);
+      //print_r(array_chunk($trInput, 10));
+      //echo($tr);
+      $i++;
     }
-    return view('ficha.edit', compact('diaria'));
+    exit;
+
+    $diaria->trechos()->saveMany($tr);
+
+    /*  $trechos_add = array();
+    foreach(Input::get('local_servico') as $local_servico) {
+    $trechos_add[] = new Trecho(array('local_servico' => $local_servico));
+  };
+
+  $diaria->trechos()->saveMany($trechos_add);*/
+
+  Session::flash('mensagem_create', 'Ordem de serviço para o Sr. ' .$request->pnome. ' foi adicionada com sucesso!');
+
+  return redirect()->route('ficha.index');
+
+}
+
+
+public function index()
+{
+
+  $sar = Session::get('dono');
+
+  $diaria = Diaria::where('dono', '=', $sar)->paginate(1000);
+  //$diaria = Diaria::orderBy('id', 'DESC')->paginate(5);
+  return view('ficha.index',compact('diaria'));
+
+}
+
+public function admin()
+{
+
+  $diaria = Diaria::orderBy('id', 'DESC')->paginate(1000);
+  //$diaria = Diaria::orderBy('id', 'DESC')->paginate(5);
+  return view('adm.adms',compact('diaria'));
+
+}
+
+public function create()
+{
+  $pessoa = $this->pessoa->all();
+
+  $pgrad = Session::get('grad').' '.Session::get('pesncompleto');
+  $login = Session::get('peslogin');
+  $saram = Session::get('pescodigo');
+  $cpf = Session::get('pescpf');
+  $datadenascimento = Session::get('pesdn');
+  $pemail = Session::get('pesemail');
+  $identidade = Session::get('pesidentidade');
+  $ramal = Session::get('pesfonetrabramal');
+
+  return view('ficha.create', compact('pessoa', 'pgrad', 'login', 'saram', 'cpf', 'datadenascimento', 'pemail', 'identidade', 'ramal'));
+}
+
+public function edit($id){
+
+  if(!($diaria = Diaria::find($id))) {
+
+    throw new ModelNotFoundException("Ordem de serviço não encontrada!");
+
+  }
+  $trechos = Diaria::find($id)->trechos;
+  return view('ficha.edit', compact('diaria', 'trechos'));
+}
+
+public function show($id)
+{
+  if(!($diaria = Diaria::find($id))) {
+
+    throw new ModelNotFoundException("Ordem de serviço não encontrada!");
+
+  }
+  return view('ficha.show', compact('diaria'));
+
+}
+
+public function print($id){
+
+  if(!($diaria = Diaria::find($id))) {
+
+    throw new ModelNotFoundException("Ordem de serviço não encontrada!");
+
+  }
+  Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
+  return view('ficha.impressao', compact('diaria'));
+
+  //$pdf = PDF::loadView('ficha.impressao', ['diaria' => $diaria]);
+  //return $pdf->download('os.pdf');
+  //return redirect()->route('ficha.index');
+
+}
+
+
+public function update(Request $request, $id){
+
+  if (!($diaria = Diaria::find($id))){
+    throw new ModelNotFoundException("OS não encontrada!");
   }
 
-  public function show($id)
-   {
-     if(!($diaria = Diaria::find($id))) {
+  $data = $request->all();
+  $diaria->fill($data)->save();
+  Session::flash('mensagem_edit', "Ordem de Serviço editada com Sucesso!");
+  return redirect()->route('ficha.index');
+}
 
-       throw new ModelNotFoundException("Ordem de serviço não encontrada!");
+public function destroy($id){
 
-     }
-     return view('ficha.show', compact('diaria'));
-
-   }
-
-  public function print($id){
-
-    if(!($diaria = Diaria::find($id))) {
-
-      throw new ModelNotFoundException("Ordem de serviço não encontrada!");
-
-    }
-    Session::flash('mensagem_print', 'Ordem de serviço enviada a impressora!');
-    return view('ficha.impressao', compact('diaria'));
-
-    //$pdf = PDF::loadView('ficha.impressao', ['diaria' => $diaria]);
-    //return $pdf->download('os.pdf');
-    //return redirect()->route('ficha.index');
-
+  if (!($diaria = Diaria::find($id))){
+    throw new ModelNotFoundException("OS não encontrada!");
   }
 
+  $diaria->delete();
+  Session::flash('mensagem_del', "Ordem de Serviço deletada com Sucesso!");
+  return redirect()->route('ficha.index');
 
-  public function update(Request $request, $id){
-
-    if (!($diaria = Diaria::find($id))){
-      throw new ModelNotFoundException("OS não encontrada!");
-    }
-
-    $data = $request->all();
-    $diaria->fill($data)->save();
-    Session::flash('mensagem_edit', "Ordem de Serviço editada com Sucesso!");
-    return redirect()->route('ficha.index');
-  }
-
-  public function destroy($id){
-
-    if (!($diaria = Diaria::find($id))){
-      throw new ModelNotFoundException("OS não encontrada!");
-    }
-
-    $diaria->delete();
-    Session::flash('mensagem_del', "Ordem de Serviço deletada com Sucesso!");
-    return redirect()->route('ficha.index');
-
-  }
+}
 }

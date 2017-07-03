@@ -18,7 +18,6 @@ class CreateTrechosTable extends Migration
           $table->integer('diaria_id');
           $table->foreign('diaria_id')->references('id')->on('diarias')->onDelete('cascade');
           $table->text('houve_pernoite')->nullable();
-          $table->text('hp')->nullable();
           $table->text('local_servico')->nullable();
           $table->text('qt_pernoite')->nullable();
           $table->text('local_pernoite')->nullable();
@@ -30,8 +29,6 @@ class CreateTrechosTable extends Migration
           $table->text('total_acrescimos')->nullable();
           $table->text('valor_total')->nullable();
           $table->text('ck_valor_total')->nullable();
-          $table->text('rd_auxtransporte')->nullable();
-          $table->text('rd_auxalimentacao')->nullable();
           $table->text('t_s')->nullable();
           $table->text('a_s')->nullable();
           $table->timestamps();
