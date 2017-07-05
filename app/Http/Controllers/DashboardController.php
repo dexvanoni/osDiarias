@@ -37,50 +37,13 @@ class DashboardController extends Controller
 
   public function store(Request $request){
 
-    //$diaria = Diaria::create($request->all());
+  $diaria = Diaria::create($request->all());
 
-
-
-    /*$tr     = $request->all();
-    foreach($tr['ne']['tr'] as $values)
+  $tr = $request->all();
+    foreach($tr['tr'] as $values)
     {
       $diaria->trechos()->create($values);
-    }*/
-/*
-
-    $trInput = $request->get('tr');
-
-    $tr = array();
-    $i=0;
-
-
-    $tamanho = count(Input::get('local_servico'))-1;
-    for ($f = 0; $f <= $tamanho; $f++)
-    {
-        $diaria->trechos()->saveMany($tr)
     }
-
-
-    foreach(array_chunk($trInput, 10) as $tr)
-    {
-      foreach ($tr as $key => $value) {
-        echo $key;
-        echo ($value['local_servico']);
-      }
-      //$tr[] = new Trecho($tr);
-      //print_r(array_chunk($trInput, 10));
-      //echo($tr);
-      $i++;
-    }
-    exit;*/
-    $diaria = Diaria::create($request->all());
-
-    $trechos_add = array();
-        foreach(Input::get('local_servico') as $local_servico) {
-          $trechos_add[] = new Trecho(array('local_servico' => $local_servico));
-        };
-
-  $diaria->trechos()->saveMany($trechos_add);
 
   Session::flash('mensagem_create', 'Ordem de serviço para o Sr. ' .$request->pnome. ' foi adicionada com sucesso!');
 
