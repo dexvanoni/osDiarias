@@ -43,6 +43,7 @@ class DashboardController extends Controller
     foreach($tr['tr'] as $values)
     {
       $diaria->trechos()->create($values);
+      // teste de branch
     }
 
   Session::flash('mensagem_create', 'Ordem de serviço para o Sr. ' .$request->pnome. ' foi adicionada com sucesso!');
