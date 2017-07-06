@@ -4,7 +4,7 @@ $val2 = Session::get('val2');
 $val3 = Session::get('val3');
 $val4 = Session::get('val4');
 @endphp
-
+<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 <div class="row">
   <div class="col-md-2">
     <img src="/bst/brasao.png" class="img-responsive" alt="" height="70em" width="70em" />
@@ -48,9 +48,9 @@ $val4 = Session::get('val4');
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">2*</span>
       @if ($tela == 'create')
-        {!! Form::input('text', 'pnome', $value = $pgrad, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        {!! Form::input('text', 'pnome', $value = $pgrad, $attributes = ['class' => 'form-control input-sm']) !!}
       @elseif ($tela == 'edit')
-        {!! Form::text('pnome',  null, array('class' => 'form-control input-sm', 'readonly'=>'readonly'))!!}
+        {!! Form::text('pnome',  null, array('class' => 'form-control input-sm'))!!}
       @endif
     </div>
   </div>
@@ -58,10 +58,10 @@ $val4 = Session::get('val4');
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">3*</span>
       @if ($tela == 'create')
-        {!! Form::input('text', 'saram', $value = $saram, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        {!! Form::input('text', 'saram', $value = $saram, $attributes = ['class' => 'form-control input-sm']) !!}
         {!! Form::input('hidden', 'pescodigo', $value = $saram) !!}
       @elseif ($tela == 'edit')
-        {!! Form::text('saram', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
+        {!! Form::text('saram', null, array('class' => 'form-control input-sm' ))!!}
       @endif
     </div>
   </div>
@@ -69,9 +69,9 @@ $val4 = Session::get('val4');
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">4*</span>
       @if ($tela == 'create')
-        {!! Form::input('text', 'cpf', $value = $cpf, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        {!! Form::input('text', 'cpf', $value = $cpf, $attributes = ['class' => 'form-control input-sm']) !!}
       @elseif ($tela == 'edit')
-        {!! Form::text('cpf', null, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
+        {!! Form::text('cpf', null, array('class' => 'form-control input-sm' ))!!}
       @endif
     </div>
   </div>
@@ -101,9 +101,9 @@ $val4 = Session::get('val4');
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">8*</span>
       @if ($tela == 'create')
-        {!! Form::input('text', 'email', $value = $pemail, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        {!! Form::input('text', 'email', $value = $pemail, $attributes = ['class' => 'form-control input-sm']) !!}
       @elseif ($tela == 'edit')
-        {!! Form::text('email', null, array('class' => 'form-control input-sm', 'placeholder'=>'EMAIL:', 'readonly'=>'readonly')) !!}
+        {!! Form::text('email', null, array('class' => 'form-control input-sm', 'placeholder'=>'EMAIL:')) !!}
       @endif
     </div>
   </div>
@@ -111,9 +111,9 @@ $val4 = Session::get('val4');
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">9*</span>
       @if ($tela == 'create')
-        {!! Form::input('text', 'datanascimento', $value = date('d/m/Y', strtotime($datadenascimento)), $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        {!! Form::input('text', 'datanascimento', $value = date('d/m/Y', strtotime($datadenascimento)), $attributes = ['class' => 'form-control input-sm']) !!}
       @elseif ($tela == 'edit')
-        {!! Form::text('datanascimento', null, array('class' => 'form-control input-sm', 'placeholder'=>'DATA DE NASCIMENTO:', 'readonly'=>'readonly')) !!}
+        {!! Form::text('datanascimento', null, array('class' => 'form-control input-sm', 'placeholder'=>'DATA DE NASCIMENTO:')) !!}
       @endif
     </div>
   </div>
@@ -124,16 +124,16 @@ $val4 = Session::get('val4');
   <div title="Campo automático!" class="col-md-5">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">10</span>
-      {!! Form::input('text', 'enquadramento', $value = 'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.', $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly', 'placeholder'=>'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.']) !!}
+      {!! Form::input('text', 'enquadramento', $value = 'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.', $attributes = ['class' => 'form-control input-sm', 'placeholder'=>'Art. 18, do Dec. 4.307, de 19.jul.2002, e Portaria nº 1348/GC4, de 3 set 2015.']) !!}
     </div>
   </div>
   <div title="Digite sua Identidade" class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">11*</span>
       @if ($tela == 'create')
-        {!! Form::input('text', 'identidade', $value = $identidade, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        {!! Form::input('text', 'identidade', $value = $identidade, $attributes = ['class' => 'form-control input-sm']) !!}
       @elseif ($tela == 'edit')
-        {!! Form::text('identidade', null, array('class' => 'form-control input-sm', 'placeholder'=>'IDENTIDADE:', 'readonly'=>'readonly')) !!}
+        {!! Form::text('identidade', null, array('class' => 'form-control input-sm', 'placeholder'=>'IDENTIDADE:')) !!}
       @endif
 
     </div>
@@ -148,9 +148,9 @@ $val4 = Session::get('val4');
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">13*</span>
       @if ($tela == 'create')
-        {!! Form::input('text', 'telefone', $value = $ramal, $attributes = ['class' => 'form-control input-sm', 'readonly'=>'readonly']) !!}
+        {!! Form::input('text', 'telefone', $value = $ramal, $attributes = ['class' => 'form-control input-sm']) !!}
       @elseif ($tela == 'edit')
-        {!! Form::text('telefone', null, array('class' => 'form-control input-sm', 'placeholder'=>'TELEFONE:', 'readonly'=>'readonly')) !!}
+        {!! Form::text('telefone', null, array('class' => 'form-control input-sm', 'placeholder'=>'TELEFONE:')) !!}
       @endif
 
     </div>
@@ -203,76 +203,76 @@ $val4 = Session::get('val4');
 </div>
 <p></p>
 
+
 <!-- SÉTIMA linha da tabela-->
+<div id="camposAdd">
 <div class="row">
-  <div title="Informe a cidade de realização do serviço" class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">19</span>
-      {!! Form::select('local_servico', ['placeholder'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade):', 'val_br_am_rj'=>'Brasília, Manaus ou Rio de Janeiro', 'val_bh_fl_pa_rc_sl_sp'=> 'Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador ou São Paulo', 'val_capitais'=>'Outra capital de Estado', 'val_cidades'=>'Outra Cidade'], null, ['class' => 'form-control input-sm', 'title'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade)', 'id'=>'local_servico']) !!}
+    <div title="Informe a cidade de realização do serviço" class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">19</span>
+        {!! Form::select('tr[0][local_servico]', ['placeholder'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade):', 'val_br_am_rj'=>'Brasília, Manaus ou Rio de Janeiro', 'val_bh_fl_pa_rc_sl_sp'=> 'Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador ou São Paulo', 'val_capitais'=>'Outra capital de Estado', 'val_cidades'=>'Outra Cidade'], null, ['class' => 'form-control input-sm', 'title'=>'LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade)', 'id'=>'local_servico[0]']) !!}
+      </div>
     </div>
-  </div>
-  <div class="col-md-2">
-    {!! Form::input('checkbox', 'houve_pernoite', $value = "s", $attributes = ['id'=>'hp']) !!}&nbsp&nbsp&nbspHouve Pernoite?
-  </div>
-  <div class="col-sm-2">
-    {!! Form::text('qt_pernoite', null, array('id'=>'qt_pernoite','class' =>'form-control input-sm', 'placeholder'=>'QNT DE PERNOITES:')) !!}
-  </div>
-  <div title="Informe os locais de pernoite" class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">20</span>
-      {!! Form::text('local_pernoite', null, array('class' =>'form-control input-sm', 'placeholder'=>'LOCAL(IS) DE PERNOITE:')) !!}
+    <div class="col-md-2">
+      {!! Form::input('checkbox', 'tr[0][houve_pernoite]', $value = "s", $attributes = ['id'=>'hp[0]']) !!}&nbsp&nbsp&nbspHouve Pernoite?
     </div>
+    <div class="col-sm-2">
+      {!! Form::text('tr[0][qt_pernoite]', null, array('id'=>'qt_pernoite[0]','class' =>'form-control input-sm', 'placeholder'=>'QNT DE PERNOITES:')) !!}
+    </div>
+    <div title="Informe os locais de pernoite" class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">20</span>
+        {!! Form::text('tr[0][local_pernoite]', null, array('class' =>'form-control input-sm', 'placeholder'=>'LOCAL(IS) DE PERNOITE:')) !!}
+      </div>
+    </div>
+    <p></p>
   </div>
   <p></p>
-</div>
-<p></p>
-<!-- datas e horas SÉTIMA linha da tabela-->
-<div class="row">
-  <div title="Informe a data e hora de início e retorno do afastamento da sede" class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">21 - AFASTAMENTO DE SEDE:</span>
-      {!! Form::text('data_afastamento_inicio', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Data Início:', 'id'=>'dt_ida')) !!}
-      {!! Form::text('hora_afastamento_inicio', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Hora:', 'id'=>'hr_ida')) !!}
-      {!! Form::text('data_afastamento_retorno', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Data Retorno:', 'id'=>'dt_ret')) !!}
-      {!! Form::text('hora_afastamento_retorno', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Hora:', 'id'=>'hr_ret')) !!}
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">22</span>
-      {!! Form::select('adicional_deslocamento', ['placeholder'=>'Informe se houve ou não adicional de deslocamento:', 'SIM'=>'SIM', 'NÃO'=> 'NÃO'], null, ['id'=>'h_d', 'class' => 'form-control input-sm a'], null, ['title'=>'(§1º, do Art.20, do Dec. 4.307/2002, alterado pelo Dec.6.907/2009)']) !!}
-      {!! Form::select('total_acrescimos', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm a', 'id'=>'total_acrescimos'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
-    </div>
-    <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
-      <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">23 - VALOR TOTAL (Diária + Adc. Desl.)<br><br><br>Sem custo = </span>
-      {!! Form::text('valor_total', null, array('title'=>'Valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_total', 'readonly'=>'readonly')) !!}
-      {!! Form::input('checkbox', 'ck_valor_total', $value = "Sem Custo", $attributes = ['id'=>'zc', 'class' => 'form-control input-sm a']) !!}
-    </div>
-  </div>
-  <!-- oitava linha da tabela-->
-  <div class="col-md-4">
-    <div class="input-group">
-      <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - AUXÍLIO TRANSPORTE:&nbsp</span>
-      <div style="border: 1px solid #D3D3D3; border-radius:3px" class="radio">
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxtransporte', 'SIM', null, ['id'=>'trans_s']) !!}SIM<br>
-        <div id="t_s">
-          {!! Form::text('t_s', null, array('title'=>'Valor de transporte', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_transp')) !!}
-        </div>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxtransporte', 'NÃO', null, ['id'=>'trans_n']) !!}NÃO<br>
+  <!-- datas e horas SÉTIMA linha da tabela-->
+  <div class="row">
+    <div title="Informe a data e hora de início e retorno do afastamento da sede" class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">21 - AFASTAMENTO DE SEDE:</span>
+        {!! Form::text('tr[0][data_afastamento_inicio]', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Data Início:', 'id'=>'dt_ida[0]')) !!}
+        {!! Form::text('tr[0][hora_afastamento_inicio]', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Hora:', 'id'=>'hr_ida[0]')) !!}
+        {!! Form::text('tr[0][data_afastamento_retorno]', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Data Retorno:', 'id'=>'dt_ret[0]')) !!}
+        {!! Form::text('tr[0][hora_afastamento_retorno]', null, array('class' => 'form-control input-sm a', 'placeholder'=>'Hora:', 'id'=>'hr_ret[0]')) !!}
       </div>
     </div>
-    <div class="input-group">
-      <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">25 - AUXÍLIO ALIMENTAÇÃO:</span>
-      <div style="border: 1px solid #D3D3D3; border-radius:3px" class="radio">
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxalimentacao', 'SIM', null, ['id'=>'al_s']) !!}SIM<br>
-        <div id="a_s">
-          {!! Form::text('a_s', null, array('title'=>'Valor de Alimentação', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_alim')) !!}
-        </div>
-        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp{!! Form::radio('rd_auxalimentacao', 'NÃO', null, ['id'=>'al_n']) !!}NÃO<br>
+    <div class="col-md-4">
+      <div class="input-group">
+        <span class="input-group-addon" id="basic-addon1">22</span>
+        {!! Form::select('tr[0][adicional_deslocamento]', ['placeholder'=>'Informe se houve ou não adicional de deslocamento:', 'SIM'=>'SIM', 'NÃO'=> 'NÃO'], null, ['id'=>'h_d[0]', 'class' => 'form-control input-sm a'], null, ['title'=>'(§1º, do Art.20, do Dec. 4.307/2002, alterado pelo Dec.6.907/2009)']) !!}
+        {!! Form::select('tr[0][total_acrescimos]', ['placeholder'=>'TOTAL DE ACRÉSCIMOS:', 'DIÁRIA COMPLETA'=>'DIÁRIA COMPLETA', '1/2 DIÁRIA'=> '1/2 DIÁRIA'], null, ['class' => 'form-control input-sm a', 'id'=>'total_acrescimos[0]'], null, ['title'=>'Informe se Diária completa ou 1/2 diária']) !!}
+      </div>
+      <div style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group">
+        <span style="border: 1px solid #D3D3D3; border-radius:3px; font-size: 10px" class="input-group-addon" id="basic-addon1">23 - VALOR TOTAL (Diária + Adc. Desl.)<br><br><br>Sem custo = </span>
+        {!! Form::text('tr[0][valor_total]', null, array('title'=>'Valor total de diárias + adicionais de deslocamento', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_total[0]')) !!}
+        {!! Form::input('checkbox', 'tr[0][ck_valor_total]', $value = "Sem Custo", $attributes = ['id'=>'zc[0]', 'class' => 'form-control input-sm a']) !!}
+      </div>
+    </div>
+    <!-- oitava linha da tabela-->
+    <div class="col-md-4">
+      <div class="input-group">
+        <span title="Informe se faz jus a auxílio transporte" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">24 - AUXÍLIO TRANSPORTE:&nbsp</span>
+        {!! Form::text('tr[0][t_s]', null, array('title'=>'Valor de transporte', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_transp[0]')) !!}
+      </div>
+      <div class="input-group">
+        <span title="Informe se faz jus a auxílio alimentação" style="border: 1px solid #D3D3D3; border-radius:3px" class="input-group-addon" id="basic-addon1">25 - AUXÍLIO ALIMENTAÇÃO:</span>
+          {!! Form::text('tr[0][a_s]', null, array('title'=>'Valor de Alimentação', 'class' => 'form-control input-sm a', 'placeholder'=>'R$', 'id'=>'valor_alim[0]')) !!}
       </div>
     </div>
   </div>
 </div>
+<!-- campos para inserir mais localidades----------------------------------------------------------->
+<br><div id="campoPai"></div>
+<div class="pull-right">
+  <button id="btAdd" type="button" class="btn btn-primary" aria-label="addCampo" onclick="addCampos()" title="Adicionar trecho">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Adicionar trecho
+  </button><br>
+</div>
+<!--<input type="hidden" name="qtdeCampos" id="qtdeCampos"></input>-->
+<!------------------------------------------------------------------------------------------------------->
 <p></p>
 <!-- nona linha da tabela-->
 <div class="row">
@@ -363,7 +363,7 @@ $val4 = Session::get('val4');
         <center>{!! Form::text('qt_br_am_rj', null, array('size'=>'6', 'id'=>'a1')) !!} <label style="color: red; font-size: 10px" id="l1">+1/2</label> </center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado1', null, array('size'=>'6', 'id'=>'resultado1', 'readonly'=>'readonly')) !!}</center>
+        <center>{!! Form::text('resultado1', null, array('size'=>'6', 'id'=>'resultado1')) !!}</center>
       </div>
     </div>
     <!-- SEGUNDA LINHA DA TABELA-->
@@ -378,7 +378,7 @@ $val4 = Session::get('val4');
         <center>{!! Form::text('qt_bh_fl_pa_rc_sl_sp', null, array('size'=>'6', 'id'=>'b1')) !!}<label style="color: red; font-size: 10px" id="l2">+1/2</label></center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado2', null, array('size'=>'6', 'id'=>'resultado2', 'readonly'=>'readonly')) !!}</center>
+        <center>{!! Form::text('resultado2', null, array('size'=>'6', 'id'=>'resultado2')) !!}</center>
       </div>
     </div>
     <!-- TERCEIRA LINHA DA TABELA-->
@@ -393,7 +393,7 @@ $val4 = Session::get('val4');
         <center>{!! Form::text('qt_capitais', null, array('size'=>'6', 'id'=>'c1')) !!}<label style="color: red; font-size: 10px" id="l3">+1/2</label></center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado3', null, array('size'=>'6', 'id'=>'resultado3', 'readonly'=>'readonly')) !!}</center>
+        <center>{!! Form::text('resultado3', null, array('size'=>'6', 'id'=>'resultado3')) !!}</center>
       </div>
     </div>
     <!-- QUARTA LINHA DA TABELA-->
@@ -408,7 +408,7 @@ $val4 = Session::get('val4');
         <center>{!! Form::text('qt_cidades', null, array('size'=>'6', 'id'=>'d1')) !!}<label style="color: red; font-size: 10px" id="l4">+ 1/2</label></center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado4', null, array('size'=>'6', 'id'=>'resultado4', 'readonly'=>'readonly')) !!}</center>
+        <center>{!! Form::text('resultado4', null, array('size'=>'6', 'id'=>'resultado4')) !!}</center>
       </div>
     </div>
     <!-- LINHA DE ACRÉSCIMOS-->
@@ -418,10 +418,10 @@ $val4 = Session::get('val4');
         <center><h6><b>Acréscimos de Deslocamento</b></h6></center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::input('text', 'qt_acrescimo', null, $attributes = ['id'=>'qt_acrescimo', 'size'=>'6', 'readonly'=>'readonly']) !!} </center>
+        <center>{!! Form::input('text', 'qt_acrescimo', null, $attributes = ['id'=>'qt_acrescimo', 'size'=>'6']) !!} </center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::input('text', 'val_ac', null, $attributes = ['id'=>'val_ac','size'=>'6', 'readonly'=>'readonly']) !!}</center>
+        <center>{!! Form::input('text', 'val_ac', null, $attributes = ['id'=>'val_ac','size'=>'6']) !!}</center>
       </div>
     </div>
     <!-- LINHA DE DESCONTOS-->
@@ -452,7 +452,7 @@ $val4 = Session::get('val4');
         <center>{!! Form::text('qt_dias_a', null, array('size'=>'6', 'id'=>'qt_dias_a')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado_dias_a', null, array('size'=>'6', 'id'=>'resultado_dias_a', 'readonly'=>'readonly')) !!}</center>
+        <center>{!! Form::text('resultado_dias_a', null, array('size'=>'6', 'id'=>'resultado_dias_a')) !!}</center>
       </div>
     </div>
     <!-- SEGUNDA LINHA DESCONTO-->
@@ -467,12 +467,12 @@ $val4 = Session::get('val4');
         <center>{!! Form::text('qt_dias_b', null, array('size'=>'6', 'id'=>'qt_dias_b')) !!}</center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado_dias_b', null, array('size'=>'6', 'id'=>'resultado_dias_b', 'readonly'=>'readonly')) !!}</center>
+        <center>{!! Form::text('resultado_dias_b', null, array('size'=>'6', 'id'=>'resultado_dias_b')) !!}</center>
       </div>
     </div>
     <hr>
-    <h4>Número de diárias completas computadas: {!! Form::text('qtn_dc', null, array('size'=>'6', 'id'=>'qtn_dc', 'readonly'=>'readonly')) !!}</h4>
-    <h4>Número de 1/2 diárias computadas: {!! Form::text('qtn_md', null, array('size'=>'6', 'id'=>'qtn_md', 'readonly'=>'readonly')) !!}</h4>
+    <h4>Número de diárias completas computadas: {!! Form::text('qtn_dc', null, array('size'=>'6', 'id'=>'qtn_dc')) !!}</h4>
+    <h4>Número de 1/2 diárias computadas: {!! Form::text('qtn_md', null, array('size'=>'6', 'id'=>'qtn_md')) !!}</h4>
     <hr>
     <div class="row">
       <div class="col-md-4">
@@ -486,7 +486,7 @@ $val4 = Session::get('val4');
         <center><b>TOTAL</b></center>
       </div>
       <div class="col-md-2">
-        <center>{!! Form::text('resultado_total', null, array('size'=>'6', 'id'=>'resultado_total', 'readonly'=>'readonly')) !!}</center>
+        <center>{!! Form::text('resultado_total', null, array('size'=>'6', 'id'=>'resultado_total')) !!}</center>
       </div>
     </div>
   </div>
@@ -538,6 +538,6 @@ $val4 = Session::get('val4');
 @if ($tela == 'show')
   <a href="{{ route('verTodasOs') }}" class="btn btn-primary"> Voltar</a>
 @else
-  <input type="submit" name="login" id="sub" value="Salvar" class="btn btn-primary">
+  <input type="submit" name="envia" id="sub" value="Salvar" class="btn btn-primary">
   {{ Form::reset('Limpar', array('class'=>'btn btn-danger')) }}
 @endif

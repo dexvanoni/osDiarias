@@ -1,7 +1,7 @@
 @extends('template.template')
 
 @section('t')
-  Editar Ordem de Serviço - Nº: {{ $os->id }}
+  Editar Ordem de Serviço - Nº: {{ $diaria->id }}
 @endsection
 
 @section('title')
@@ -10,8 +10,8 @@
 
 @section('forma')
 
-  {!! Form::model($os,
-    ['route' => ['ficha.update', 'os' => $os->id],
+  {!! Form::model($diaria,
+    ['route' => ['ficha.update', 'diaria' => $diaria->id],
     'class' => 'form',
     'method' => 'PUT']) !!}
     @php

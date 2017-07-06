@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Os;
+use App\Diaria;
 use App\Adm;
 use App\Valor;
 
@@ -14,10 +14,10 @@ class DatabaseSeeder extends Seeder
      */
      public function run()
          {
-             $this->call(oSTableSeeder::class);
+             $this->call(DiariaTableSeeder::class);
          }
 }
-class OsTableSeeder extends Seeder{
+class DiariaTableSeeder extends Seeder{
     public function run(){
 
       Valor::create([

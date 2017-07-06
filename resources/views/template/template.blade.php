@@ -13,6 +13,38 @@ $val4 = Session::get('val4');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="/bst/css/bootstrap.min.css" rel="stylesheet">
   <script src="/bst/js/jquery.min.js"></script>
+  <!----------------------------------------------------------------------------------------------->
+  <!------------------DIV CONTENDO OS CAMPOS PARA ADICIONAR NOVOS TRECHOS ------------------------------->
+
+  <script type="text/javascript">
+    var qtdeCampos = 1;
+      function addCampos() {
+      var objPai = document.getElementById("campoPai");
+      var x = document.getElementById("camposAdd").innerHTML;
+      //Criando o elemento DIV;
+      var objFilho = document.createElement("div");
+      //Definindo atributos ao objFilho:
+      objFilho.setAttribute("id","trecho"+qtdeCampos);
+
+      //Inserindo o elemento no pai:
+      objPai.appendChild(objFilho);
+      //Escrevendo algo no filho recém-criado:
+      document.getElementById("trecho"+qtdeCampos).innerHTML = "<div id='camposAdd'><div class='row'><div title='Informe a cidade de realização do serviço' class='col-md-4'><div class='input-group'><span class='input-group-addon' id='basic-addon1'>19</span><select class='form-control input-sm' title='LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade)' id='tr["+qtdeCampos+"][local_servico]' name='tr["+qtdeCampos+"][local_servico]'><option value='placeholder'>LOCAL DE REALIZAÇÃO DO SERVIÇO (Cidade):</option><option value='val_br_am_rj'>Brasília, Manaus ou Rio de Janeiro</option><option value='val_bh_fl_pa_rc_sl_sp'>Belo Horizonte, Fortaleza, Porto Alegre, Recife, Salvador ou São Paulo</option><option value='val_capitais'>Outra capital de Estado</option><option value='val_cidades'>Outra Cidade</option></select></div></div><div class='col-md-2'><input id='hp["+qtdeCampos+"]' name='tr["+qtdeCampos+"][houve_pernoite]' value='s' type='checkbox'>&nbsp;&nbsp;&nbsp;Houve Pernoite?</div><div class='col-sm-2'><input id='tr["+qtdeCampos+"][qt_pernoite]' class='form-control input-sm' placeholder='QNT DE PERNOITES:' name='tr["+qtdeCampos+"][qt_pernoite]' type='text'></div><div title='Informe os locais de pernoite' class='col-md-4'><div class='input-group'><span class='input-group-addon' id='basic-addon1'>20</span><input class='form-control input-sm' placeholder='LOCAL(IS) DE PERNOITE:' name='tr["+qtdeCampos+"][local_pernoite]' type='text'></div></div><p></p></div><p></p><div class='row'><div title='Informe a data e hora de início e retorno do afastamento da sede' class='col-md-4'><div class='input-group'><span class='input-group-addon' id='basic-addon1'>21 - AFASTAMENTO DE SEDE:</span><input class='form-control input-sm a' placeholder='Data Início:' id='dt_ida["+qtdeCampos+"]' name='tr["+qtdeCampos+"][data_afastamento_inicio]' type='text'><input class='form-control input-sm a' placeholder='Hora:' id='hr_ida["+qtdeCampos+"]' name='tr["+qtdeCampos+"][hora_afastamento_inicio]' type='text'><input class='form-control input-sm a' placeholder='Data Retorno:' id='dt_ret["+qtdeCampos+"]' name='tr["+qtdeCampos+"][data_afastamento_retorno]' type='text'><input class='form-control input-sm a' placeholder='Hora:' id='hr_ret["+qtdeCampos+"]' name='tr["+qtdeCampos+"][hora_afastamento_retorno]' type='text'></div></div><div class='col-md-4'><div class='input-group'><span class='input-group-addon' id='basic-addon1'>22</span><select id='h_d["+qtdeCampos+"]' class='form-control input-sm a' name='tr["+qtdeCampos+"][adicional_deslocamento]'><option value='placeholder'>Informe se houve ou não adicional de deslocamento:</option><option value='SIM'>SIM</option><option value='NÃO'>NÃO</option></select><select class='form-control input-sm a' id='tr["+qtdeCampos+"][total_acrescimos]' name='tr["+qtdeCampos+"][total_acrescimos]'><option value='placeholder'>TOTAL DE ACRÉSCIMOS:</option><option value='DIÁRIA COMPLETA'>DIÁRIA COMPLETA</option><option value='1/2 DIÁRIA'>1/2 DIÁRIA</option></select></div><div style='border:1px solid #d3d3d3;border-radius:3px' class='input-group'><span style='border:1px solid #d3d3d3;border-radius:3px;font-size:10px' class='input-group-addon' id='basic-addon1'>23 - VALOR TOTAL (Diária + Adc. Desl.)<br>Sem custo = </span><input title='Valor total de diárias + adicionais de deslocamento' class='form-control input-sm a' placeholder='R$' id='tr["+qtdeCampos+"][valor_total]' name='tr["+qtdeCampos+"][valor_total]' type='text'><input id='zc["+qtdeCampos+"]' class='form-control input-sm a' name='tr["+qtdeCampos+"][ck_valor_total]' value='Sem Custo' type='checkbox'></div></div><div class='col-md-4'><div class='input-group'><span title='Informe se faz jus a auxílio transporte' style='border:1px solid #d3d3d3;border-radius:3px' class='input-group-addon' id='basic-addon1'>24 - AUXÍLIO TRANSPORTE:&nbsp;</span><input title='Valor de transporte' class='form-control input-sm a' placeholder='R$' id='valor_transp["+qtdeCampos+"]' name='tr["+qtdeCampos+"][t_s]' type='text'></div><div class='input-group'><span title='Informe se faz jus a auxílio alimentação' style='border:1px solid #d3d3d3;border-radius:3px' class='input-group-addon' id='basic-addon1'>25 - AUXÍLIO ALIMENTAÇÃO:</span><input title='Valor de Alimentação' class='form-control input-sm a' placeholder='R$' id='valor_alim["+qtdeCampos+"]' name='tr["+qtdeCampos+"][a_s]' type='text'></div></div></div></div><button type='button' class='btn btn-danger' aria-label='addCampo' onclick='removerCampo("+qtdeCampos+")' title='Excluir trecho' value='Remover Trecho'><span class='glyphicon glyphicon-minus'></span> Remover trecho</button><hr>";
+      qtdeCampos++;
+      //$('#qtdeCampos').val(qtdeCampos);
+    }
+
+
+    function removerCampo(id) {
+    var objPai = document.getElementById("campoPai");
+    var objFilho = document.getElementById("trecho"+id);
+
+    //Removendo o DIV com id específico do nó-pai:
+    var removido = objPai.removeChild(objFilho);
+    }
+</script>
+<!---------------------------------------------------------------------------------------------------------->
+
 </head>
 <body>
   <!--Nav Bar-->
@@ -51,6 +83,7 @@ $val4 = Session::get('val4');
     @yield('forma')
 
     <hr>
+
   </div>
   <script type="text/javascript">
   var a = "<?php echo $tela; ?>";
@@ -66,47 +99,48 @@ $val4 = Session::get('val4');
   var valor_transp;
 
   $( document ).ready(function() {
+
     $('#a').val(<?php echo $val1; ?>);
     $('#b').val(<?php echo $val2; ?>);
     $('#c').val(<?php echo $val3; ?>);
     $('#d').val(<?php echo $val4; ?>);
 
-      if ($('#qt_acrescimo').val('')){
+    if ($('#qt_acrescimo').val('')){
       $('#qt_acrescimo').val(0.0)
-      }
-      if ($('#val_ac').val('')){
+    }
+    if ($('#val_ac').val('')){
       $('#val_ac').val(0.0)
-      }
-      if ($('#desc_a').val('')){
+    }
+    if ($('#desc_a').val('')){
       $('#desc_a').val(0.0)
-      }
-      if ($('#qt_dias_a').val('')){
+    }
+    if ($('#qt_dias_a').val('')){
       $('#qt_dias_a').val(0.0)
-      }
-      if ($('#resultado_dias_a').val('')){
+    }
+    if ($('#resultado_dias_a').val('')){
       $('#resultado_dias_a').val(0.0)
-      }
-      if ($('#desc_b').val('')){
+    }
+    if ($('#desc_b').val('')){
       $('#desc_b').val(0.0)
-      }
-      if ($('#qt_dias_b').val('')){
+    }
+    if ($('#qt_dias_b').val('')){
       $('#qt_dias_b').val(0.0)
-      }
-      if ($('#resultado_dias_b').val('')){
+    }
+    if ($('#resultado_dias_b').val('')){
       $('#resultado_dias_b').val(0.0)
-      }
-      if ($('#qt_meia_diaria').val('')){
+    }
+    if ($('#qt_meia_diaria').val('')){
       $('#qt_meia_diaria').val(0.0)
-      }
-      if ($('#qt_diaria_completa').val('')){
+    }
+    if ($('#qt_diaria_completa').val('')){
       $('#qt_diaria_completa').val(0.0)
-      }
-      if ($('#num_total_acrescimos').val('')){
+    }
+    if ($('#num_total_acrescimos').val('')){
       $('#num_total_acrescimos').val(0.0)
-      }
-      if ($('#valor_restituicao').val('')){
+    }
+    if ($('#valor_restituicao').val('')){
       $('#valor_restituicao').val(0.0)
-      }
+    }
 
     if (a == 'create'){
       //$('.homologa').hide();
@@ -167,7 +201,7 @@ $val4 = Session::get('val4');
       $('#a_s').hide();
     });
 
-    document.getElementById("a").readOnly = true;
+/*    document.getElementById("a").readOnly = true;
     document.getElementById("b").readOnly = true;
     document.getElementById("c").readOnly = true;
     document.getElementById("d").readOnly = true;
@@ -179,14 +213,14 @@ $val4 = Session::get('val4');
     document.getElementById("resultado2").readOnly = true;
     document.getElementById("resultado3").readOnly = true;
     document.getElementById("resultado4").readOnly = true;
-    document.getElementById("resultado_total").readOnly = true;
+    document.getElementById("resultado_total").readOnly = true;*/
 
     $('#l1').hide();
     $('#l2').hide();
     $('#l3').hide();
     $('#l4').hide();
 
-// se sair dos inputs faz a função:
+    // se sair dos inputs faz a função:
     // calculo de datas
     $('#hr_ret, #dt_ret, #dt_ida, #hr_ida, #total_acrescimos, #hp, #zc, #h_d, #trans_s, #trans_n, #al_s, #al_n, #valor_alim, #valor_transp, #qt_pernoite').focusout(function(){
 
@@ -253,8 +287,8 @@ $val4 = Session::get('val4');
         //meia = '';
       }
 
-        // Calculando valores dos trechos
-        //$('#hr_ret').focusout(function(){
+      // Calculando valores dos trechos
+      //$('#hr_ret').focusout(function(){
       if(local == 'val_br_am_rj'){
         $('#a').val(<?php echo $val1; ?>);
         $('#a1').val(parseFloat(total_dias));
@@ -396,14 +430,14 @@ $val4 = Session::get('val4');
         $('#qt_acrescimo').val(0);
 
         var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4);
-              if ((total_acrescimos == "1/2 DIÁRIA")){
-                var totn = tot / 2;
-                //var tt = ($totn / 0.05, 0) * 0.05
-                $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp);
-              } else {
-                //var tt = ($tot / 0.05, 0) * 0.05
-                $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp);
-              }
+        if ((total_acrescimos == "1/2 DIÁRIA")){
+          var totn = tot / 2;
+          //var tt = ($totn / 0.05, 0) * 0.05
+          $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp);
+        } else {
+          //var tt = ($tot / 0.05, 0) * 0.05
+          $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp);
+        }
       } else {
 
         $('#val_ac').val(95);
@@ -412,15 +446,15 @@ $val4 = Session::get('val4');
         var ac = $('#val_ac').val() * $('#qt_acrescimo').val();
 
         var tot = parseFloat(r1) + parseFloat(r2) + parseFloat(r3) + parseFloat(r4) + desl;
-              if (total_acrescimos == "1/2 DIÁRIA"){
-                var totn = tot / 2;
+        if (total_acrescimos == "1/2 DIÁRIA"){
+          var totn = tot / 2;
 
-                $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp + ac);
+          $('#resultado_total').val(totn.toFixed(2) - valor_alim - valor_transp + ac);
 
-              } else {
+        } else {
 
-                $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp + ac);
-              }
+          $('#resultado_total').val(tot.toFixed(2) - valor_alim - valor_transp + ac);
+        }
 
       }
       var val_tot = $('#resultado_total').val();
@@ -457,19 +491,19 @@ $val4 = Session::get('val4');
 
       if ((total_acrescimos == "1/2 DIÁRIA") && !(Date.parse(d_i) == Date.parse(d_r))){
         num_meia = total_dias;
-          if (flag == 0) {
-            $('#qtn_md').val(num_meia + 1);
-          } else {
-            $('#qtn_md').val(num_meia);
-          }
+        if (flag == 0) {
+          $('#qtn_md').val(num_meia + 1);
+        } else {
+          $('#qtn_md').val(num_meia);
+        }
         $('#qtn_dc').val(0);
       } else if ((total_acrescimos == "DIÁRIA COMPLETA") && !(Date.parse(d_i) == Date.parse(d_r))) {
         num_meia = 1;
-            if(flag == 0){
-              $('#qtn_md').val(num_meia);
-            } else {
-              $('#qtn_md').val(num_meia + 1);
-            }
+        if(flag == 0){
+          $('#qtn_md').val(num_meia);
+        } else {
+          $('#qtn_md').val(num_meia + 1);
+        }
         $('#qtn_dc').val(total_dias);
       }
       var co = $('#qtn_dc').val();
@@ -482,17 +516,39 @@ $val4 = Session::get('val4');
 
       //alert(total_dias + "e" + flag)
       //alert(tot + "e" + total_acrescimos + "d_i = " + d_i + " d_r = " + d_r + "HP = " + hp + " dias = " + parseInt(dias) + " total horas = " + total_horas + " hora = " + hour + " total_dias = " +   parseFloat(total_dias) + " minutos = " + min + " meia = " + meia );
-      })
-});
-$('#sub').click(function(){
-  var completa = $('#qtn_dc').val();
-  var meia_diaria = $('#qtn_md').val();
-  if ((completa >= 15) || (meia_diaria >= 15)){
-  alert("Necessita de tabela comparativa entre ajuda de custo e diárias!");
-  }
-});
+    })
+  });
+  $('#sub').click(function(){
+    var completa = $('#qtn_dc').val();
+    var meia_diaria = $('#qtn_md').val();
+    if ((completa >= 15) || (meia_diaria >= 15)){
+      alert("Necessita de tabela comparativa entre ajuda de custo e diárias!");
+    }
+    //--------------------------------------------------------
+    // colocando mais campos para locais de serviço
+    //
+
+    function duplicarCampos(){
+      var clone = document.getElementById('origem').cloneNode(true);
+      var destino = document.getElementById('destino');
+      destino.appendChild (clone);
+      var camposClonados = clone.getElementsByTagName('input');
+      for(i=0; i<camposClonados.length;i++){
+        camposClonados[i].value = '';
+      }
+    }
+    function removerCampos(id){
+      var node1 = document.getElementById('destino');
+      node1.removeChild(node1.childNodes[0]);
+    }
+    if (($('#zc').val("") || ($('#hp').val(""))) ){
+      $('#zc').val("Com custo");
+      $('#hp').val("Não houveram pernoites");
+    }
+  });
 
   </script>
   <script src="/bst/js/bootstrap.min.js"></script>
+
 </body>
 </html>

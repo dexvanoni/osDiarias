@@ -9,9 +9,9 @@
 <body>
   @php
   $tela = 'print';
-  $om = $os->om;
-  $numero_os = $os->id;
-  $ck_semcusto = $os->ck_valor_total;
+  $om = $diaria->om;
+  $numero_os = $diaria->id;
+  $ck_semcusto = $diaria->ck_valor_total;
   @endphp
   <div class="topo">
     <div class="brasao">
@@ -21,13 +21,13 @@
       <br>
       <center><label style="font-size: 16px">COMANDO DA AERONÁUTICA</label></center>
       <center><label style="font-size: 14px">GRUPAMENTO DE APOIO DE CAMPO GRANDE</label></center>
-      <center><label style="font-size: 14px">ORDEM DE SERVIÇO DE SOLICITAÇÃO DE DIÁRIAS Nº {{ $os->id }}</label></center>
-      <center><label style="font-size: 16px"><sup>1</sup>SC:{{ $os->sc }}</label></center>
+      <center><label style="font-size: 14px">ORDEM DE SERVIÇO DE SOLICITAÇÃO DE DIÁRIAS Nº {{ $diaria->id }}</label></center>
+      <center><label style="font-size: 16px"><sup>1</sup>SC:{{ $diaria->sc }}</label></center>
     </div>
     <div class="pcdp">
-      <center><label style="font-size: 12px">Data de Criação: {{ date('d/m/Y H:m:s', strtotime($os->created_at)) }}</label></center>
-      <center><label style="font-size: 12px">Data de Edição: {{ date('d/m/Y H:m:s', strtotime($os->updated_at)) }}</label></center><br>
-      <center><label style="font-size: 18px">Nº PCDP:{{ $os->pcdp }}</label></center>
+      <center><label style="font-size: 12px">Data de Criação: {{ date('d/m/Y H:m:s', strtotime($diaria->created_at)) }}</label></center>
+      <center><label style="font-size: 12px">Data de Edição: {{ date('d/m/Y H:m:s', strtotime($diaria->updated_at)) }}</label></center><br>
+      <center><label style="font-size: 18px">Nº PCDP:{{ $diaria->pcdp }}</label></center>
     </div>
     <br>
   </div>
@@ -39,83 +39,83 @@
     </div>
     <div class="tabela1">
       <div class="c2">
-        <sup>2</sup> POSTO/GRAD/NOME:&nbsp&nbsp {{ $os->pnome }}
+        <sup>2</sup> POSTO/GRAD/NOME:&nbsp&nbsp {{ $diaria->pnome }}
       </div>
       <div class="c3">
-        <sup>3</sup> SARAM:&nbsp&nbsp {{ $os->saram }}
+        <sup>3</sup> SARAM:&nbsp&nbsp {{ $diaria->saram }}
       </div>
       <div class="c4">
-        <sup>4</sup> CPF:&nbsp&nbsp {{ $os->cpf }}
+        <sup>4</sup> CPF:&nbsp&nbsp {{ $diaria->cpf }}
       </div>
     </div> <!--div da tb 1-->
 
     <div class="tabela2">
       <div class="c5">
-        <sup>5</sup> BANCO: &nbsp&nbsp {{ $os->banco }}
+        <sup>5</sup> BANCO: &nbsp&nbsp {{ $diaria->banco }}
       </div>
       <div class="c6">
-        <sup>6</sup> AGÊNCIA: &nbsp&nbsp {{ $os->agencia }}
+        <sup>6</sup> AGÊNCIA: &nbsp&nbsp {{ $diaria->agencia }}
       </div>
       <div class="c7">
-        <sup>7</sup> CONTA: &nbsp&nbsp {{ $os->conta }}
+        <sup>7</sup> CONTA: &nbsp&nbsp {{ $diaria->conta }}
       </div>
       <div class="c8">
-        <sup>8</sup> EMAIL: &nbsp&nbsp {{ $os->email }}
+        <sup>8</sup> EMAIL: &nbsp&nbsp {{ $diaria->email }}
       </div>
       <div class="c9">
-        <sup>9</sup> DATA NASCIMENTO:  &nbsp&nbsp {{ $os->datanascimento }}
+        <sup>9</sup> DATA NASCIMENTO:  &nbsp&nbsp {{ $diaria->datanascimento }}
       </div>
     </div>
     <div class="tabela3">
       <div class="c10">
-        <sup>10</sup> <label style="font-size: 14px">ENQUADRAMENTO LEGAL:</label> &nbsp&nbsp {{ $os->enquadramento }}
+        <sup>10</sup> <label style="font-size: 14px">ENQUADRAMENTO LEGAL:</label> &nbsp&nbsp {{ $diaria->enquadramento }}
       </div>
       <div class="c11">
-        <sup>11</sup> IDENTIDADE: &nbsp&nbsp {{ $os->identidade }}
+        <sup>11</sup> IDENTIDADE: &nbsp&nbsp {{ $diaria->identidade }}
       </div>
       <div class="c12">
-        <sup>12</sup> OM: &nbsp&nbsp {{ $os->om }}
+        <sup>12</sup> OM: &nbsp&nbsp {{ $diaria->om }}
       </div>
       <div class="c13">
-        <sup>13</sup> TELEFONE: &nbsp&nbsp {{ $os->telefone }}
+        <sup>13</sup> TELEFONE: &nbsp&nbsp {{ $diaria->telefone }}
       </div>
     </div>
     <div class="tabela4">
-      <sup>14</sup> SERVIÇO A REALIZAR: &nbsp&nbsp {{ $os->servico }}
+      <sup>14</sup> SERVIÇO A REALIZAR: &nbsp&nbsp {{ $diaria->servico }}
     </div>
     <div class="tabela5">
       <div class="c15">
-        <sup>15</sup> DOCS QUE ORIGINARAM A MISSÃO: &nbsp&nbsp {{ $os->documentos }}
+        <sup>15</sup> DOCS QUE ORIGINARAM A MISSÃO: &nbsp&nbsp {{ $diaria->documentos }}
       </div>
       <div class="c16">
-        <sup>16</sup> NE: &nbsp&nbsp {{ $os->ne }}
+        <sup>16</sup> NE: &nbsp&nbsp {{ $diaria->ne }}
       </div>
       <div class="c17">
-        <sup>17</sup> MISSÃO EM PROVEITO: &nbsp&nbsp {{ $os->em_proveito }}
+        <sup>17</sup> MISSÃO EM PROVEITO: &nbsp&nbsp {{ $diaria->em_proveito }}
       </div>
     </div>
     <div class="tabela6">
-      <sup>18</sup> CUSTEIO: &nbsp&nbsp {{ $os->custeio }}
+      <sup>18</sup> CUSTEIO: &nbsp&nbsp {{ $diaria->custeio }}
     </div>
     <div class="tabela7">
-      <sup>19</sup> LOCAL DE REALIZAÇÃO DO SERVIÇO: &nbsp&nbsp {{ $os->local_servico }}
+      <sup>19</sup> LOCAL DE REALIZAÇÃO DO SERVIÇO: &nbsp&nbsp {{ $diaria->local_servico }}
     </div>
     <div class="tabela8">
-      <sup>20</sup> LOCAL(IS) DE PERNOITE: &nbsp&nbsp {{ $os->local_pernoite }}
+      <sup>20</sup> LOCAL(IS) DE PERNOITE: &nbsp&nbsp {{ $diaria->local_pernoite }}
     </div>
     <div class="tabela9">
-      <sup>21</sup> AFASTAMENTO DE SEDE: &nbsp&nbsp INÍCIO: {{ $os->data_afastamento_inicio }} às {{ $os->hora_afastamento_inicio}} | RETORNO: {{ $os->data_afastamento_retorno }} às {{ $os->hora_afastamento_retorno}}
+      <sup>21</sup> AFASTAMENTO DE SEDE: &nbsp&nbsp INÍCIO: {{ $diaria->data_afastamento_inicio }} às {{ $diaria->hora_afastamento_inicio}} | RETORNO: {{ $diaria->data_afastamento_retorno }} às {{ $diaria->hora_afastamento_retorno}}
     </div>
     <div class="tabela10">
       <div class="c22">
-        <sup>22</sup> ADICIONAL DE DESLOCAMENTO (§ 1º, do Art. 20, do Dec. 4.307/2002, alterado pelo Dec. 6.907/2009): &nbsp&nbsp {{ $os->adicional_deslocamento }} <br>
-        TOTAL DE ACRÉSCIMOS: &nbsp {{ $os->total_acrescimos }}
+        <sup>22</sup> ADICIONAL DE DESLOCAMENTO (§ 1º, do Art. 20, do Dec. 4.307/2002, alterado pelo Dec. 6.907/2009): &nbsp&nbsp {{ $diaria->adicional_deslocamento }} <br>
+        TOTAL DE ACRÉSCIMOS: &nbsp {{ $diaria->total_acrescimos }}
       </div>
       <div class="c23">
         <sup>23</sup> VALOR TOTAL: (DIÁRIA+ADC.DESLOCAMENTO): &nbsp&nbsp @if ( $ck_semcusto == 'Sem Custo' )
-          {{ $os->ck_valor_total }}
+          {{ $diaria->ck_valor_total }}
           @else
-            {{ $os->valor_total }}
+            {{ $diaria->valor_total }}
         @endif
       </div>
     </div>

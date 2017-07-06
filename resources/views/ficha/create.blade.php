@@ -10,7 +10,8 @@
 
 @section('forma')
 
-  {!! Form::open(array('route' => 'ficha.store', 'method' => 'POST')) !!}
+  {!! Form::open(array('route' => 'ficha.store', 'method' => 'POST', 'name'=>'form1', 'id'=>'form1')) !!}
+   {!! csrf_field() !!}
   @php
     $tela = 'create';
     $apresenta = '';

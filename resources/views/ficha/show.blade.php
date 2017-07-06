@@ -1,7 +1,7 @@
 @extends('template.template')
 
 @section('t')
-  Exibição da Ordem de Serviço Nº: {{ $os->id }}
+  Exibição da Ordem de Serviço Nº: {{ $diaria->id }}
 @endsection
 
 @section('title')
@@ -30,15 +30,15 @@
         {!! Form::input('hidden', 'dono', $value = $don) !!}
       </div>
       <div class="">
-        <sup>1</sup>SC:{{ $os->sc }}
+        <sup>1</sup>SC:{{ $diaria->sc }}
       </div>
     </center>
   </div>
   <div class="col-md-3">
     <center>
-      <h5>Data de Criação: {{ date('d/m/Y H:m:s', strtotime($os->created_at)) }}</h5>
-      <h5>Data de Edição: {{ date('d/m/Y H:m:s', strtotime($os->updated_at)) }}</h5>
-      Nº PCDP:{{$os->pcdp}}
+      <h5>Data de Criação: {{ date('d/m/Y H:m:s', strtotime($diaria->created_at)) }}</h5>
+      <h5>Data de Edição: {{ date('d/m/Y H:m:s', strtotime($diaria->updated_at)) }}</h5>
+      Nº PCDP:{{$diaria->pcdp}}
     </center>
   </div>
 </div>
@@ -53,19 +53,19 @@
   <div title="Digite seu POSTO/GRAD e NOME COMPLETO" class="col-md-7">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">2*</span>
-        {!! Form::text('pnome', $os->pnome , array('class' => 'form-control input-sm', 'readonly'=>'readonly'))!!}
+        {!! Form::text('pnome', $diaria->pnome , array('class' => 'form-control input-sm', 'readonly'=>'readonly'))!!}
     </div>
   </div>
   <div title="Digite seu SARAM" class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">3*</span>
-        {!! Form::text('saram', $os->saram, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
+        {!! Form::text('saram', $diaria->saram, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
     </div>
   </div>
   <div title="Digite seu CPF" class="col-md-3">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">4*</span>
-        {!! Form::text('cpf', $os->cpf, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
+        {!! Form::text('cpf', $diaria->cpf, array('class' => 'form-control input-sm', 'readonly'=>'readonly' ))!!}
     </div>
   </div>
 </div>
@@ -75,31 +75,31 @@
   <div title="Digite o número do seu banco" class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">5</span>
-      {!! Form::text('banco', $os->banco, array('class' => 'form-control input-sm', 'placeholder'=>'BANCO:')) !!}
+      {!! Form::text('banco', $diaria->banco, array('class' => 'form-control input-sm', 'placeholder'=>'BANCO:')) !!}
     </div>
   </div>
   <div title="Digite o número de sua agência" class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">6</span>
-      {!! Form::text('agencia', $os->agencia, array('class' => 'form-control input-sm', 'placeholder'=>'AGÊNCIA:')) !!}
+      {!! Form::text('agencia', $diaria->agencia, array('class' => 'form-control input-sm', 'placeholder'=>'AGÊNCIA:')) !!}
     </div>
   </div>
   <div title="Digite o número de sua conta" class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">7</span>
-      {!! Form::text('conta', $os->conta, array('class' => 'form-control input-sm', 'placeholder'=>'CONTA:')) !!}
+      {!! Form::text('conta', $diaria->conta, array('class' => 'form-control input-sm', 'placeholder'=>'CONTA:')) !!}
     </div>
   </div>
   <div title="Digite seu email" class="col-md-3">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">8*</span>
-        {!! Form::text('email', $os->email, array('class' => 'form-control input-sm', 'placeholder'=>'EMAIL:', 'readonly'=>'readonly')) !!}
+        {!! Form::text('email', $diaria->email, array('class' => 'form-control input-sm', 'placeholder'=>'EMAIL:', 'readonly'=>'readonly')) !!}
     </div>
   </div>
   <div title="Digite sua data de nascimento" class="col-md-3">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">9*</span>
-        {!! Form::text('datanascimento', $os->datanascimento, array('class' => 'form-control input-sm', 'placeholder'=>'DATA DE NASCIMENTO:', 'readonly'=>'readonly')) !!}
+        {!! Form::text('datanascimento', $diaria->datanascimento, array('class' => 'form-control input-sm', 'placeholder'=>'DATA DE NASCIMENTO:', 'readonly'=>'readonly')) !!}
     </div>
   </div>
 </div>
@@ -115,19 +115,19 @@
   <div title="Digite sua Identidade" class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">11*</span>
-        {!! Form::text('identidade', $os->identidade, array('class' => 'form-control input-sm', 'placeholder'=>'IDENTIDADE:', 'readonly'=>'readonly')) !!}
+        {!! Form::text('identidade', $diaria->identidade, array('class' => 'form-control input-sm', 'placeholder'=>'IDENTIDADE:', 'readonly'=>'readonly')) !!}
     </div>
   </div>
   <div title="Escolha sua OM" class="col-md-2">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">12</span>
-      {!! Form::text('om', $os->om, array('class' => 'form-control input-sm', 'placeholder'=>'IDENTIDADE:', 'readonly'=>'readonly')) !!}
+      {!! Form::text('om', $diaria->om, array('class' => 'form-control input-sm', 'placeholder'=>'IDENTIDADE:', 'readonly'=>'readonly')) !!}
     </div>
   </div>
   <div title="Digite seu telefone para contato" class="col-md-3">
     <div class="input-group">
       <span class="input-group-addon" id="basic-addon1">13*</span>
-        {!! Form::text('telefone', $os->telefone, array('class' => 'form-control input-sm', 'placeholder'=>'TELEFONE:', 'readonly'=>'readonly')) !!}
+        {!! Form::text('telefone', $diaria->telefone, array('class' => 'form-control input-sm', 'placeholder'=>'TELEFONE:', 'readonly'=>'readonly')) !!}
     </div>
   </div>
 </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTbOsDiariasTable extends Migration
+class CreateDiariasTable extends Migration
 {
   /**
   * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTbOsDiariasTable extends Migration
   */
   public function up()
   {
-    Schema::create('tb_os_diarias', function (Blueprint $table) {
+    Schema::create('diarias', function (Blueprint $table) {
       $table->increments('id');
       $table->string('pcdp')->nullable();
       $table->string('sc')->nullable();
@@ -35,21 +35,7 @@ class CreateTbOsDiariasTable extends Migration
       $table->text('ne')->nullable();
       $table->text('em_proveito')->nullable();
       $table->text('custeio')->nullable();
-      $table->text('local_servico')->nullable();
-      $table->text('local_pernoite')->nullable();
-      $table->text('data_afastamento_inicio')->nullable();
-      $table->text('hora_afastamento_inicio')->nullable();
-      $table->text('data_afastamento_retorno')->nullable();
-      $table->text('hora_afastamento_retorno')->nullable();
-      $table->text('adicional_deslocamento')->nullable();
-      $table->text('total_acrescimos')->nullable();
-      $table->text('ck_valor_total')->nullable();
-      $table->text('valor_total')->nullable();
       $table->text('valor_total_sem_custo')->nullable();
-      $table->text('rd_auxtransporte')->nullable();
-      $table->text('t_s')->nullable();
-      $table->text('a_s')->nullable();
-      $table->text('rd_auxalimentacao')->nullable();
       $table->text('fim_semana')->nullable();
       $table->text('conveniencia_servico')->nullable();
       $table->text('justificativa')->nullable();
@@ -91,7 +77,6 @@ class CreateTbOsDiariasTable extends Migration
       $table->float('dono')->nullable();
       $table->text('qtn_md')->nullable();
       $table->text('qtn_dc')->nullable();
-      $table->text('houve_pernoite')->nullable();
       $table->rememberToken();
       $table->timestamps();
     });
@@ -104,6 +89,6 @@ class CreateTbOsDiariasTable extends Migration
   */
   public function down()
   {
-    Schema::dropIfExists('tb_os_diarias');
+    Schema::dropIfExists('diarias');
   }
 }

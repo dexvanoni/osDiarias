@@ -79,24 +79,24 @@
           </tr></center>
         </thead>
         <tbody>
-          @foreach ($os as $oss)
+          @foreach ($diaria as $diarias)
             <tr>
-              <th scope="row">{{ $oss->id }}</th>
-              <td style="width: 20%" >{{ $oss->saram }}</td>
-              <td style="width: 20%" >{{ $oss->pnome}}</td>
-              <td style="width: 40%">{{ $oss->servico }}</td>
+              <th scope="row">{{ $diarias->id }}</th>
+              <td style="width: 20%" >{{ $diarias->saram }}</td>
+              <td style="width: 20%" >{{ $diarias->pnome}}</td>
+              <td style="width: 40%">{{ $diarias->servico }}</td>
               <td style="width: 20%" >
                 <ul class="list-inline list-small">
                   <li title="Editar">
-                    <a href="{{ route('ficha.edit', ['oss' => $oss->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
+                    <a href="{{ route('ficha.edit', ['diarias' => $diarias->id, 'apresenta'=>'editando']) }}" class="btn btn-info btn-sm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>
                   </li>
                   <li>|</li>
                   <li title="Imprimir">
-                    <a href="{{ route('ficha.impressao', ['oss' => $oss->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
+                    <a href="{{ route('ficha.impressao', ['diarias' => $diarias->id]) }}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-print" aria-hidden="true"></span></a>
                   </li>
                   <li>|</li>
                   <li title="Excluir">
-                    <form action="{{ route('ficha.destroy', ['oss' => $oss->id]) }}" method="post">
+                    <form action="{{ route('ficha.destroy', ['diarias' => $diarias->id]) }}" method="post">
                       {{ csrf_field() }}
                       {{ method_field('DELETE') }}
                       <button type="submit" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
@@ -112,7 +112,7 @@
         <h5 style="color: red">Você pode criar uma nova OS para o {{ Session::get('grad') }} {{ Session::get('pesnguerra') }} ou <a href="{{ route('voltarPerfil') }}">voltar para seu perfil</a> </h5>
       @endif
     </div>
-    <center>{{ $os->links() }}</center>
+    <center>{{ $diaria->links() }}</center>
   </div>
   <script src="/bst/js/bootstrap.min.js"></script>
   <script src="/bst/js/jquery.dataTables.min.js"></script>
